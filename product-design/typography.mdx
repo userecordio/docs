@@ -1,4 +1,160 @@
 ---
 title: "Typography"
-description: "DM Sans for UI, Georgia for editorial, JetBrains Mono for code. Every token below maps directly to a CSS property."
+description: "DM Sans for UI, Georgia for editorial, Menlo for code. Every token maps directly to a CSS custom property."
+icon: "type"
 ---
+
+## Font Families
+
+| Name | Token | Value |
+|------|-------|-------|
+| Sans (primary) | `--typography-font-family-font-sans` | `DM Sans` |
+| Serif | `--typography-font-family-font-serif` | `Georgia` |
+| Mono | `--typography-font-family-font-mono` | `Menlo` |
+
+```css
+font-family: var(--typography-font-family-font-sans);
+font-family: var(--typography-font-family-font-mono);
+```
+
+---
+
+## Type Scale
+
+Base font sizes as raw tokens.
+
+| Token | Variable | Value |
+|-------|----------|-------|
+| xs | `--font-size-text-xs` | `12px` |
+| sm | `--font-size-text-sm` | `14px` |
+| base | `--font-size-text-base` | `16px` |
+| lg | `--font-size-text-lg` | `18px` |
+| xl | `--font-size-text-xl` | `20px` |
+| 2xl | `--font-size-text-2xl` | `24px` |
+| 3xl | `--font-size-text-3xl` | `30px` |
+| 4xl | `--font-size-text-4xl` | `36px` |
+| 5xl | `--font-size-text-5xl` | `48px` |
+| 6xl | `--font-size-text-6xl` | `60px` |
+| 7xl | `--font-size-text-7xl` | `72px` |
+| 8xl | `--font-size-text-8xl` | `96px` |
+| 9xl | `--font-size-text-9xl` | `128px` |
+
+---
+
+## Font Weights
+
+| Name | Token | Value |
+|------|-------|-------|
+| Thin | `--font-weight-thin` | `100` |
+| Extra Light | `--font-weight-extralight` | `200` |
+| Light | `--font-weight-light` | `300` |
+| Normal | `--font-weight-normal` | `400` |
+| Medium | `--font-weight-medium` | `500` |
+| Semibold | `--font-weight-semibold` | `600` |
+| Bold | `--font-weight-bold` | `700` |
+| Extra Bold | `--font-weight-extrabold` | `800` |
+| Black | `--font-weight-black` | `900` |
+
+---
+
+## Line Heights
+
+| Token | Value |
+|-------|-------|
+| `--font-line-height-leading-3` | `12px` |
+| `--font-line-height-leading-4` | `16px` |
+| `--font-line-height-leading-5` | `20px` |
+| `--font-line-height-leading-6` | `24px` |
+| `--font-line-height-leading-7` | `28px` |
+| `--font-line-height-leading-8` | `32px` |
+| `--font-line-height-leading-9` | `36px` |
+| `--font-line-height-leading-10` | `40px` |
+
+---
+
+## Letter Spacing
+
+| Name | Token | Value |
+|------|-------|-------|
+| Tighter | `--font-letter-spacing-tighter` | `-0.8px` |
+| Tight | `--font-letter-spacing-tight` | `-0.4px` |
+| Normal | `--font-letter-spacing-normal` | `0` |
+| Wide | `--font-letter-spacing-wide` | `0.4px` |
+| Wider | `--font-letter-spacing-wider` | `0.8px` |
+| Widest | `--font-letter-spacing-widest` | `1.6px` |
+
+---
+
+## Heading Components
+
+Pre-composed heading styles with semantic tokens.
+
+| Element | Font Size | Line Height | Weight | Letter Spacing |
+|---------|-----------|-------------|--------|----------------|
+| H1 | `36px` / `48px` lg | `40px` | `800` (extrabold) | `-0.4px` |
+| H2 | `30px` | `36px` | `600` (semibold) | `-0.4px` |
+| H3 | `24px` | `32px` | `600` (semibold) | `-0.4px` |
+| H4 | `20px` | `28px` | `600` (semibold) | `-0.4px` |
+| p | `16px` | `28px` | `400` (normal) | `0` |
+| lead | `20px` | `28px` | `400` (normal) | `0` |
+| large | `18px` | `28px` | `600` (semibold) | `0` |
+| small | `14px` | `14px` | `500` (medium) | — |
+
+```css
+/* H1 */
+font-family: var(--typography-typography-components-h1-font-family);
+font-size: var(--typography-typography-components-h1-font-size);
+font-weight: var(--typography-typography-components-h1-font-weight);
+line-height: var(--typography-typography-components-h1-line-height);
+letter-spacing: var(--typography-typography-components-h1-letter-spacing);
+
+/* Body paragraph */
+font-family: var(--typography-typography-components-p-font-family);
+font-size: var(--typography-typography-components-p-font-size);
+font-weight: var(--typography-typography-components-p-font-weight);
+line-height: var(--typography-typography-components-p-line-height);
+```
+
+---
+
+## Base Size Aliases
+
+Convenience aliases for the most common UI text sizes.
+
+| Alias | Font Size Token | Line Height Token |
+|-------|----------------|-------------------|
+| extra-small | `--font-size-text-xs` (12px) | `--font-line-height-leading-4` (16px) |
+| small | `--font-size-text-sm` (14px) | `--font-line-height-leading-5` (20px) |
+| base | `--font-size-text-base` (16px) | `--font-line-height-leading-6` (24px) |
+| large | `--font-size-text-lg` (18px) | `--font-line-height-leading-7` (28px) |
+| xlarge | `--font-size-text-xl` (20px) | `--font-line-height-leading-7` (28px) |
+| 2x-large | `--font-size-text-2xl` (24px) | `--font-line-height-leading-8` (32px) |
+| 3x-large | `--font-size-text-3xl` (30px) | `--font-line-height-leading-9` (36px) |
+| 4x-large | `--font-size-text-4xl` (36px) | `--font-line-height-leading-10` (40px) |
+
+---
+
+## Text Style Classes
+
+The CSS file ships pre-composed utility classes following the pattern:
+
+```
+.text-{size}-leading-{normal|none}-{weight}
+```
+
+Examples:
+
+```css
+/* 14px / 20px line-height / semibold */
+.text-small-leading-normal-semibold { ... }
+
+/* 16px / 100% line-height / bold */
+.text-base-leading-none-bold { ... }
+
+/* 24px / 32px line-height / medium */
+.text-2x-large-leading-normal-medium { ... }
+```
+
+Supported sizes: `extra-small · small · base · large · extra-large · 2x-large · 3x-large · 4x-large`
+
+Supported weights per size: `regular · medium · semibold · bold · italic · underlined · strikethrough`

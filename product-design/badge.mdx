@@ -1,0 +1,160 @@
+---
+title: "Badge"
+description: "Small inline label for status, counts, and categories. Always pill-shaped using the full-radius token."
+icon: "tag"
+---
+
+## Variants
+
+| Variant | Background | Text | Use case |
+|---------|-----------|------|----------|
+| `default` | `--base-primary` | `--base-primary-foreground` | General label |
+| `secondary` | `--base-secondary` | `--base-secondary-foreground` | Neutral / subtle |
+| `destructive` | `--base-destructive` | `--base-destructive-foreground` | Error, danger, removal |
+| `outline` | transparent | `--base-foreground` | Minimal, bordered |
+| `success` | `--tailwind-colors-green-100` | `--tailwind-colors-green-800` | Positive status |
+| `warning` | `--tailwind-colors-amber-100` | `--tailwind-colors-amber-800` | Caution state |
+
+---
+
+## Design Tokens Used
+
+| Property | Token | Value |
+|----------|-------|-------|
+| Border radius | `--border-radius-full` | `9999px` |
+| Padding | `--spacing-1` `--spacing-2-5` | `4px 10px` |
+| Font size | `--font-size-text-xs` | `12px` |
+| Font weight | `--font-weight-semibold` | `600` |
+| Line height | `--font-line-height-leading-4` | `16px` |
+| Background (default) | `--base-primary` | zinc-900 / zinc-50 |
+| Text (default) | `--base-primary-foreground` | zinc-50 / zinc-900 |
+| Background (secondary) | `--base-secondary` | zinc-100 / zinc-800 |
+| Text (secondary) | `--base-secondary-foreground` | zinc-900 / zinc-50 |
+| Background (destructive) | `--base-destructive` | `#ee634e` |
+| Border (outline) | `--base-border` | zinc-200 / zinc-800 |
+
+---
+
+## CSS Implementation
+
+```css
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-2-5);
+  font-family: var(--typography-font-family-font-sans);
+  font-size: var(--font-size-text-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-leading-4);
+  letter-spacing: var(--font-letter-spacing-wide);
+  border-radius: var(--border-radius-full);
+  border: var(--border-width-border-1) solid transparent;
+  white-space: nowrap;
+}
+
+/* Variants */
+.badge--default {
+  background-color: var(--base-primary);
+  color: var(--base-primary-foreground);
+}
+
+.badge--secondary {
+  background-color: var(--base-secondary);
+  color: var(--base-secondary-foreground);
+}
+
+.badge--destructive {
+  background-color: var(--base-destructive);
+  color: var(--base-destructive-foreground);
+}
+
+.badge--outline {
+  background-color: transparent;
+  color: var(--base-foreground);
+  border-color: var(--base-border);
+}
+
+.badge--success {
+  background-color: var(--tailwind-colors-green-100);
+  color: var(--tailwind-colors-green-800);
+}
+
+.badge--warning {
+  background-color: var(--tailwind-colors-amber-100);
+  color: var(--tailwind-colors-amber-800);
+}
+```
+
+---
+
+## React / TSX
+
+```tsx
+import { cn } from "@/lib/utils";
+import { HTMLAttributes } from "react";
+
+type BadgeVariant = "default" | "secondary" | "destructive" | "outline" | "success" | "warning";
+
+interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
+  variant?: BadgeVariant;
+}
+
+const variantClass: Record<BadgeVariant, string> = {
+  default: "badge--default",
+  secondary: "badge--secondary",
+  destructive: "badge--destructive",
+  outline: "badge--outline",
+  success: "badge--success",
+  warning: "badge--warning",
+};
+
+export function Badge({ variant = "default", className, ...props }: BadgeProps) {
+  return (
+    <span
+      className={cn("badge", variantClass[variant], className)}
+      {...props}
+    />
+  );
+}
+```
+
+---
+
+## Usage Examples
+
+```tsx
+{/* Status badges */}
+<Badge variant="success">Active</Badge>
+<Badge variant="warning">Pending</Badge>
+<Badge variant="destructive">Failed</Badge>
+<Badge variant="secondary">Draft</Badge>
+
+{/* Category tag */}
+<Badge variant="outline">Design</Badge>
+
+{/* Count badge */}
+<Badge>12 new</Badge>
+
+{/* With icon */}
+<Badge variant="success">
+  <CheckIcon size={10} />
+  Verified
+</Badge>
+```
+
+---
+
+## Accessibility
+
+<Note>
+  Badges are purely visual. If a badge conveys important status information, also communicate it to screen readers via `aria-label` on the parent element or `<span className="sr-only">` inside the badge.
+</Note>
+
+```tsx
+<button aria-label="Notifications, 3 unread">
+  <BellIcon />
+  <Badge aria-hidden="true">3</Badge>
+</button>
+```

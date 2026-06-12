@@ -1,0 +1,189 @@
+---
+title: "Button"
+description: "Interactive action trigger. Available in four variants and three sizes, all powered by semantic design tokens."
+icon: "square-cursor"
+---
+
+## Variants
+
+<Tabs>
+  <Tab title="Primary">
+    The default high-emphasis action. Uses `--base-primary` background with `--base-primary-foreground` text.
+
+    ```tsx
+    <button className="btn-primary">Get started</button>
+    ```
+  </Tab>
+  <Tab title="Secondary">
+    Medium-emphasis — for secondary or alternative actions.
+
+    ```tsx
+    <button className="btn-secondary">Learn more</button>
+    ```
+  </Tab>
+  <Tab title="Destructive">
+    For irreversible or dangerous actions. Uses the `--base-destructive` (`#ee634e`) token.
+
+    ```tsx
+    <button className="btn-destructive">Delete account</button>
+    ```
+  </Tab>
+  <Tab title="Ghost">
+    Low-emphasis, transparent background. Uses `--base-accent` on hover.
+
+    ```tsx
+    <button className="btn-ghost">Cancel</button>
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Sizes
+
+| Size | Height | Padding (H) | Font Size | Token |
+|------|--------|-------------|-----------|-------|
+| sm | `32px` | `12px` | `14px` | `--spacing-3` / `--font-size-text-sm` |
+| default | `40px` | `16px` | `14px` | `--spacing-4` / `--font-size-text-sm` |
+| lg | `44px` | `24px` | `16px` | `--spacing-6` / `--font-size-text-base` |
+
+---
+
+## Design Tokens Used
+
+| Property | Token | Value |
+|----------|-------|-------|
+| Background (primary) | `--base-primary` | zinc-900 / zinc-50 |
+| Text (primary) | `--base-primary-foreground` | zinc-50 / zinc-900 |
+| Background (secondary) | `--base-secondary` | zinc-100 / zinc-800 |
+| Text (secondary) | `--base-secondary-foreground` | zinc-900 / zinc-50 |
+| Background (destructive) | `--base-destructive` | `#ee634e` |
+| Text (destructive) | `--base-destructive-foreground` | red-50 |
+| Border radius | `--border-radius-lg` | `8px` |
+| Focus ring | `--base-ring` | zinc-900 / zinc-300 |
+| Hover accent | `--base-accent` | zinc-100 / zinc-800 |
+
+---
+
+## CSS Implementation
+
+```css
+.btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  font-family: var(--typography-font-family-font-sans);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-lg);
+  border: var(--border-width-border-1) solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s, opacity 0.15s;
+
+  /* default size */
+  height: var(--height-h-10);
+  padding: 0 var(--spacing-4);
+}
+
+.btn-primary {
+  background-color: var(--base-primary);
+  color: var(--base-primary-foreground);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: var(--base-secondary);
+  color: var(--base-secondary-foreground);
+  border-color: var(--base-border);
+}
+
+.btn-destructive {
+  background-color: var(--base-destructive);
+  color: var(--base-destructive-foreground);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--base-foreground);
+}
+
+.btn-ghost:hover {
+  background-color: var(--base-accent);
+  color: var(--base-accent-foreground);
+}
+
+/* Sizes */
+.btn-sm {
+  height: var(--height-h-8);
+  padding: 0 var(--spacing-3);
+  font-size: var(--font-size-text-sm);
+}
+
+.btn-lg {
+  height: var(--height-h-11);
+  padding: 0 var(--spacing-6);
+  font-size: var(--font-size-text-base);
+}
+
+/* Focus ring */
+.btn-base:focus-visible {
+  outline: 2px solid var(--base-ring);
+  outline-offset: 2px;
+}
+
+/* Disabled */
+.btn-base:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+```
+
+---
+
+## React / TSX
+
+```tsx
+import { cn } from "@/lib/utils";
+import { ButtonHTMLAttributes, forwardRef } from "react";
+
+type Variant = "primary" | "secondary" | "destructive" | "ghost";
+type Size = "sm" | "default" | "lg";
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: Variant;
+  size?: Size;
+}
+
+const variantClass: Record<Variant, string> = {
+  primary: "btn-primary",
+  secondary: "btn-secondary",
+  destructive: "btn-destructive",
+  ghost: "btn-ghost",
+};
+
+const sizeClass: Record<Size, string> = {
+  sm: "btn-sm",
+  default: "",
+  lg: "btn-lg",
+};
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ variant = "primary", size = "default", className, ...props }, ref) => (
+    <button
+      ref={ref}
+      className={cn("btn-base", variantClass[variant], sizeClass[size], className)}
+      {...props}
+    />
+  )
+);
+
+Button.displayName = "Button";
+```
+
+<Info>
+  The brand orange (`--custom-colors-prim-new-orange-prim`: `#ff5723`) can be applied as a custom primary by overriding `--base-primary` in a scoped selector.
+</Info>

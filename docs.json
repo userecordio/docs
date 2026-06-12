@@ -168,6 +168,15 @@
               "product-design/spacing",
               "product-design/radius"
             ]
+          },
+          {
+            "group": "Components",
+            "pages": [
+              "product-design/button",
+              "product-design/input",
+              "product-design/card",
+              "product-design/badge"
+            ]
           }
         ]
       }

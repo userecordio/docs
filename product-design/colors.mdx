@@ -1,114 +1,146 @@
 ---
 title: "Colors"
-description: "Semantic tokens drive the UI. Hover any swatch and click to copy its CSS variable."
+description: "Semantic tokens, brand palette, and raw Tailwind color ramps. All values are CSS custom properties — reference them directly in your styles."
+icon: "palette"
 ---
 
-```javascript
-import { createFileRoute } from "@tanstack/react-router";
-import { CopySwatch } from "@/components/copy-swatch";
+## Brand Colors
 
-export const Route = createFileRoute("/docs/colors")({
-  head: () => ({ meta: [{ title: "Colors — Record UI" }] }),
-  component: ColorsPage,
-});
+Custom palette unique to this design system. Use these for primary actions, brand moments, and key UI highlights.
 
-const semantic = [
-  ["background", "foreground"],
-  ["card", "card-foreground"],
-  ["popover", "popover-foreground"],
-  ["primary", "primary-foreground"],
-  ["secondary", "secondary-foreground"],
-  ["muted", "muted-foreground"],
-  ["accent", "accent-foreground"],
-  ["destructive", "destructive-foreground"],
-  ["border", "input"],
-  ["ring", "ring"],
-];
+| Token | Variable | Hex |
+|-------|----------|-----|
+| Orange | `--custom-colors-prim-primary---orange` | `#ee634e` |
+| Orange Dark | `--custom-colors-prim-primary---orange-dark` | `#ee634e` |
+| New Orange | `--custom-colors-prim-new-orange-prim` | `#ff5723` |
+| Orange Hover | `--custom-colors-prim-prome-orange-hover` | `#e64c1b` |
+| Dark Blue | `--custom-colors-prim-primary---dark-blue` | `#283457` |
+| Dark Blue Accent | `--custom-colors-prim-primary---dark-blue-accent` | `#23242c` |
+| Goodfreshers | `--custom-colors-prim-primary---goodfreshers` | `#022c22` |
+| Sec Goodfreshers | `--custom-colors-prim-sec--goodfreshers` | `#bef264` |
+| New Black | `--custom-colors-prim-new-black-prim` | `#0e0e0c` |
 
-const ramps = [
-  "slate", "gray", "zinc", "neutral", "stone",
-  "red", "orange", "amber", "yellow", "lime",
-  "green", "emerald", "teal", "cyan", "sky",
-  "blue", "indigo", "violet", "purple", "fuchsia",
-  "pink", "rose",
-];
-const steps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+```css
+/* Usage */
+color: var(--custom-colors-prim-new-orange-prim);
+background-color: var(--custom-colors-prim-primary---dark-blue);
+```
 
-const brand = [
-  ["Orange", "--custom-colors-prim-primary---orange"],
-  ["Orange Dark", "--custom-colors-prim-primary---orange-dark"],
-  ["New Orange", "--custom-colors-prim-new-orange-prim"],
-  ["Orange Hover", "--custom-colors-prim-prome-orange-hover"],
-  ["Dark Blue", "--custom-colors-prim-primary---dark-blue"],
-  ["Dark Blue Accent", "--custom-colors-prim-primary---dark-blue-accent"],
-  ["Goodfreshers", "--custom-colors-prim-primary---goodfreshers"],
-  ["Sec Goodfreshers", "--custom-colors-prim-sec--goodfreshers"],
-  ["New Black", "--custom-colors-prim-new-black-prim"],
-];
+---
 
-function ColorsPage() {
-  return (
-    <article className="mx-auto max-w-5xl">
-      <p className="text-sm font-medium text-muted-foreground">Design Tokens</p>
-      <h1 className="mt-2 text-4xl font-extrabold tracking-tight">Colors</h1>
-      <p className="mt-4 text-lg text-muted-foreground">
-        Semantic tokens drive the UI. Hover any swatch and click to copy its CSS variable.
-      </p>
+## Semantic Tokens
 
-      <h2 className="mt-12 text-2xl font-semibold tracking-tight">Semantic</h2>
-      <p className="mt-2 text-muted-foreground">
-        These pair with shadcn — they switch automatically with theme.
-      </p>
-      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-        {semantic.map(([bg]) => (
-          <div key={bg} className="rounded-lg border border-border bg-card p-4">
-            <CopySwatch varName={`--${bg}`} swatchClassName="h-20" />
-            <div className="mt-3 text-sm font-medium">{bg}</div>
-            <div className="font-mono text-[10px] text-muted-foreground">--{bg}</div>
-          </div>
-        ))}
-      </div>
+Semantic tokens are bound to the active theme via `[data-theme='Light']` or `[data-theme='Dark']`. Use `--base-*` tokens in components — they automatically adapt when the theme switches.
 
-      <h2 className="mt-16 text-2xl font-semibold tracking-tight">Brand</h2>
-      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-        {brand.map(([label, v]) => (
-          <CopySwatch key={v} varName={v} label={label} />
-        ))}
-      </div>
+<Tabs>
+  <Tab title="Light">
+    | Role | Token | Resolves to |
+    |------|-------|-------------|
+    | Background | `--base-background` | `#ffffff` |
+    | Foreground | `--base-foreground` | zinc-900 |
+    | Primary | `--base-primary` | zinc-900 |
+    | Primary Foreground | `--base-primary-foreground` | zinc-50 |
+    | Secondary | `--base-secondary` | zinc-100 |
+    | Secondary Foreground | `--base-secondary-foreground` | zinc-900 |
+    | Muted | `--base-muted` | zinc-100 |
+    | Muted Foreground | `--base-muted-foreground` | zinc-500 |
+    | Accent | `--base-accent` | zinc-100 |
+    | Accent Foreground | `--base-accent-foreground` | zinc-900 |
+    | Card | `--base-card` | `#ffffff` |
+    | Card Foreground | `--base-card-foreground` | zinc-950 |
+    | Border | `--base-border` | zinc-200 |
+    | Input | `--base-input` | zinc-200 |
+    | Ring | `--base-ring` | zinc-900 |
+    | Destructive | `--base-destructive` | `#ee634e` |
+    | Destructive Foreground | `--base-destructive-foreground` | red-50 |
+    | Popover | `--base-popover` | `#ffffff` |
+    | Popover Foreground | `--base-popover-foreground` | zinc-950 |
+  </Tab>
+  <Tab title="Dark">
+    | Role | Token | Resolves to |
+    |------|-------|-------------|
+    | Background | `--base-background` | zinc-950 |
+    | Foreground | `--base-foreground` | zinc-50 |
+    | Primary | `--base-primary` | zinc-50 |
+    | Primary Foreground | `--base-primary-foreground` | zinc-900 |
+    | Secondary | `--base-secondary` | zinc-800 |
+    | Secondary Foreground | `--base-secondary-foreground` | zinc-50 |
+    | Muted | `--base-muted` | zinc-800 |
+    | Muted Foreground | `--base-muted-foreground` | zinc-400 |
+    | Accent | `--base-accent` | zinc-800 |
+    | Accent Foreground | `--base-accent-foreground` | zinc-50 |
+    | Card | `--base-card` | zinc-950 |
+    | Card Foreground | `--base-card-foreground` | zinc-50 |
+    | Border | `--base-border` | zinc-800 |
+    | Input | `--base-input` | zinc-800 |
+    | Ring | `--base-ring` | zinc-300 |
+    | Destructive | `--base-destructive` | `#ee634e` |
+    | Destructive Foreground | `--base-destructive-foreground` | red-50 |
+  </Tab>
+</Tabs>
 
-      <h2 className="mt-16 text-2xl font-semibold tracking-tight">Palette</h2>
-      <p className="mt-2 text-muted-foreground">Hover a step and click to copy.</p>
-      <div className="mt-6 space-y-6">
-        {ramps.map((ramp) => (
-          <div key={ramp}>
-            <div className="mb-2 text-sm font-medium capitalize">{ramp}</div>
-            <div className="grid grid-cols-6 gap-1.5 sm:grid-cols-11">
-              {steps.map((s) => (
-                <div key={s}>
-                  <CopySwatch
-                    varName={`--tailwind-colors-${ramp}-${s}`}
-                    swatchClassName="h-10"
-                  />
-                  <div className="mt-1 text-center font-mono text-[10px] text-muted-foreground">
-                    {s}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <h2 className="mt-16 text-2xl font-semibold tracking-tight">Chart</h2>
-      <div className="mt-6 grid grid-cols-5 gap-3">
-        {[1, 2, 3, 4, 5].map((n) => (
-          <div key={n}>
-            <CopySwatch varName={`--chart-${n}`} swatchClassName="h-20" />
-            <div className="mt-2 font-mono text-xs text-muted-foreground">--chart-{n}</div>
-          </div>
-        ))}
-      </div>
-    </article>
-  );
+```css
+/* Components consume base-* tokens */
+.my-button {
+  background-color: var(--base-primary);
+  color: var(--base-primary-foreground);
+  border: 1px solid var(--base-border);
 }
 ```
+
+<Info>
+  Apply `data-theme="Light"` or `data-theme="Dark"` to the root `<html>` element to activate the correct token set.
+</Info>
+
+---
+
+## Chart Colors
+
+Five chart color pairs — each has a light and dark variant bound automatically via semantic tokens.
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `--base-chart-1` | `#2a9d90` | `#2662d9` |
+| `--base-chart-2` | `#e76e50` | `#e23670` |
+| `--base-chart-3` | `#274754` | `#e88c30` |
+| `--base-chart-4` | `#e8c468` | `#af57db` |
+| `--base-chart-5` | `#f4a462` | `#2eb88a` |
+
+---
+
+## Alpha Tokens
+
+Alpha tokens are theme-aware overlays. Light theme uses white-based, dark theme uses zinc-950-based.
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `--alpha-10` | `rgba(255,255,255, 0.90)` | `rgba(9,9,11, 0.90)` |
+| `--alpha-20` | `rgba(255,255,255, 0.80)` | `rgba(9,9,11, 0.80)` |
+| `--alpha-50` | `rgba(255,255,255, 0.50)` | `rgba(9,9,11, 0.50)` |
+| `--alpha-80` | `rgba(255,255,255, 0.20)` | `rgba(9,9,11, 0.20)` |
+| `--alpha-90` | `rgba(255,255,255, 0.10)` | `rgba(9,9,11, 0.10)` |
+
+---
+
+## Tailwind Palette Reference
+
+Raw Tailwind color ramps are available as base tokens. Each step follows `--tailwind-colors-{ramp}-{step}`.
+
+```css
+/* Example: zinc ramp */
+--tailwind-colors-zinc-50:  #fafafa;
+--tailwind-colors-zinc-100: #f4f4f5;
+--tailwind-colors-zinc-200: #e4e4e7;
+--tailwind-colors-zinc-300: #d4d4d8;
+--tailwind-colors-zinc-400: #a1a1aa;
+--tailwind-colors-zinc-500: #71717a;
+--tailwind-colors-zinc-600: #52525b;
+--tailwind-colors-zinc-700: #3f3f46;
+--tailwind-colors-zinc-800: #27272a;
+--tailwind-colors-zinc-900: #18181b;
+--tailwind-colors-zinc-950: #09090b;
+```
+
+Available ramps: `slate` · `gray` · `zinc` · `neutral` · `stone` · `red` · `orange` · `amber` · `yellow` · `lime` · `green` · `emerald` · `teal` · `cyan` · `sky` · `blue` · `indigo` · `violet` · `purple` · `fuchsia` · `pink` · `rose`
+
+Steps available: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 900 · 950`

@@ -1,4 +1,81 @@
 ---
 title: "Radius"
-description: "Border radius tokens from subtle rounding to fully circular."
+description: "Border radius tokens from sharp (0) to fully circular. Two tiers: raw base tokens and semantic alias tokens."
+icon: "square-rounded"
 ---
+
+## Semantic Aliases
+
+Use these in components. They reference the base tokens and give consistent naming across the system.
+
+| Token | Variable | Resolves to | Value |
+|-------|----------|-------------|-------|
+| sm | `--border-radius-sm` | `--radius-rounded-sm` | `2px` |
+| default | `--border-radius-default` | `--radius-rounded-md` | `6px` |
+| md | `--border-radius-md` | `--radius-rounded-md` | `6px` |
+| lg | `--border-radius-lg` | `--radius-rounded-lg` | `8px` |
+| xl | `--border-radius-xl` | `--radius-rounded-xl` | `12px` |
+| 2xl | `--border-radius-2xl` | `--radius-rounded-2xl` | `16px` |
+| 3xl | `--border-radius-3xl` | `--radius-rounded-3xl` | `24px` |
+| 4xl | `--border-radius-4xl` | `--radius-rounded-4xl` | `32px` |
+| full | `--border-radius-full` | `--radius-rounded-full` | `9999px` |
+
+```css
+/* Usage */
+border-radius: var(--border-radius-md);    /* 6px — default for inputs, cards */
+border-radius: var(--border-radius-lg);    /* 8px — buttons */
+border-radius: var(--border-radius-full);  /* pills, avatars */
+```
+
+---
+
+## Base Tokens
+
+Raw radius scale — referenced by the semantic aliases above.
+
+| Token | Value |
+|-------|-------|
+| `--radius-rounded-none` | `0` |
+| `--radius-rounded-sm` | `2px` |
+| `--radius-rounded` | `4px` |
+| `--radius-rounded-md` | `6px` |
+| `--radius-rounded-lg` | `8px` |
+| `--radius-rounded-xl` | `12px` |
+| `--radius-rounded-2xl` | `16px` |
+| `--radius-rounded-3xl` | `24px` |
+| `--radius-rounded-4xl` | `32px` |
+| `--radius-rounded-full` | `9999px` |
+
+---
+
+## Component Defaults
+
+| Component | Recommended Token | Value |
+|-----------|-------------------|-------|
+| Button | `--border-radius-lg` | `8px` |
+| Input | `--border-radius-md` | `6px` |
+| Card | `--border-radius-xl` | `12px` |
+| Badge / Pill | `--border-radius-full` | `9999px` |
+| Avatar | `--border-radius-full` | `9999px` |
+| Tooltip | `--border-radius-md` | `6px` |
+| Dialog / Modal | `--border-radius-xl` | `12px` |
+| Dropdown | `--border-radius-md` | `6px` |
+
+---
+
+## Border Width Tokens
+
+Related border-width tokens for use alongside radius.
+
+| Token | Value |
+|-------|-------|
+| `--border-width-border-0` | `0` |
+| `--border-width-border-1` | `1px` |
+| `--border-width-border-2` | `2px` |
+| `--border-width-border-4` | `4px` |
+| `--border-width-border-8` | `8px` |
+
+```css
+border: var(--border-width-border-1) solid var(--base-border);
+border-radius: var(--border-radius-md);
+```

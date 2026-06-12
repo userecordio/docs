@@ -1,0 +1,184 @@
+---
+title: "Input"
+description: "Text input field with label, helper text, and error state support. Built on semantic color and spacing tokens."
+icon: "input-text"
+---
+
+## States
+
+| State | Border | Background | Text |
+|-------|--------|------------|------|
+| Default | `--base-input` | `--base-background` | `--base-foreground` |
+| Focus | `--base-ring` | `--base-background` | `--base-foreground` |
+| Disabled | `--base-border` | `--base-muted` | `--base-muted-foreground` |
+| Error | `--base-destructive` | `--base-background` | `--base-foreground` |
+| Placeholder | — | — | `--base-muted-foreground` |
+
+---
+
+## Design Tokens Used
+
+| Property | Token | Value |
+|----------|-------|-------|
+| Background | `--base-background` | white / zinc-950 |
+| Border (default) | `--base-input` | zinc-200 / zinc-800 |
+| Border (focus) | `--base-ring` | zinc-900 / zinc-300 |
+| Border (error) | `--base-destructive` | `#ee634e` |
+| Text | `--base-foreground` | zinc-900 / zinc-50 |
+| Placeholder | `--base-muted-foreground` | zinc-500 / zinc-400 |
+| Border radius | `--border-radius-md` | `6px` |
+| Height | `--height-h-10` | `40px` |
+| Padding (horizontal) | `--spacing-3` | `12px` |
+| Font size | `--font-size-text-sm` | `14px` |
+| Label font weight | `--font-weight-medium` | `500` |
+
+---
+
+## CSS Implementation
+
+```css
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1-5);
+}
+
+.input-label {
+  font-family: var(--typography-font-family-font-sans);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--base-foreground);
+  line-height: var(--font-line-height-leading-5);
+}
+
+.input {
+  width: 100%;
+  height: var(--height-h-10);
+  padding: 0 var(--spacing-3);
+  font-family: var(--typography-font-family-font-sans);
+  font-size: var(--font-size-text-sm);
+  color: var(--base-foreground);
+  background-color: var(--base-background);
+  border: var(--border-width-border-1) solid var(--base-input);
+  border-radius: var(--border-radius-md);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input::placeholder {
+  color: var(--base-muted-foreground);
+}
+
+.input:focus {
+  border-color: var(--base-ring);
+  box-shadow: 0 0 0 2px var(--base-ring);
+}
+
+.input:disabled {
+  background-color: var(--base-muted);
+  border-color: var(--base-border);
+  color: var(--base-muted-foreground);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Error state */
+.input--error {
+  border-color: var(--base-destructive);
+}
+
+.input--error:focus {
+  border-color: var(--base-destructive);
+  box-shadow: 0 0 0 2px var(--base-destructive);
+}
+
+.input-helper {
+  font-size: var(--font-size-text-xs);
+  color: var(--base-muted-foreground);
+  line-height: var(--font-line-height-leading-4);
+}
+
+.input-helper--error {
+  color: var(--base-destructive);
+}
+```
+
+---
+
+## React / TSX
+
+```tsx
+import { cn } from "@/lib/utils";
+import { InputHTMLAttributes, forwardRef } from "react";
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  helper?: string;
+  error?: string;
+}
+
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, helper, error, className, id, ...props }, ref) => {
+    const inputId = id ?? label?.toLowerCase().replace(/\s+/g, "-");
+
+    return (
+      <div className="input-wrapper">
+        {label && (
+          <label htmlFor={inputId} className="input-label">
+            {label}
+          </label>
+        )}
+        <input
+          ref={ref}
+          id={inputId}
+          className={cn("input", error && "input--error", className)}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${inputId}-error` : helper ? `${inputId}-helper` : undefined}
+          {...props}
+        />
+        {error ? (
+          <p id={`${inputId}-error`} className="input-helper input-helper--error">
+            {error}
+          </p>
+        ) : helper ? (
+          <p id={`${inputId}-helper`} className="input-helper">
+            {helper}
+          </p>
+        ) : null}
+      </div>
+    );
+  }
+);
+
+Input.displayName = "Input";
+```
+
+---
+
+## Usage Example
+
+```tsx
+<Input
+  label="Email address"
+  type="email"
+  placeholder="you@example.com"
+  helper="We'll never share your email."
+/>
+
+<Input
+  label="Username"
+  defaultValue="johndoe"
+  error="Username is already taken."
+/>
+
+<Input
+  label="API key"
+  type="password"
+  disabled
+  placeholder="sk-••••••••"
+/>
+```
+
+<Note>
+  Always pair an `<Input>` with a visible `label`. For icon-only search inputs, provide an `aria-label` instead.
+</Note>

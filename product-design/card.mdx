@@ -1,0 +1,168 @@
+---
+title: "Card"
+description: "Contained surface for grouping related content. Supports header, body, footer, and media slots."
+icon: "credit-card"
+---
+
+## Anatomy
+
+A card is composed of optional sub-elements:
+
+| Part | Purpose |
+|------|---------|
+| `CardRoot` | Outer container — background, border, shadow, radius |
+| `CardHeader` | Title + description area |
+| `CardContent` | Primary content body |
+| `CardFooter` | Actions row |
+| `CardMedia` | Full-bleed image or visual area (optional) |
+
+---
+
+## Design Tokens Used
+
+| Property | Token | Value |
+|----------|-------|-------|
+| Background | `--base-card` | white / zinc-950 |
+| Text | `--base-card-foreground` | zinc-950 / zinc-50 |
+| Border | `--base-border` | zinc-200 / zinc-800 |
+| Border radius | `--border-radius-xl` | `12px` |
+| Padding (body) | `--spacing-6` | `24px` |
+| Gap (header) | `--spacing-1-5` | `6px` |
+| Gap (footer) | `--spacing-2` | `8px` |
+| Shadow | `shadow-sm` | `0px 1px 2px rgba(0,0,0,0.05)` |
+| Title font size | `--font-size-text-lg` | `18px` |
+| Title weight | `--font-weight-semibold` | `600` |
+| Description color | `--base-muted-foreground` | zinc-500 / zinc-400 |
+| Description size | `--font-size-text-sm` | `14px` |
+
+---
+
+## CSS Implementation
+
+```css
+.card {
+  background-color: var(--base-card);
+  color: var(--base-card-foreground);
+  border: var(--border-width-border-1) solid var(--base-border);
+  border-radius: var(--border-radius-xl);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1-5);
+  padding: var(--spacing-6);
+  padding-bottom: 0;
+}
+
+.card-title {
+  font-family: var(--typography-font-family-font-sans);
+  font-size: var(--font-size-text-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-leading-6);
+  letter-spacing: var(--font-letter-spacing-tight);
+  color: var(--base-card-foreground);
+}
+
+.card-description {
+  font-family: var(--typography-font-family-font-sans);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--font-line-height-leading-5);
+  color: var(--base-muted-foreground);
+}
+
+.card-content {
+  padding: var(--spacing-6);
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-6);
+  padding-top: 0;
+}
+
+/* Optional: media slot (full-bleed image at top) */
+.card-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+```
+
+---
+
+## React / TSX
+
+```tsx
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export function Card({ className, ...props }: CardProps) {
+  return <div className={cn("card", className)} {...props} />;
+}
+
+export function CardHeader({ className, ...props }: CardProps) {
+  return <div className={cn("card-header", className)} {...props} />;
+}
+
+export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
+  return <h3 className={cn("card-title", className)} {...props} />;
+}
+
+export function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
+  return <p className={cn("card-description", className)} {...props} />;
+}
+
+export function CardContent({ className, ...props }: CardProps) {
+  return <div className={cn("card-content", className)} {...props} />;
+}
+
+export function CardFooter({ className, ...props }: CardProps) {
+  return <div className={cn("card-footer", className)} {...props} />;
+}
+```
+
+---
+
+## Usage Examples
+
+<CodeGroup>
+
+```tsx Basic card
+<Card>
+  <CardHeader>
+    <CardTitle>Project Alpha</CardTitle>
+    <CardDescription>Last updated 2 hours ago</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Overview of your current sprint and open tasks.</p>
+  </CardContent>
+  <CardFooter>
+    <Button variant="primary">View project</Button>
+    <Button variant="ghost">Dismiss</Button>
+  </CardFooter>
+</Card>
+```
+
+```tsx Media card
+<Card>
+  <img src="/preview.jpg" alt="Preview" className="card-media" />
+  <CardHeader>
+    <CardTitle>Design review</CardTitle>
+    <CardDescription>Figma · 14 screens</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Review the latest component designs before handoff.</p>
+  </CardContent>
+</Card>
+```
+
+</CodeGroup>
+
+<Tip>
+  For interactive cards (entire card is clickable), wrap in an `<a>` or add `role="button"` and apply a focus-visible ring using `--base-ring`.
+</Tip>

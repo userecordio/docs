@@ -1,0 +1,114 @@
+---
+title: "Colors"
+description: "Semantic tokens drive the UI. Hover any swatch and click to copy its CSS variable."
+---
+
+```javascript
+import { createFileRoute } from "@tanstack/react-router";
+import { CopySwatch } from "@/components/copy-swatch";
+
+export const Route = createFileRoute("/docs/colors")({
+  head: () => ({ meta: [{ title: "Colors — Record UI" }] }),
+  component: ColorsPage,
+});
+
+const semantic = [
+  ["background", "foreground"],
+  ["card", "card-foreground"],
+  ["popover", "popover-foreground"],
+  ["primary", "primary-foreground"],
+  ["secondary", "secondary-foreground"],
+  ["muted", "muted-foreground"],
+  ["accent", "accent-foreground"],
+  ["destructive", "destructive-foreground"],
+  ["border", "input"],
+  ["ring", "ring"],
+];
+
+const ramps = [
+  "slate", "gray", "zinc", "neutral", "stone",
+  "red", "orange", "amber", "yellow", "lime",
+  "green", "emerald", "teal", "cyan", "sky",
+  "blue", "indigo", "violet", "purple", "fuchsia",
+  "pink", "rose",
+];
+const steps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+
+const brand = [
+  ["Orange", "--custom-colors-prim-primary---orange"],
+  ["Orange Dark", "--custom-colors-prim-primary---orange-dark"],
+  ["New Orange", "--custom-colors-prim-new-orange-prim"],
+  ["Orange Hover", "--custom-colors-prim-prome-orange-hover"],
+  ["Dark Blue", "--custom-colors-prim-primary---dark-blue"],
+  ["Dark Blue Accent", "--custom-colors-prim-primary---dark-blue-accent"],
+  ["Goodfreshers", "--custom-colors-prim-primary---goodfreshers"],
+  ["Sec Goodfreshers", "--custom-colors-prim-sec--goodfreshers"],
+  ["New Black", "--custom-colors-prim-new-black-prim"],
+];
+
+function ColorsPage() {
+  return (
+    <article className="mx-auto max-w-5xl">
+      <p className="text-sm font-medium text-muted-foreground">Design Tokens</p>
+      <h1 className="mt-2 text-4xl font-extrabold tracking-tight">Colors</h1>
+      <p className="mt-4 text-lg text-muted-foreground">
+        Semantic tokens drive the UI. Hover any swatch and click to copy its CSS variable.
+      </p>
+
+      <h2 className="mt-12 text-2xl font-semibold tracking-tight">Semantic</h2>
+      <p className="mt-2 text-muted-foreground">
+        These pair with shadcn — they switch automatically with theme.
+      </p>
+      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        {semantic.map(([bg]) => (
+          <div key={bg} className="rounded-lg border border-border bg-card p-4">
+            <CopySwatch varName={`--${bg}`} swatchClassName="h-20" />
+            <div className="mt-3 text-sm font-medium">{bg}</div>
+            <div className="font-mono text-[10px] text-muted-foreground">--{bg}</div>
+          </div>
+        ))}
+      </div>
+
+      <h2 className="mt-16 text-2xl font-semibold tracking-tight">Brand</h2>
+      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {brand.map(([label, v]) => (
+          <CopySwatch key={v} varName={v} label={label} />
+        ))}
+      </div>
+
+      <h2 className="mt-16 text-2xl font-semibold tracking-tight">Palette</h2>
+      <p className="mt-2 text-muted-foreground">Hover a step and click to copy.</p>
+      <div className="mt-6 space-y-6">
+        {ramps.map((ramp) => (
+          <div key={ramp}>
+            <div className="mb-2 text-sm font-medium capitalize">{ramp}</div>
+            <div className="grid grid-cols-6 gap-1.5 sm:grid-cols-11">
+              {steps.map((s) => (
+                <div key={s}>
+                  <CopySwatch
+                    varName={`--tailwind-colors-${ramp}-${s}`}
+                    swatchClassName="h-10"
+                  />
+                  <div className="mt-1 text-center font-mono text-[10px] text-muted-foreground">
+                    {s}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <h2 className="mt-16 text-2xl font-semibold tracking-tight">Chart</h2>
+      <div className="mt-6 grid grid-cols-5 gap-3">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <div key={n}>
+            <CopySwatch varName={`--chart-${n}`} swatchClassName="h-20" />
+            <div className="mt-2 font-mono text-xs text-muted-foreground">--chart-{n}</div>
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+}
+```

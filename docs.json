@@ -150,6 +150,26 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Product Design",
+        "groups": [
+          {
+            "group": "get Started",
+            "pages": [
+              "product-design/introduction"
+            ]
+          },
+          {
+            "group": "Design Tokens",
+            "pages": [
+              "product-design/colors",
+              "product-design/typography",
+              "product-design/spacing",
+              "product-design/radius"
+            ]
+          }
+        ]
       }
     ]
   },

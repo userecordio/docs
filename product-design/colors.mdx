@@ -1,15 +1,134 @@
 ---
 title: "Colors"
-description: "Semantic tokens, brand palette, and raw Tailwind color ramps. All values are CSS custom properties."
+description: "Semantic color tokens, brand palette, chart colors, and theming for light and dark mode."
 icon: "palette"
 ---
 
+## Overview
+
+Colors are organized into three layers: a **Tailwind base palette**, a set of **brand / custom colors**, and **semantic tokens** (`--base-*`) that map to either depending on the active theme (`Light` or `Dark`).
+
+Always build UI with the semantic `--base-*` tokens below — they automatically adapt when `data-theme` switches between `Light` and `Dark`.
+
+## Semantic tokens
+
+<div style={{display: "flex", gap: "8px", marginBottom: "16px"}}>
+  <div style={{flex: 1, padding: "8px 12px", borderRadius: "6px", background: "#18181b", color: "#fafafa", fontSize: "13px", fontWeight: 600, textAlign: "center"}}>data-theme="Light"</div>
+  <div style={{flex: 1, padding: "8px 12px", borderRadius: "6px", background: "#27272a", color: "#fafafa", fontSize: "13px", fontWeight: 600, textAlign: "center"}}>data-theme="Dark"</div>
+</div>
+
+| Swatch | Token | Light value | Dark value | Usage |
+| --- | --- | --- | --- | --- |
+| `--base-background` | `#ffffff` | `#09090b` | Page / app background |  |
+| `--base-foreground` | `#18181b` (zinc-900) | `#fafafa` (zinc-50) | Default text color |  |
+| `--base-primary` | `#18181b` (zinc-900) | `#fafafa` (zinc-50) | Primary buttons, active states |  |
+| `--base-primary-foreground` | `#fafafa` (zinc-50) | `#18181b` (zinc-900) | Text/icons on primary |  |
+| `--base-secondary` | `#f4f4f5` (zinc-100) | `#27272a` (zinc-800) | Secondary buttons / surfaces |  |
+| `--base-secondary-foreground` | `#18181b` (zinc-900) | `#fafafa` (zinc-50) | Text on secondary |  |
+| `--base-muted` | `#f4f4f5` (zinc-100) | `#27272a` (zinc-800) | Muted backgrounds |  |
+| `--base-muted-foreground` | `#71717a` (zinc-500) | `#a1a1aa` (zinc-400) | Secondary / muted text |  |
+| `--base-accent` | `#f4f4f5` (zinc-100) | `#27272a` (zinc-800) | Hover / highlighted states |  |
+| `--base-accent-foreground` | `#18181b` (zinc-900) | `#fafafa` (zinc-50) | Text on accent surfaces |  |
+| `--base-destructive` | `#ee634e` (brand orange) | `#ee634e` (brand orange) | Errors, destructive actions |  |
+| `--base-destructive-foreground` | `#fef2f2` (red-50) | `#fef2f2` (red-50) | Text on destructive |  |
+| `--base-card` | `#ffffff` | `#09090b` | Card / panel background |  |
+| `--base-card-foreground` | `#09090b` (zinc-950) | `#fafafa` (zinc-50) | Text inside cards |  |
+| `--base-popover` | `#ffffff` | `#09090b` | Popovers, dropdowns, tooltips |  |
+| `--base-popover-foreground` | `#09090b` (zinc-950) | `#fafafa` (zinc-50) | Text in popovers |  |
+| `--base-border` | `#e4e4e7` (zinc-200) | `#27272a` (zinc-800) | Borders, dividers |  |
+| `--base-input` | `#e4e4e7` (zinc-200) | `#27272a` (zinc-800) | Input borders |  |
+| `--base-ring` | `#18181b` (zinc-900) | `#d4d4d8` (zinc-300) | Focus rings |  |
+
+<Note>
+  For the full sidebar token set (`--base-sidebar-*`) and chart colors (`--base-chart-1` … `--base-chart-5`), see the [`design-tokens.css`](#full-token-reference) reference at the bottom of this page.
+</Note>
+
+## Brand colors
+
+These are the core custom brand colors used across products, defined as `--custom-colors-prim-*`.
+
+| Swatch | Token | Value |
+| --- | --- | --- |
+| `--custom-colors-prim-primary---orange` | `#ee634e` |  |
+| `--custom-colors-prim-new-orange-prim` | `#ff5723` |  |
+| `--custom-colors-prim-prome-orange-hover` | `#e64c1b` |  |
+| `--custom-colors-prim-primary---dark-blue` | `#283457` |  |
+| `--custom-colors-prim-primary---dark-blue-accent` | `#23242c` |  |
+| `--custom-colors-prim-primary---goodfreshers` | `#022c22` |  |
+| `--custom-colors-prim-sec--goodfreshers` | `#bef264` |  |
+| `--custom-colors-prim-new-black-prim` | `#0e0e0c` |  |
+| `--custom-colors-prim-50` | `#ffffff` |  |
+
+## Chart colors
+
+| Swatch (Light / Dark) | Token | Light | Dark |
+| --- | --- | --- | --- |
+| `--base-chart-1` | `#2a9d90` | `#2662d9` |  |
+| `--base-chart-2` | `#e76e50` | `#e23670` |  |
+| `--base-chart-3` | `#274754` | `#e88c30` |  |
+| `--base-chart-4` | `#e8c468` | `#af57db` |  |
+| `--base-chart-5` | `#f4a462` | `#2eb88a` |  |
+
+## Base palette (Zinc)
+
+The semantic tokens above are built primarily from the **Zinc** scale. The full Tailwind palette (slate, gray, zinc, red, orange, blue, etc.) is included in `design-tokens.css` as `--tailwind-colors-*` for any additional needs (charts, status colors, etc).
+
+<Accordion title="Zinc scale (used for semantic tokens)">
+  | Token | Value | Swatch |
+  | --- | --- | --- |
+  | `--tailwind-colors-zinc-50` | `#fafafa` |  |
+  | `--tailwind-colors-zinc-100` | `#f4f4f5` |  |
+  | `--tailwind-colors-zinc-200` | `#e4e4e7` |  |
+  | `--tailwind-colors-zinc-300` | `#d4d4d8` |  |
+  | `--tailwind-colors-zinc-400` | `#a1a1aa` |  |
+  | `--tailwind-colors-zinc-500` | `#71717a` |  |
+  | `--tailwind-colors-zinc-600` | `#52525b` |  |
+  | `--tailwind-colors-zinc-700` | `#3f3f46` |  |
+  | `--tailwind-colors-zinc-800` | `#27272a` |  |
+  | `--tailwind-colors-zinc-900` | `#18181b` |  |
+  | `--tailwind-colors-zinc-950` | `#09090b` |  |
+</Accordion>
+
+## Usage
+
+<CodeGroup>
+
+```css CSS
+.button-primary {
+  background-color: var(--base-primary);
+  color: var(--base-primary-foreground);
+  border: 1px solid var(--base-border);
+}
+```
+
+```tsx Tailwind (React)
+<button className="bg-primary text-primary-foreground border border-border">
+  Save changes
+</button>
+```
+
+```tsx Inline style (fallback)
+<div style={{ backgroundColor: "var(--base-card)", color: "var(--base-card-foreground)" }}>
+  Card content
+</div>
+```
+
+</CodeGroup>
+
+## Full token reference
+
+The complete token file — including every base color, alias, and theme definition — is available here for download and reuse in your project:
+
+<Card title="design-tokens.css" icon="file-code" href="/snippets/design-tokens.css">
+  Full CSS variable reference (spacing, color, radius, typography, shadows).
+</Card>
+
 ## Brand Colors
 
-Custom palette for primary actions and brand moments.
+Custom palette for primary actions and brand momenfor primary actions and brand moments.
 
 | Token | Variable | Hex |
-|-------|----------|-----|
+| --- | --- | --- |
 | Orange | `--custom-colors-prim-primary---orange` | `#ee634e` |
 | Orange Dark | `--custom-colors-prim-primary---orange-dark` | `#ee634e` |
 | New Orange | `--custom-colors-prim-new-orange-prim` | `#ff5723` |
@@ -29,12 +148,12 @@ background-color: var(--custom-colors-prim-primary---dark-blue);
 
 ## Semantic Tokens
 
-Use `--base-*` tokens in components — they switch automatically with the active theme.
+Use `--base-*` tokens in components — they switch automatically with the active themeUse `--base-*` tokens in components — they switch automatically with the active theme.
 
 <Tabs>
   <Tab title="Light">
-    | Role | Token | Value |
-    |------|-------|-------|
+    | Role | Token | ValueValue |
+    | --- | --- | --- |
     | Background | `--base-background` | `#ffffff` |
     | Foreground | `--base-foreground` | zinc-900 |
     | Primary | `--base-primary` | zinc-900 |
@@ -56,8 +175,8 @@ Use `--base-*` tokens in components — they switch automatically with the activ
     | Popover Foreground | `--base-popover-foreground` | zinc-950 |
   </Tab>
   <Tab title="Dark">
-    | Role | Token | Value |
-    |------|-------|-------|
+    | Role | Token | ValueValue |
+    | --- | --- | --- |
     | Background | `--base-background` | zinc-950 |
     | Foreground | `--base-foreground` | zinc-50 |
     | Primary | `--base-primary` | zinc-50 |
@@ -87,7 +206,7 @@ Use `--base-*` tokens in components — they switch automatically with the activ
 ```
 
 <Info>
-  Apply `data-theme="Light"` or `data-theme="Dark"` to your root `<html>` element to activate the correct token set.
+  Apply `data-theme="Light"` or `data-theme="Dark"` to youryour root `<html>` element to activate the correct token set.
 </Info>
 
 ---
@@ -95,7 +214,7 @@ Use `--base-*` tokens in components — they switch automatically with the activ
 ## Chart Colors
 
 | Token | Light | Dark |
-|-------|-------|------|
+| --- | --- | --- |
 | `--base-chart-1` | `#2a9d90` | `#2662d9` |
 | `--base-chart-2` | `#e76e50` | `#e23670` |
 | `--base-chart-3` | `#274754` | `#e88c30` |
@@ -109,7 +228,7 @@ Use `--base-*` tokens in components — they switch automatically with the activ
 Theme-aware overlay tokens. Light = white-based, Dark = zinc-950-based.
 
 | Token | Light | Dark |
-|-------|-------|------|
+| --- | --- | --- |
 | `--alpha-10` | `rgba(255,255,255, 0.90)` | `rgba(9,9,11, 0.90)` |
 | `--alpha-20` | `rgba(255,255,255, 0.80)` | `rgba(9,9,11, 0.80)` |
 | `--alpha-30` | `rgba(255,255,255, 0.70)` | `rgba(9,9,11, 0.70)` |
@@ -126,12 +245,44 @@ Theme-aware overlay tokens. Light = white-based, Dark = zinc-950-based.
 
 All Tailwind color ramps available as CSS tokens. Pattern: `--tailwind-colors-{ramp}-{step}`
 
-Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 900 · 950`
+| Token | Light | Dark |
+| --- | --- | --- |
+| `--base-chart-1` | `#2a9d90` | `#2662d9` |
+| `--base-chart-2` | `#e76e50` | `#e23670` |
+| `--base-chart-3` | `#274754` | `#e88c30` |
+| `--base-chart-4` | `#e8c468` | `#af57db` |
+| `--base-chart-5` | `#f4a462` | `#2eb88a` |
+
+---
+
+## Alpha Tokens
+
+Theme-aware overlay tokens. Light = white-based, Dark = zinc-950-based.
+
+| Token | Light | Dark |
+| --- | --- | --- |
+| `--alpha-10` | `rgba(255,255,255, 0.90)` | `rgba(9,9,11, 0.90)` |
+| `--alpha-20` | `rgba(255,255,255, 0.80)` | `rgba(9,9,11, 0.80)` |
+| `--alpha-30` | `rgba(255,255,255, 0.70)` | `rgba(9,9,11, 0.70)` |
+| `--alpha-40` | `rgba(255,255,255, 0.60)` | `rgba(9,9,11, 0.60)` |
+| `--alpha-50` | `rgba(255,255,255, 0.50)` | `rgba(9,9,11, 0.50)` |
+| `--alpha-60` | `rgba(255,255,255, 0.40)` | `rgba(9,9,11, 0.40)` |
+| `--alpha-70` | `rgba(255,255,255, 0.30)` | `rgba(9,9,11, 0.30)` |
+| `--alpha-80` | `rgba(255,255,255, 0.20)` | `rgba(9,9,11, 0.20)` |
+| `--alpha-90` | `rgba(255,255,255, 0.10)` | `rgba(9,9,11, 0.10)` |
+
+---
+
+## Full Palette
+
+All Tailwind color ramps available as CSS tokens. Pattern: `--tailwind-colors-{ramp}-{step}`
+
+Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 900 · 950`Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 900 · 950`
 
 ### Slate
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-slate-50` | `#f8fafc` |
 | 100 | `--tailwind-colors-slate-100` | `#f1f5f9` |
 | 200 | `--tailwind-colors-slate-200` | `#e2e8f0` |
@@ -147,7 +298,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Gray
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-gray-50` | `#f9fafb` |
 | 100 | `--tailwind-colors-gray-100` | `#f3f4f6` |
 | 200 | `--tailwind-colors-gray-200` | `#e5e7eb` |
@@ -163,7 +314,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Zinc
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-zinc-50` | `#fafafa` |
 | 100 | `--tailwind-colors-zinc-100` | `#f4f4f5` |
 | 200 | `--tailwind-colors-zinc-200` | `#e4e4e7` |
@@ -179,7 +330,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Neutral
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-neutral-50` | `#fafafa` |
 | 100 | `--tailwind-colors-neutral-100` | `#f5f5f5` |
 | 200 | `--tailwind-colors-neutral-200` | `#e5e5e5` |
@@ -195,7 +346,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Stone
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-stone-50` | `#fafaf9` |
 | 100 | `--tailwind-colors-stone-100` | `#f5f5f4` |
 | 200 | `--tailwind-colors-stone-200` | `#e7e5e4` |
@@ -211,7 +362,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Red
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-red-50` | `#fef2f2` |
 | 100 | `--tailwind-colors-red-100` | `#fee2e2` |
 | 200 | `--tailwind-colors-red-200` | `#fecaca` |
@@ -227,7 +378,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Orange
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-orange-50` | `#fff7ed` |
 | 100 | `--tailwind-colors-orange-100` | `#ffedd5` |
 | 200 | `--tailwind-colors-orange-200` | `#fed7aa` |
@@ -243,7 +394,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Amber
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-amber-50` | `#fffbeb` |
 | 100 | `--tailwind-colors-amber-100` | `#fef3c7` |
 | 200 | `--tailwind-colors-amber-200` | `#fde68a` |
@@ -259,7 +410,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Yellow
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-yellow-50` | `#fefce8` |
 | 100 | `--tailwind-colors-yellow-100` | `#fef9c3` |
 | 200 | `--tailwind-colors-yellow-200` | `#fef08a` |
@@ -275,7 +426,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Lime
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-lime-50` | `#f7fee7` |
 | 100 | `--tailwind-colors-lime-100` | `#ecfccb` |
 | 200 | `--tailwind-colors-lime-200` | `#d9f99d` |
@@ -291,7 +442,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Green
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-green-50` | `#f0fdf4` |
 | 100 | `--tailwind-colors-green-100` | `#dcfce7` |
 | 200 | `--tailwind-colors-green-200` | `#bbf7d0` |
@@ -307,7 +458,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Emerald
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-emerald-50` | `#ecfdf5` |
 | 100 | `--tailwind-colors-emerald-100` | `#d1fae5` |
 | 200 | `--tailwind-colors-emerald-200` | `#a7f3d0` |
@@ -323,7 +474,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Teal
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-teal-50` | `#f0fdfa` |
 | 100 | `--tailwind-colors-teal-100` | `#ccfbf1` |
 | 200 | `--tailwind-colors-teal-200` | `#99f6e4` |
@@ -339,7 +490,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Cyan
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-cyan-50` | `#ecfeff` |
 | 100 | `--tailwind-colors-cyan-100` | `#cffafe` |
 | 200 | `--tailwind-colors-cyan-200` | `#a5f3fc` |
@@ -355,7 +506,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Sky
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-sky-50` | `#f0f9ff` |
 | 100 | `--tailwind-colors-sky-100` | `#e0f2fe` |
 | 200 | `--tailwind-colors-sky-200` | `#bae6fd` |
@@ -371,7 +522,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Blue
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-blue-50` | `#eff6ff` |
 | 100 | `--tailwind-colors-blue-100` | `#dbeafe` |
 | 200 | `--tailwind-colors-blue-200` | `#bfdbfe` |
@@ -387,7 +538,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Indigo
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-indigo-50` | `#eef2ff` |
 | 100 | `--tailwind-colors-indigo-100` | `#e0e7ff` |
 | 200 | `--tailwind-colors-indigo-200` | `#c7d2fe` |
@@ -403,7 +554,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Violet
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-violet-50` | `#f5f3ff` |
 | 100 | `--tailwind-colors-violet-100` | `#ede9fe` |
 | 200 | `--tailwind-colors-violet-200` | `#ddd6fe` |
@@ -419,7 +570,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Purple
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-purple-50` | `#faf5ff` |
 | 100 | `--tailwind-colors-purple-100` | `#f3e8ff` |
 | 200 | `--tailwind-colors-purple-200` | `#e9d5ff` |
@@ -435,7 +586,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Fuchsia
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-fuchsia-50` | `#fdf4ff` |
 | 100 | `--tailwind-colors-fuchsia-100` | `#fae8ff` |
 | 200 | `--tailwind-colors-fuchsia-200` | `#f5d0fe` |
@@ -451,7 +602,7 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Pink
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | 50 | `--tailwind-colors-pink-50` | `#fdf2f8` |
 | 100 | `--tailwind-colors-pink-100` | `#fce7f3` |
 | 200 | `--tailwind-colors-pink-200` | `#fbcfe8` |
@@ -467,7 +618,359 @@ Steps per ramp: `50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 9
 ### Rose
 
 | Step | Token | Hex |
-|------|-------|-----|
+| --- | --- | --- |
+| 50 | `--tailwind-colors-rose-50` | `#fff1f2` |
+| 100 | `--tailwind-colors-rose-100` | `#ffe4e6` |
+| 200 | `--tailwind-colors-rose-200` | `#fecdd3` |
+| 300 | `--tailwind-colors-rose-300` | `#fda4af` |
+| 400 | `--tailwind-colors-rose-400` | `#fb7185` |
+| 500 | `--tailwind-colors-rose-500` | `#f43f5e` |
+| 600 | `--tailwind-colors-rose-600` | `#e11d48` |
+| 700 | `--tailwind-colors-rose-700` | `#be123c` |
+| 800 | `--tailwind-colors-rose-800` | `#9f1239` |
+| 900 | `--tailwind-colors-rose-900` | `#881337` |
+| 950 | `--tailwind-colors-rose-950` | `#4c0519` |
+
+### Slate
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-slate-50` | `#f8fafc` |
+| 100 | `--tailwind-colors-slate-100` | `#f1f5f9` |
+| 200 | `--tailwind-colors-slate-200` | `#e2e8f0` |
+| 300 | `--tailwind-colors-slate-300` | `#cbd5e1` |
+| 400 | `--tailwind-colors-slate-400` | `#94a3b8` |
+| 500 | `--tailwind-colors-slate-500` | `#64748b` |
+| 600 | `--tailwind-colors-slate-600` | `#475569` |
+| 700 | `--tailwind-colors-slate-700` | `#334155` |
+| 800 | `--tailwind-colors-slate-800` | `#1e293b` |
+| 900 | `--tailwind-colors-slate-900` | `#0f172a` |
+| 950 | `--tailwind-colors-slate-950` | `#020617` |
+
+### Gray
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-gray-50` | `#f9fafb` |
+| 100 | `--tailwind-colors-gray-100` | `#f3f4f6` |
+| 200 | `--tailwind-colors-gray-200` | `#e5e7eb` |
+| 300 | `--tailwind-colors-gray-300` | `#d1d5db` |
+| 400 | `--tailwind-colors-gray-400` | `#9ca3af` |
+| 500 | `--tailwind-colors-gray-500` | `#6b7280` |
+| 600 | `--tailwind-colors-gray-600` | `#4b5563` |
+| 700 | `--tailwind-colors-gray-700` | `#374151` |
+| 800 | `--tailwind-colors-gray-800` | `#1f2937` |
+| 900 | `--tailwind-colors-gray-900` | `#111827` |
+| 950 | `--tailwind-colors-gray-950` | `#030712` |
+
+### Zinc
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-zinc-50` | `#fafafa` |
+| 100 | `--tailwind-colors-zinc-100` | `#f4f4f5` |
+| 200 | `--tailwind-colors-zinc-200` | `#e4e4e7` |
+| 300 | `--tailwind-colors-zinc-300` | `#d4d4d8` |
+| 400 | `--tailwind-colors-zinc-400` | `#a1a1aa` |
+| 500 | `--tailwind-colors-zinc-500` | `#71717a` |
+| 600 | `--tailwind-colors-zinc-600` | `#52525b` |
+| 700 | `--tailwind-colors-zinc-700` | `#3f3f46` |
+| 800 | `--tailwind-colors-zinc-800` | `#27272a` |
+| 900 | `--tailwind-colors-zinc-900` | `#18181b` |
+| 950 | `--tailwind-colors-zinc-950` | `#09090b` |
+
+### Neutral
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-neutral-50` | `#fafafa` |
+| 100 | `--tailwind-colors-neutral-100` | `#f5f5f5` |
+| 200 | `--tailwind-colors-neutral-200` | `#e5e5e5` |
+| 300 | `--tailwind-colors-neutral-300` | `#d4d4d4` |
+| 400 | `--tailwind-colors-neutral-400` | `#a3a3a3` |
+| 500 | `--tailwind-colors-neutral-500` | `#737373` |
+| 600 | `--tailwind-colors-neutral-600` | `#525252` |
+| 700 | `--tailwind-colors-neutral-700` | `#404040` |
+| 800 | `--tailwind-colors-neutral-800` | `#262626` |
+| 900 | `--tailwind-colors-neutral-900` | `#171717` |
+| 950 | `--tailwind-colors-neutral-950` | `#0a0a0a` |
+
+### Stone
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-stone-50` | `#fafaf9` |
+| 100 | `--tailwind-colors-stone-100` | `#f5f5f4` |
+| 200 | `--tailwind-colors-stone-200` | `#e7e5e4` |
+| 300 | `--tailwind-colors-stone-300` | `#d6d3d1` |
+| 400 | `--tailwind-colors-stone-400` | `#a8a29e` |
+| 500 | `--tailwind-colors-stone-500` | `#78716c` |
+| 600 | `--tailwind-colors-stone-600` | `#57534e` |
+| 700 | `--tailwind-colors-stone-700` | `#44403c` |
+| 800 | `--tailwind-colors-stone-800` | `#292524` |
+| 900 | `--tailwind-colors-stone-900` | `#1c1917` |
+| 950 | `--tailwind-colors-stone-950` | `#0c0a09` |
+
+### Red
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-red-50` | `#fef2f2` |
+| 100 | `--tailwind-colors-red-100` | `#fee2e2` |
+| 200 | `--tailwind-colors-red-200` | `#fecaca` |
+| 300 | `--tailwind-colors-red-300` | `#fca5a5` |
+| 400 | `--tailwind-colors-red-400` | `#f87171` |
+| 500 | `--tailwind-colors-red-500` | `#ef4444` |
+| 600 | `--tailwind-colors-red-600` | `#dc2626` |
+| 700 | `--tailwind-colors-red-700` | `#b91c1c` |
+| 800 | `--tailwind-colors-red-800` | `#991b1b` |
+| 900 | `--tailwind-colors-red-900` | `#7f1d1d` |
+| 950 | `--tailwind-colors-red-950` | `#450a0a` |
+
+### Orange
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-orange-50` | `#fff7ed` |
+| 100 | `--tailwind-colors-orange-100` | `#ffedd5` |
+| 200 | `--tailwind-colors-orange-200` | `#fed7aa` |
+| 300 | `--tailwind-colors-orange-300` | `#fdba74` |
+| 400 | `--tailwind-colors-orange-400` | `#fb923c` |
+| 500 | `--tailwind-colors-orange-500` | `#f97316` |
+| 600 | `--tailwind-colors-orange-600` | `#ea580c` |
+| 700 | `--tailwind-colors-orange-700` | `#c2410c` |
+| 800 | `--tailwind-colors-orange-800` | `#9a3412` |
+| 900 | `--tailwind-colors-orange-900` | `#7c2d12` |
+| 950 | `--tailwind-colors-orange-950` | `#431407` |
+
+### Amber
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-amber-50` | `#fffbeb` |
+| 100 | `--tailwind-colors-amber-100` | `#fef3c7` |
+| 200 | `--tailwind-colors-amber-200` | `#fde68a` |
+| 300 | `--tailwind-colors-amber-300` | `#fcd34d` |
+| 400 | `--tailwind-colors-amber-400` | `#fbbf24` |
+| 500 | `--tailwind-colors-amber-500` | `#f59e0b` |
+| 600 | `--tailwind-colors-amber-600` | `#d97706` |
+| 700 | `--tailwind-colors-amber-700` | `#b45309` |
+| 800 | `--tailwind-colors-amber-800` | `#92400e` |
+| 900 | `--tailwind-colors-amber-900` | `#78350f` |
+| 950 | `--tailwind-colors-amber-950` | `#451a03` |
+
+### Yellow
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-yellow-50` | `#fefce8` |
+| 100 | `--tailwind-colors-yellow-100` | `#fef9c3` |
+| 200 | `--tailwind-colors-yellow-200` | `#fef08a` |
+| 300 | `--tailwind-colors-yellow-300` | `#fde047` |
+| 400 | `--tailwind-colors-yellow-400` | `#facc15` |
+| 500 | `--tailwind-colors-yellow-500` | `#eab308` |
+| 600 | `--tailwind-colors-yellow-600` | `#ca8a04` |
+| 700 | `--tailwind-colors-yellow-700` | `#a16207` |
+| 800 | `--tailwind-colors-yellow-800` | `#854d0e` |
+| 900 | `--tailwind-colors-yellow-900` | `#713f12` |
+| 950 | `--tailwind-colors-yellow-950` | `#422006` |
+
+### Lime
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-lime-50` | `#f7fee7` |
+| 100 | `--tailwind-colors-lime-100` | `#ecfccb` |
+| 200 | `--tailwind-colors-lime-200` | `#d9f99d` |
+| 300 | `--tailwind-colors-lime-300` | `#bef264` |
+| 400 | `--tailwind-colors-lime-400` | `#a3e635` |
+| 500 | `--tailwind-colors-lime-500` | `#84cc16` |
+| 600 | `--tailwind-colors-lime-600` | `#65a30d` |
+| 700 | `--tailwind-colors-lime-700` | `#4d7c0f` |
+| 800 | `--tailwind-colors-lime-800` | `#3f6212` |
+| 900 | `--tailwind-colors-lime-900` | `#365314` |
+| 950 | `--tailwind-colors-lime-950` | `#1a2e05` |
+
+### Green
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-green-50` | `#f0fdf4` |
+| 100 | `--tailwind-colors-green-100` | `#dcfce7` |
+| 200 | `--tailwind-colors-green-200` | `#bbf7d0` |
+| 300 | `--tailwind-colors-green-300` | `#86efac` |
+| 400 | `--tailwind-colors-green-400` | `#4ade80` |
+| 500 | `--tailwind-colors-green-500` | `#22c55e` |
+| 600 | `--tailwind-colors-green-600` | `#16a34a` |
+| 700 | `--tailwind-colors-green-700` | `#15803d` |
+| 800 | `--tailwind-colors-green-800` | `#166534` |
+| 900 | `--tailwind-colors-green-900` | `#14532d` |
+| 950 | `--tailwind-colors-green-950` | `#052e16` |
+
+### Emerald
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-emerald-50` | `#ecfdf5` |
+| 100 | `--tailwind-colors-emerald-100` | `#d1fae5` |
+| 200 | `--tailwind-colors-emerald-200` | `#a7f3d0` |
+| 300 | `--tailwind-colors-emerald-300` | `#6ee7b7` |
+| 400 | `--tailwind-colors-emerald-400` | `#34d399` |
+| 500 | `--tailwind-colors-emerald-500` | `#10b981` |
+| 600 | `--tailwind-colors-emerald-600` | `#059669` |
+| 700 | `--tailwind-colors-emerald-700` | `#047857` |
+| 800 | `--tailwind-colors-emerald-800` | `#065f46` |
+| 900 | `--tailwind-colors-emerald-900` | `#064e3b` |
+| 950 | `--tailwind-colors-emerald-950` | `#022c22` |
+
+### Teal
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-teal-50` | `#f0fdfa` |
+| 100 | `--tailwind-colors-teal-100` | `#ccfbf1` |
+| 200 | `--tailwind-colors-teal-200` | `#99f6e4` |
+| 300 | `--tailwind-colors-teal-300` | `#5eead4` |
+| 400 | `--tailwind-colors-teal-400` | `#2dd4bf` |
+| 500 | `--tailwind-colors-teal-500` | `#14b8a6` |
+| 600 | `--tailwind-colors-teal-600` | `#0d9488` |
+| 700 | `--tailwind-colors-teal-700` | `#0f766e` |
+| 800 | `--tailwind-colors-teal-800` | `#115e59` |
+| 900 | `--tailwind-colors-teal-900` | `#134e4a` |
+| 950 | `--tailwind-colors-teal-950` | `#042f2e` |
+
+### Cyan
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-cyan-50` | `#ecfeff` |
+| 100 | `--tailwind-colors-cyan-100` | `#cffafe` |
+| 200 | `--tailwind-colors-cyan-200` | `#a5f3fc` |
+| 300 | `--tailwind-colors-cyan-300` | `#67e8f9` |
+| 400 | `--tailwind-colors-cyan-400` | `#22d3ee` |
+| 500 | `--tailwind-colors-cyan-500` | `#06b6d4` |
+| 600 | `--tailwind-colors-cyan-600` | `#0891b2` |
+| 700 | `--tailwind-colors-cyan-700` | `#0e7490` |
+| 800 | `--tailwind-colors-cyan-800` | `#155e75` |
+| 900 | `--tailwind-colors-cyan-900` | `#164e63` |
+| 950 | `--tailwind-colors-cyan-950` | `#083344` |
+
+### Sky
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-sky-50` | `#f0f9ff` |
+| 100 | `--tailwind-colors-sky-100` | `#e0f2fe` |
+| 200 | `--tailwind-colors-sky-200` | `#bae6fd` |
+| 300 | `--tailwind-colors-sky-300` | `#7dd3fc` |
+| 400 | `--tailwind-colors-sky-400` | `#38bdf8` |
+| 500 | `--tailwind-colors-sky-500` | `#0ea5e9` |
+| 600 | `--tailwind-colors-sky-600` | `#0284c7` |
+| 700 | `--tailwind-colors-sky-700` | `#0369a1` |
+| 800 | `--tailwind-colors-sky-800` | `#075985` |
+| 900 | `--tailwind-colors-sky-900` | `#0c4a6e` |
+| 950 | `--tailwind-colors-sky-950` | `#082f49` |
+
+### Blue
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-blue-50` | `#eff6ff` |
+| 100 | `--tailwind-colors-blue-100` | `#dbeafe` |
+| 200 | `--tailwind-colors-blue-200` | `#bfdbfe` |
+| 300 | `--tailwind-colors-blue-300` | `#93c5fd` |
+| 400 | `--tailwind-colors-blue-400` | `#60a5fa` |
+| 500 | `--tailwind-colors-blue-500` | `#3b82f6` |
+| 600 | `--tailwind-colors-blue-600` | `#2563eb` |
+| 700 | `--tailwind-colors-blue-700` | `#1d4ed8` |
+| 800 | `--tailwind-colors-blue-800` | `#1e40af` |
+| 900 | `--tailwind-colors-blue-900` | `#1e3a8a` |
+| 950 | `--tailwind-colors-blue-950` | `#172554` |
+
+### Indigo
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-indigo-50` | `#eef2ff` |
+| 100 | `--tailwind-colors-indigo-100` | `#e0e7ff` |
+| 200 | `--tailwind-colors-indigo-200` | `#c7d2fe` |
+| 300 | `--tailwind-colors-indigo-300` | `#a5b4fc` |
+| 400 | `--tailwind-colors-indigo-400` | `#818cf8` |
+| 500 | `--tailwind-colors-indigo-500` | `#6366f1` |
+| 600 | `--tailwind-colors-indigo-600` | `#4f46e5` |
+| 700 | `--tailwind-colors-indigo-700` | `#4338ca` |
+| 800 | `--tailwind-colors-indigo-800` | `#3730a3` |
+| 900 | `--tailwind-colors-indigo-900` | `#312e81` |
+| 950 | `--tailwind-colors-indigo-950` | `#1e1b4b` |
+
+### Violet
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-violet-50` | `#f5f3ff` |
+| 100 | `--tailwind-colors-violet-100` | `#ede9fe` |
+| 200 | `--tailwind-colors-violet-200` | `#ddd6fe` |
+| 300 | `--tailwind-colors-violet-300` | `#c4b5fd` |
+| 400 | `--tailwind-colors-violet-400` | `#a78bfa` |
+| 500 | `--tailwind-colors-violet-500` | `#8b5cf6` |
+| 600 | `--tailwind-colors-violet-600` | `#7c3aed` |
+| 700 | `--tailwind-colors-violet-700` | `#6d28d9` |
+| 800 | `--tailwind-colors-violet-800` | `#5b21b6` |
+| 900 | `--tailwind-colors-violet-900` | `#4c1d95` |
+| 950 | `--tailwind-colors-violet-950` | `#2e1065` |
+
+### Purple
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-purple-50` | `#faf5ff` |
+| 100 | `--tailwind-colors-purple-100` | `#f3e8ff` |
+| 200 | `--tailwind-colors-purple-200` | `#e9d5ff` |
+| 300 | `--tailwind-colors-purple-300` | `#d8b4fe` |
+| 400 | `--tailwind-colors-purple-400` | `#c084fc` |
+| 500 | `--tailwind-colors-purple-500` | `#a855f7` |
+| 600 | `--tailwind-colors-purple-600` | `#9333ea` |
+| 700 | `--tailwind-colors-purple-700` | `#7e22ce` |
+| 800 | `--tailwind-colors-purple-800` | `#6b21a8` |
+| 900 | `--tailwind-colors-purple-900` | `#581c87` |
+| 950 | `--tailwind-colors-purple-950` | `#3b0764` |
+
+### Fuchsia
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-fuchsia-50` | `#fdf4ff` |
+| 100 | `--tailwind-colors-fuchsia-100` | `#fae8ff` |
+| 200 | `--tailwind-colors-fuchsia-200` | `#f5d0fe` |
+| 300 | `--tailwind-colors-fuchsia-300` | `#f0abfc` |
+| 400 | `--tailwind-colors-fuchsia-400` | `#e879f9` |
+| 500 | `--tailwind-colors-fuchsia-500` | `#d946ef` |
+| 600 | `--tailwind-colors-fuchsia-600` | `#c026d3` |
+| 700 | `--tailwind-colors-fuchsia-700` | `#a21caf` |
+| 800 | `--tailwind-colors-fuchsia-800` | `#86198f` |
+| 900 | `--tailwind-colors-fuchsia-900` | `#701a75` |
+| 950 | `--tailwind-colors-fuchsia-950` | `#4a044e` |
+
+### Pink
+
+| Step | Token | Hex |
+| --- | --- | --- |
+| 50 | `--tailwind-colors-pink-50` | `#fdf2f8` |
+| 100 | `--tailwind-colors-pink-100` | `#fce7f3` |
+| 200 | `--tailwind-colors-pink-200` | `#fbcfe8` |
+| 300 | `--tailwind-colors-pink-300` | `#f9a8d4` |
+| 400 | `--tailwind-colors-pink-400` | `#f472b6` |
+| 500 | `--tailwind-colors-pink-500` | `#ec4899` |
+| 600 | `--tailwind-colors-pink-600` | `#db2777` |
+| 700 | `--tailwind-colors-pink-700` | `#be185d` |
+| 800 | `--tailwind-colors-pink-800` | `#9d174d` |
+| 900 | `--tailwind-colors-pink-900` | `#831843` |
+| 950 | `--tailwind-colors-pink-950` | `#500724` |
+
+### Rose
+
+| Step | Token | Hex |
+| --- | --- | --- |
 | 50 | `--tailwind-colors-rose-50` | `#fff1f2` |
 | 100 | `--tailwind-colors-rose-100` | `#ffe4e6` |
 | 200 | `--tailwind-colors-rose-200` | `#fecdd3` |

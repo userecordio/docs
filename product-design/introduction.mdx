@@ -1,30 +1,174 @@
 ---
 title: "Introduction"
-icon: "paintbrush"
-description: "Record UI is a set of design tokens and component primitives generated from your design files. Tokens are exported as CSS custom properties and aliased to the shadcn/ui semantic names — so anything built on shadcn just works."
+icon: "book-open"
+description: "An overview of the product design system — tokens, theming, and how to use this documentation."
 sidebarTitle: "Introduction"
 mode: "default"
 ---
 
-## **Architecture**
+## Welcome
 
-Tokens are layered in three tiers: **base** (raw scales like spacing & color ramps), **aliases** (semantic intent like `--colors-primary-light`), and **themes** that bind aliases to the active mode via `[data-theme]`.
+This is the documentation for our **Product Design System** — a single source of truth for the colors, typography, spacing, radius, and core UI components used across our products.
 
-```text
-/* base */
---spacing-4: 16px;
---tailwind-colors-zinc-900: #18181b;
+The system is built on **CSS variables (design tokens)** generated from Figma via Kigen, and consumed in code through **Tailwind CSS** and **React \+ TypeScript** components.
 
-/* alias */
---colors-primary-light: var(--tailwind-colors-zinc-900);
+<CardGroup cols={2}>
+  <Card title="Colors" icon="palette" href="/design-tokens/colors">
+    Semantic color tokens, brand palette, and light/dark theming.
+  </Card>
 
-/* theme */
-[data-theme='Light'] {
-  --base-primary: var(--colors-primary-light);
-}
+  <Card title="Typography" icon="text-initial" href="/design-tokens/typography">
+    Font families, type scale, weights, and text style components.
+  </Card>
+
+  <Card title="Spacing" icon="ruler" href="/design-tokens/spacing">
+    The spacing scale used for padding, margin, and gaps.
+  </Card>
+
+  <Card title="Radius" icon="square" href="/design-tokens/radius">
+    Border radius tokens for cards, buttons, and inputs.
+  </Card>
+</CardGroup>
+
+---
+
+## How the system is structured
+
+All tokens are defined as **CSS custom properties** in a single file, `design-tokens.css`. They are layered in three tiers:
+
+<Steps>
+  <Step title="Base tokens">
+    Raw values — the actual pixel, color, or font values. Examples: `--spacing-4: 16px`, `--tailwind-colors-zinc-900: #18181b`, `--radius-rounded-md: 6px`.
+  </Step>
+  <Step title="Alias tokens">
+    Semantic names that point to base tokens, split by theme (`Light` / `Dark`). Examples: `--colors-primary-light: var(--tailwind-colors-zinc-900)`, `--colors-background-dark: var(--tailwind-colors-zinc-950)`.
+  </Step>
+  <Step title="Theme tokens (--base-*)">
+    The tokens components actually consume. They resolve automatically based on the active theme via the `[data-theme]` attribute on the `<html>` or `<body>` element. Examples: `--base-primary`, `--base-background`, `--base-border`.
+  </Step>
+</Steps>
+
+<Tip>
+  When building components, **always use `--base-*` tokens** (e.g. `var(--base-primary)`), never the raw Tailwind color or alias tokens directly. This is what makes light/dark theming automatic.
+</Tip>
+
+---
+
+## Theming
+
+Switch between light and dark mode by setting the `data-theme` attribute:
+
+```html
+<!-- Light mode -->
+<html data-theme="Light">
+
+<!-- Dark mode -->
+<html data-theme="Dark">
 ```
 
-## **Explore**
+Every `--base-*` token is redefined inside `[data-theme='Light']` and `[data-theme='Dark']` blocks, so the whole UI re-themes instantly without changing any component code.
+
+---
+
+## Installation
+
+<Steps>
+  <Step title="Add the tokens file">
+    Copy `design-tokens.css` into your project (e.g. `src/styles/design-tokens.css`) and import it once at your app root:
+
+    ```tsx
+    import "@/styles/design-tokens.css";
+    ```
+  </Step>
+  <Step title="Map tokens into Tailwind">
+    In `tailwind.config.ts`, map the semantic tokens so you can use classes like `bg-background`, `text-foreground`, `border-border`, etc.
+
+    ```ts
+    // tailwind.config.ts
+    export default {
+      darkMode: ["selector", '[data-theme="Dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            background: "var(--base-background)",
+            foreground: "var(--base-foreground)",
+            primary: {
+              DEFAULT: "var(--base-primary)",
+              foreground: "var(--base-primary-foreground)",
+            },
+            secondary: {
+              DEFAULT: "var(--base-secondary)",
+              foreground: "var(--base-secondary-foreground)",
+            },
+            destructive: {
+              DEFAULT: "var(--base-destructive)",
+              foreground: "var(--base-destructive-foreground)",
+            },
+            muted: {
+              DEFAULT: "var(--base-muted)",
+              foreground: "var(--base-muted-foreground)",
+            },
+            accent: {
+              DEFAULT: "var(--base-accent)",
+              foreground: "var(--base-accent-foreground)",
+            },
+            card: {
+              DEFAULT: "var(--base-card)",
+              foreground: "var(--base-card-foreground)",
+            },
+            popover: {
+              DEFAULT: "var(--base-popover)",
+              foreground: "var(--base-popover-foreground)",
+            },
+            border: "var(--base-border)",
+            input: "var(--base-input)",
+            ring: "var(--base-ring)",
+          },
+          borderRadius: {
+            sm: "var(--border-radius-sm)",
+            DEFAULT: "var(--border-radius-default)",
+            md: "var(--border-radius-md)",
+            lg: "var(--border-radius-lg)",
+            xl: "var(--border-radius-xl)",
+            "2xl": "var(--border-radius-2xl)",
+            "3xl": "var(--border-radius-3xl)",
+            full: "var(--border-radius-full)",
+          },
+          fontFamily: {
+            sans: ["var(--typography-font-family-font-sans)"],
+            serif: ["var(--typography-font-family-font-serif)"],
+            mono: ["var(--typography-font-family-font-mono)"],
+          },
+        },
+      },
+    };
+    ```
+  </Step>
+  <Step title="Add the utility helper">
+    Components on the following pages use a small `cn()` helper to merge class names.
+
+    ```ts
+    // lib/utils.ts
+    import { clsx, type ClassValue } from "clsx";
+    import { twMerge } from "tailwind-merge";
+    
+    export function cn(...inputs: ClassValue[]) {
+      return twMerge(clsx(inputs));
+    }
+    ```
+
+    ```bash
+    npm install clsx tailwind-merge class-variance-authority
+    ```
+  </Step>
+  <Step title="Start using components">
+    Head to the Design Tokens section for the full token reference and ready-to-use `Button`, `Input`, `Card`, and `Badge` components.
+  </Step>
+</Steps>
+
+<Note>
+  The full raw token file is available at [`design-tokens.css`](/design-tokens/colors) — referenced throughout this documentation.
+</Note>
 
 ### Design Tokens
 

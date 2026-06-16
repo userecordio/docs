@@ -4,12 +4,117 @@ description: "Border radius tokens from sharp (0) to fully circular. Two tiers: 
 icon: "square-rounded"
 ---
 
+<div
+  style={{
+  display: "grid",
+  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+  gap: "16px",
+  marginTop: "24px",
+}}
+>
+  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "24px", height: "192px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ width: "96px", height: "96px", background: "#2f3136", borderRadius: "4px" }} />
+
+    <div style={{ marginTop: "16px", textAlign: "center" }}>
+      <div style={{ fontSize: "12px", fontWeight: 600 }}>sm</div>
+
+      <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "6px", fontFamily: "monospace" }}>
+        \--border-radius-sm
+      </div>
+    </div>
+  </div>
+
+  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "24px", height: "192px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ width: "96px", height: "96px", background: "#2f3136", borderRadius: "8px" }} />
+
+    <div style={{ marginTop: "16px", textAlign: "center" }}>
+      <div style={{ fontSize: "12px", fontWeight: 600 }}>md (default)</div>
+
+      <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "6px", fontFamily: "monospace" }}>
+        \--border-radius-default
+      </div>
+    </div>
+  </div>
+
+  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "24px", height: "192px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ width: "96px", height: "96px", background: "#2f3136", borderRadius: "12px" }} />
+
+    <div style={{ marginTop: "16px", textAlign: "center" }}>
+      <div style={{ fontSize: "12px", fontWeight: 600 }}>lg</div>
+
+      <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "6px", fontFamily: "monospace" }}>
+        \--border-radius-lg
+      </div>
+    </div>
+  </div>
+
+  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "24px", height: "192px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ width: "96px", height: "96px", background: "#2f3136", borderRadius: "16px" }} />
+
+    <div style={{ marginTop: "16px", textAlign: "center" }}>
+      <div style={{ fontSize: "12px", fontWeight: 600 }}>xl</div>
+
+      <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "6px", fontFamily: "monospace" }}>
+        \--border-radius-xl
+      </div>
+    </div>
+  </div>
+
+  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "24px", height: "192px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ width: "96px", height: "96px", background: "#2f3136", borderRadius: "24px" }} />
+
+    <div style={{ marginTop: "16px", textAlign: "center" }}>
+      <div style={{ fontSize: "12px", fontWeight: 600 }}>2xl</div>
+
+      <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "6px", fontFamily: "monospace" }}>
+        \--border-radius-2xl
+      </div>
+    </div>
+  </div>
+
+  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "24px", height: "192px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ width: "96px", height: "96px", background: "#2f3136", borderRadius: "32px" }} />
+
+    <div style={{ marginTop: "16px", textAlign: "center" }}>
+      <div style={{ fontSize: "12px", fontWeight: 600 }}>3xl</div>
+
+      <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "6px", fontFamily: "monospace" }}>
+        \--border-radius-3xl
+      </div>
+    </div>
+  </div>
+
+  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "24px", height: "192px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ width: "96px", height: "96px", background: "#2f3136", borderRadius: "40px" }} />
+
+    <div style={{ marginTop: "16px", textAlign: "center" }}>
+      <div style={{ fontSize: "12px", fontWeight: 600 }}>4xl</div>
+
+      <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "6px", fontFamily: "monospace" }}>
+        \--border-radius-4xl
+      </div>
+    </div>
+  </div>
+
+  <div style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "24px", height: "192px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ width: "96px", height: "96px", background: "#2f3136", borderRadius: "9999px" }} />
+
+    <div style={{ marginTop: "16px", textAlign: "center" }}>
+      <div style={{ fontSize: "12px", fontWeight: 600 }}>full</div>
+
+      <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "6px", fontFamily: "monospace" }}>
+        \--border-radius-full
+      </div>
+    </div>
+  </div>
+</div>
+
 ## Semantic Aliases
 
 Use these in components. They reference the base tokens and give consistent naming across the system.
 
 | Token | Variable | Resolves to | Value |
-|-------|----------|-------------|-------|
+| --- | --- | --- | --- |
 | sm | `--border-radius-sm` | `--radius-rounded-sm` | `2px` |
 | default | `--border-radius-default` | `--radius-rounded-md` | `6px` |
 | md | `--border-radius-md` | `--radius-rounded-md` | `6px` |
@@ -34,7 +139,7 @@ border-radius: var(--border-radius-full);  /* pills, avatars */
 Raw radius scale — referenced by the semantic aliases above.
 
 | Token | Value |
-|-------|-------|
+| --- | --- |
 | `--radius-rounded-none` | `0` |
 | `--radius-rounded-sm` | `2px` |
 | `--radius-rounded` | `4px` |
@@ -51,7 +156,7 @@ Raw radius scale — referenced by the semantic aliases above.
 ## Component Defaults
 
 | Component | Recommended Token | Value |
-|-----------|-------------------|-------|
+| --- | --- | --- |
 | Button | `--border-radius-lg` | `8px` |
 | Input | `--border-radius-md` | `6px` |
 | Card | `--border-radius-xl` | `12px` |
@@ -68,7 +173,7 @@ Raw radius scale — referenced by the semantic aliases above.
 Related border-width tokens for use alongside radius.
 
 | Token | Value |
-|-------|-------|
+| --- | --- |
 | `--border-width-border-0` | `0` |
 | `--border-width-border-1` | `1px` |
 | `--border-width-border-2` | `2px` |

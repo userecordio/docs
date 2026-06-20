@@ -6,14 +6,106 @@ icon: "tag"
 
 ## Variants
 
-| Variant | Background | Text | Use case |
-|---------|-----------|------|----------|
-| `default` | `--base-primary` | `--base-primary-foreground` | General label |
-| `secondary` | `--base-secondary` | `--base-secondary-foreground` | Neutral / subtle |
-| `destructive` | `--base-destructive` | `--base-destructive-foreground` | Error, danger, removal |
-| `outline` | transparent | `--base-foreground` | Minimal, bordered |
-| `success` | `--tailwind-colors-green-100` | `--tailwind-colors-green-800` | Positive status |
-| `warning` | `--tailwind-colors-amber-100` | `--tailwind-colors-amber-800` | Caution state |
+<Tabs>
+  <Tab title="Default">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid transparent',background:'#18181b',color:'#fafafa',whiteSpace:'nowrap'}}>
+        New
+      </span>
+    </div>
+
+    General-purpose label for highlighting items. Uses `--base-primary` (zinc-900) background — highest visual weight of all variants.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | `--base-primary` | `#18181b` (zinc-900) |
+    | Text | `--base-primary-foreground` | `#fafafa` (zinc-50) |
+    | Border radius | `--border-radius-full` | `9999px` |
+    | Font size | `--font-size-text-xs` | `12px` |
+    | Font weight | `--font-weight-semibold` | `600` |
+  </Tab>
+
+  <Tab title="Secondary">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid transparent',background:'#f4f4f5',color:'#18181b',whiteSpace:'nowrap'}}>
+        Draft
+      </span>
+    </div>
+
+    Neutral, low-emphasis label. Uses `--base-secondary` (zinc-100) — sits quietly alongside primary content without drawing attention.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | `--base-secondary` | `#f4f4f5` (zinc-100) |
+    | Text | `--base-secondary-foreground` | `#18181b` (zinc-900) |
+    | Border radius | `--border-radius-full` | `9999px` |
+  </Tab>
+
+  <Tab title="Destructive">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid transparent',background:'#ee634e',color:'#fef2f2',whiteSpace:'nowrap'}}>
+        Failed
+      </span>
+    </div>
+
+    Error, danger, or removal state. Uses the brand `--base-destructive` orange token — reserved for critical status only.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | `--base-destructive` | `#ee634e` (brand orange) |
+    | Text | `--base-destructive-foreground` | `#fef2f2` (red-50) |
+    | Border radius | `--border-radius-full` | `9999px` |
+  </Tab>
+
+  <Tab title="Outline">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid #e4e4e7',background:'transparent',color:'#18181b',whiteSpace:'nowrap'}}>
+        Design
+      </span>
+    </div>
+
+    Minimal, bordered badge with no fill. Ideal for category tags and filter chips where color should not imply status.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | transparent | — |
+    | Text | `--base-foreground` | `#18181b` (zinc-900) |
+    | Border | `--base-border` | `#e4e4e7` (zinc-200) |
+    | Border radius | `--border-radius-full` | `9999px` |
+  </Tab>
+
+  <Tab title="Success">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid transparent',background:'#dcfce7',color:'#166534',whiteSpace:'nowrap'}}>
+        Active
+      </span>
+    </div>
+
+    Positive status indicator. Uses the Tailwind green palette directly — green-100 background with green-800 text for accessible contrast.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | `--tailwind-colors-green-100` | `#dcfce7` |
+    | Text | `--tailwind-colors-green-800` | `#166534` |
+    | Border radius | `--border-radius-full` | `9999px` |
+  </Tab>
+
+  <Tab title="Warning">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid transparent',background:'#fef3c7',color:'#92400e',whiteSpace:'nowrap'}}>
+        Pending
+      </span>
+    </div>
+
+    Caution or in-progress state. Uses the Tailwind amber palette — amber-100 background with amber-800 text for clear visibility without alarming urgency.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | `--tailwind-colors-amber-100` | `#fef3c7` |
+    | Text | `--tailwind-colors-amber-800` | `#92400e` |
+    | Border radius | `--border-radius-full` | `9999px` |
+  </Tab>
+</Tabs>
 
 ---
 

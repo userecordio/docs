@@ -8,28 +8,78 @@ icon: "square-cursor"
 
 <Tabs>
   <Tab title="Primary">
-    The default high-emphasis action. Uses `--base-primary` background with `--base-primary-foreground` text.
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'none',cursor:'pointer',height:'40px',padding:'0 16px',background:'#18181b',color:'#fafafa',letterSpacing:'0'}}>
+        Get started
+      </button>
+    </div>
+
+    The default high-emphasis action. Uses `--base-primary` (`#18181b`) background with `--base-primary-foreground` (`#fafafa`) text.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | `--base-primary` | `#18181b` (zinc-900) |
+    | Text | `--base-primary-foreground` | `#fafafa` (zinc-50) |
+    | Border radius | `--border-radius-lg` | `8px` |
 
     ```tsx
     <button className="btn-primary">Get started</button>
     ```
   </Tab>
   <Tab title="Secondary">
-    Medium-emphasis — for secondary or alternative actions.
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'1px solid #e4e4e7',cursor:'pointer',height:'40px',padding:'0 16px',background:'#f4f4f5',color:'#18181b'}}>
+        Learn more
+      </button>
+    </div>
+
+    Medium-emphasis — for secondary or alternative actions. Uses `--base-secondary` background with a visible border.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | `--base-secondary` | `#f4f4f5` (zinc-100) |
+    | Text | `--base-secondary-foreground` | `#18181b` (zinc-900) |
+    | Border | `--base-border` | `#e4e4e7` (zinc-200) |
+    | Border radius | `--border-radius-lg` | `8px` |
 
     ```tsx
     <button className="btn-secondary">Learn more</button>
     ```
   </Tab>
   <Tab title="Destructive">
-    For irreversible or dangerous actions. Uses the `--base-destructive` (`#ee634e`) token.
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'none',cursor:'pointer',height:'40px',padding:'0 16px',background:'#ee634e',color:'#fef2f2'}}>
+        Delete account
+      </button>
+    </div>
+
+    For irreversible or dangerous actions. Uses the brand `--base-destructive` orange token.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | `--base-destructive` | `#ee634e` (brand orange) |
+    | Text | `--base-destructive-foreground` | `#fef2f2` (red-50) |
+    | Border radius | `--border-radius-lg` | `8px` |
 
     ```tsx
     <button className="btn-destructive">Delete account</button>
     ```
   </Tab>
   <Tab title="Ghost">
-    Low-emphasis, transparent background. Uses `--base-accent` on hover.
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'none',cursor:'pointer',height:'40px',padding:'0 16px',background:'transparent',color:'#18181b'}}>
+        Cancel
+      </button>
+    </div>
+
+    Low-emphasis with a transparent background. Reveals `--base-accent` background on hover — ideal for toolbar actions and dismissals.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | `transparent` | — |
+    | Text | `--base-foreground` | `#18181b` (zinc-900) |
+    | Hover background | `--base-accent` | `#f4f4f5` (zinc-100) |
+    | Border radius | `--border-radius-lg` | `8px` |
 
     ```tsx
     <button className="btn-ghost">Cancel</button>

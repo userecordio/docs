@@ -6,13 +6,104 @@ icon: "input-text"
 
 ## States
 
-| State | Border | Background | Text |
-|-------|--------|------------|------|
-| Default | `--base-input` | `--base-background` | `--base-foreground` |
-| Focus | `--base-ring` | `--base-background` | `--base-foreground` |
-| Disabled | `--base-border` | `--base-muted` | `--base-muted-foreground` |
-| Error | `--base-destructive` | `--base-background` | `--base-foreground` |
-| Placeholder | — | — | `--base-muted-foreground` |
+<Tabs>
+  <Tab title="Default">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <div style={{display:'flex',flexDirection:'column',gap:'6px',width:'280px'}}>
+        <label style={{fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,color:'#18181b'}}>Email address</label>
+        <input readOnly defaultValue="" placeholder="you@example.com" style={{width:'100%',height:'40px',padding:'0 12px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',color:'#18181b',background:'#ffffff',border:'1px solid #e4e4e7',borderRadius:'6px',outline:'none',boxSizing:'border-box'}} />
+        <span style={{fontFamily:'DM Sans, sans-serif',fontSize:'12px',color:'#71717a'}}>We'll never share your email.</span>
+      </div>
+    </div>
+
+    The resting state of the input. Border uses `--base-input` (zinc-200), background is `--base-background` (white).
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Border | `--base-input` | `#e4e4e7` (zinc-200) |
+    | Background | `--base-background` | `#ffffff` |
+    | Text | `--base-foreground` | `#18181b` (zinc-900) |
+    | Border radius | `--border-radius-md` | `6px` |
+  </Tab>
+
+  <Tab title="Focus">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <div style={{display:'flex',flexDirection:'column',gap:'6px',width:'280px'}}>
+        <label style={{fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,color:'#18181b'}}>Email address</label>
+        <input readOnly defaultValue="you@example.com" style={{width:'100%',height:'40px',padding:'0 12px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',color:'#18181b',background:'#ffffff',border:'1px solid #18181b',borderRadius:'6px',outline:'none',boxShadow:'0 0 0 2px #18181b',boxSizing:'border-box'}} />
+        <span style={{fontFamily:'DM Sans, sans-serif',fontSize:'12px',color:'#71717a'}}>We'll never share your email.</span>
+      </div>
+    </div>
+
+    Active/focused state. Border and focus ring both use `--base-ring` (zinc-900), applied via `box-shadow`.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Border | `--base-ring` | `#18181b` (zinc-900) |
+    | Focus ring | `--base-ring` | `box-shadow: 0 0 0 2px #18181b` |
+    | Background | `--base-background` | `#ffffff` |
+    | Text | `--base-foreground` | `#18181b` (zinc-900) |
+  </Tab>
+
+  <Tab title="Disabled">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <div style={{display:'flex',flexDirection:'column',gap:'6px',width:'280px'}}>
+        <label style={{fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,color:'#71717a'}}>API key</label>
+        <input readOnly disabled placeholder="sk-••••••••" style={{width:'100%',height:'40px',padding:'0 12px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',color:'#71717a',background:'#f4f4f5',border:'1px solid #e4e4e7',borderRadius:'6px',outline:'none',opacity:0.5,cursor:'not-allowed',boxSizing:'border-box'}} />
+        <span style={{fontFamily:'DM Sans, sans-serif',fontSize:'12px',color:'#71717a'}}>Contact support to update your key.</span>
+      </div>
+    </div>
+
+    Non-interactive state. Background shifts to `--base-muted`, text and border use muted tokens, cursor is `not-allowed`.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Background | `--base-muted` | `#f4f4f5` (zinc-100) |
+    | Border | `--base-border` | `#e4e4e7` (zinc-200) |
+    | Text | `--base-muted-foreground` | `#71717a` (zinc-500) |
+    | Opacity | — | `0.5` |
+    | Cursor | — | `not-allowed` |
+  </Tab>
+
+  <Tab title="Error">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <div style={{display:'flex',flexDirection:'column',gap:'6px',width:'280px'}}>
+        <label style={{fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,color:'#18181b'}}>Username</label>
+        <input readOnly defaultValue="johndoe" style={{width:'100%',height:'40px',padding:'0 12px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',color:'#18181b',background:'#ffffff',border:'1px solid #ee634e',borderRadius:'6px',outline:'none',boxSizing:'border-box'}} />
+        <span style={{fontFamily:'DM Sans, sans-serif',fontSize:'12px',color:'#ee634e'}}>Username is already taken.</span>
+      </div>
+    </div>
+
+    Validation failure state. Border and error message both use `--base-destructive` (brand orange). Also applies a destructive focus ring when active.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Border | `--base-destructive` | `#ee634e` (brand orange) |
+    | Error text | `--base-destructive` | `#ee634e` |
+    | Background | `--base-background` | `#ffffff` |
+    | Text | `--base-foreground` | `#18181b` (zinc-900) |
+  </Tab>
+
+  <Tab title="Placeholder">
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
+      <div style={{display:'flex',flexDirection:'column',gap:'6px',width:'280px'}}>
+        <label style={{fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,color:'#18181b'}}>Search</label>
+        <div style={{position:'relative',width:'100%'}}>
+          <input readOnly defaultValue="" style={{width:'100%',height:'40px',padding:'0 12px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',color:'#71717a',background:'#ffffff',border:'1px solid #e4e4e7',borderRadius:'6px',outline:'none',boxSizing:'border-box'}} />
+          <span style={{position:'absolute',left:'12px',top:'50%',transform:'translateY(-50%)',fontFamily:'DM Sans, sans-serif',fontSize:'14px',color:'#71717a',pointerEvents:'none'}}>Search anything...</span>
+        </div>
+      </div>
+    </div>
+
+    Placeholder text appears when the field is empty. Uses `--base-muted-foreground` (zinc-500) — intentionally lighter than typed text to distinguish hint from value.
+
+    | Property | Token | Value |
+    | --- | --- | --- |
+    | Placeholder color | `--base-muted-foreground` | `#71717a` (zinc-500) |
+    | Border | `--base-input` | `#e4e4e7` (zinc-200) |
+    | Background | `--base-background` | `#ffffff` |
+  </Tab>
+</Tabs>
 
 ---
 

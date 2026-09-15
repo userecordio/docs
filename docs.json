@@ -164,7 +164,6 @@
             "group": "Design Tokens",
             "pages": [
               "product-design/colors",
-              "product-design/typography",
               "product-design/spacing",
               "product-design/radius"
             ]

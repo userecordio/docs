@@ -1,0 +1,147 @@
+---
+title: "Enrichment"
+icon: "database"
+description: "Collect work, location, shift and salary details from a candidate database: set up an enrichment, run campaigns, and read the results."
+keywords: ["enrichment", "campaign", "candidates", "analytics", "logs", "randstad"]
+---
+
+Enrichment collects work, location, shift and salary details from candidates already in a customer's database. Answers are self-reported and not verified.
+
+<Card title="Open in Figma" icon="figma" href="https://www.figma.com/design/cxBWcyyaRrn6J8GOOglw6t/Infra-Design---Record?node-id=82340-83631" horizontal>
+  PG > Candidate Bulk Interest Collection [Randstad Req]
+</Card>
+
+## 1. Set up an enrichment
+
+<Steps>
+  <Step title="Empty state">
+    First visit, before any enrichment exists.
+
+    ![Enrichment page empty state](/images/product-design/desktop/enrichment-empty.png)
+  </Step>
+  <Step title="Enrichment list">
+    Every enrichment as a row in a table. The three-dot menu on a row has an **Edit** option.
+
+    ![Enrichment list with rows](/images/product-design/desktop/enrichment-list.png)
+  </Step>
+  <Step title="Create enrichment">
+    ![Create enrichment form](/images/product-design/desktop/enrichment-create.png)
+
+    Event details open in a dialog:
+
+    ![Event details dialog](/images/product-design/desktop/enrichment-event-details-dialog.png)
+  </Step>
+  <Step title="Set questions">
+    ![Set enrichment questions step](/images/product-design/desktop/enrichment-questions.png)
+  </Step>
+  <Step title="Delivery">
+    ![Delivery step](/images/product-design/desktop/enrichment-delivery.png)
+  </Step>
+  <Step title="Schedule">
+    ![Schedule step](/images/product-design/desktop/enrichment-schedule.png)
+  </Step>
+  <Step title="Review and deploy">
+    ![Review and deploy step](/images/product-design/desktop/enrichment-review-deploy.png)
+  </Step>
+  <Step title="Deployed">
+    ![Enrichment deployed confirmation](/images/product-design/desktop/enrichment-deployed.png)
+  </Step>
+</Steps>
+
+## 2. Inside an enrichment
+
+An enrichment has five tabs.
+
+<Tabs>
+  <Tab title="Overview">
+    ![Enrichment overview tab](/images/product-design/desktop/enrichment-overview.png)
+  </Tab>
+  <Tab title="Config">
+    Enrichment details, questions, schedule configuration and delivery, read-only.
+
+    ![Enrichment config tab](/images/product-design/desktop/enrichment-config.png)
+  </Tab>
+  <Tab title="Campaigns">
+    ![Enrichment campaigns tab](/images/product-design/desktop/enrichment-campaigns.png)
+  </Tab>
+  <Tab title="API">
+    ![Enrichment API tab](/images/product-design/desktop/enrichment-api.png)
+  </Tab>
+  <Tab title="Candidates">
+    ![Enrichment candidates tab](/images/product-design/desktop/enrichment-candidates.png)
+  </Tab>
+</Tabs>
+
+## 3. Create a campaign
+
+<Steps>
+  <Step title="New campaign">
+    ![New campaign create flow](/images/product-design/desktop/enrichment-new-campaign.png)
+  </Step>
+  <Step title="Upload candidates">
+    Before and after a file is uploaded.
+
+    <Columns cols={2}>
+      ![Candidate upload, empty](/images/product-design/desktop/enrichment-campaign-upload.png)
+      ![Candidate upload, file added](/images/product-design/desktop/enrichment-campaign-upload-filled.png)
+    </Columns>
+  </Step>
+  <Step title="Review and send">
+    ![Review and send step](/images/product-design/desktop/enrichment-campaign-review-send.png)
+  </Step>
+  <Step title="Sent">
+    ![Campaign sent confirmation](/images/product-design/desktop/enrichment-campaign-success.png)
+  </Step>
+</Steps>
+
+## 4. Campaign details
+
+<Tabs>
+  <Tab title="Details">
+    ![Campaign details](/images/product-design/desktop/enrichment-campaign-details.png)
+  </Tab>
+  <Tab title="Candidates">
+    ![Campaign candidates](/images/product-design/desktop/enrichment-campaign-candidates.png)
+  </Tab>
+</Tabs>
+
+## 5. Logs and analytics
+
+<Tabs>
+  <Tab title="Candidates log">
+    The candidates table needs a horizontal scroll bar.
+
+    ![Enrichment candidates log](/images/product-design/desktop/enrichment-logs.png)
+  </Tab>
+  <Tab title="View result">
+    ![Candidate result view](/images/product-design/desktop/enrichment-logs-result.png)
+  </Tab>
+  <Tab title="Analytics">
+    What the database told you: top states and cities, work known and wanted, current salary, where candidates stopped, database health and ready-made shortlists.
+
+    ![Enrichment analytics](/images/product-design/desktop/enrichment-analytics.png)
+  </Tab>
+</Tabs>
+
+## Components used
+
+| Figma component | shadcn/ui | Where |
+| --- | --- | --- |
+| Table, Data Table | `table` (+ TanStack Table for data tables) | Enrichment list, candidates, campaigns |
+| Button | `button` | All steps |
+| Badge | `badge` | Status in tables |
+| Tabs | `tabs` | Inside an enrichment, campaign details |
+| Input | `input` | Create enrichment, new campaign |
+| Checkbox | `checkbox` | Row selection, setup options |
+| Progress | `progress` | Campaign and response progress |
+| Dropdown Menu | `dropdown-menu` | Row three-dot menu |
+| Pagination | `pagination` | Tables |
+| Charts | `chart` | Analytics |
+
+```bash
+npx shadcn@latest add table button badge tabs input checkbox progress dropdown-menu pagination chart
+```
+
+<Note>
+  **Tab Nav Links** (Pro Blocks) and the **Composer** in the result view are custom blocks, not shadcn/ui components.
+</Note>

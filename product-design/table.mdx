@@ -1,77 +1,84 @@
 ---
 title: "Table"
 icon: "table"
-description: "Rows of records with sorting, selection and row actions. shadcn/ui Table and Data Table."
-keywords: ["table", "data table", "rows", "tanstack", "shadcn"]
+description: "The candidate and campaign tables in the Record desktop app: filter bar, rows, status badges and pagination."
+keywords:
+  - "table"
+  - "data table"
+  - "candidates"
+  - "shadcn"
 ---
 
 **Used in:** Desktop (33 of 80 screens; with the Data Table pattern in 26)
 
-<div className="not-prose" style={{ padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 14, overflowX: "auto" }}>
-  <div style={{ minWidth: 480, border: "1px solid #e4e4e7", borderRadius: 8, overflow: "hidden" }}>
-    <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 120px 100px 40px", alignItems: "center", height: 40, padding: "0 8px", color: "#71717a", fontWeight: 500, borderBottom: "1px solid #e4e4e7" }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #18181b" }} /><span>Name</span><span>Status</span><span style={{ textAlign: "right" }}>Sent</span><span /></div>
-    <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 120px 100px 40px", alignItems: "center", height: 52, padding: "0 8px", borderBottom: "1px solid #e4e4e7" }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #18181b" }} /><span style={{ fontWeight: 500 }}>Warehouse Picker</span><span><span style={{ padding: "2px 10px", borderRadius: 6, background: "#f4f4f5", fontSize: 12, fontWeight: 600 }}>Live</span></span><span style={{ textAlign: "right" }}>245</span><span style={{ textAlign: "center" }}>⋯</span></div>
-    <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 120px 100px 40px", alignItems: "center", height: 52, padding: "0 8px" }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #18181b" }} /><span style={{ fontWeight: 500 }}>Forklift Operator</span><span><span style={{ padding: "2px 10px", borderRadius: 6, border: "1px solid #e4e4e7", fontSize: 12, fontWeight: 600 }}>Closed</span></span><span style={{ textAlign: "right" }}>300</span><span style={{ textAlign: "center" }}>⋯</span></div>
-  </div>
-</div>
+A Record table is always the same block: **filter bar → table → pagination**.
+
+<Frame caption="The candidate table as designed">
+  ![Candidate table with search, filters, Download list, checkbox column, status badges, skill chips and pagination](/images/product-design/components/table.png)
+</Frame>
+
+## Spec
+
+| Part | Value |
+| --- | --- |
+| Container | White, no outer border; rows separated by a 1px bottom border `#E4E4E7` |
+| Header row | 48px tall, 14px medium `#71717A`, bottom border `#E4E4E7` |
+| Body row | 64px tall, cell padding 8px × 16px |
+| Primary cell | Name 14px medium `#18181B`; second line 12px `#8A8F98` (e.g. masked phone) |
+| Other cells | 14px regular `#18181B`; empty value shown as `—` |
+| Select column | [Checkbox](/product-design/checkbox) in header and every row |
+| Status column | [Badge](/product-design/badge) `shape="pill"` (Completed, Interested, Failed…) |
+| Skill column | [Badge](/product-design/badge) `tone="outline" shape="chip"` |
+| Row actions | Outline `sm` [Button](/product-design/button) and a three-dot [Dropdown Menu](/product-design/dropdown-menu) |
+| Filter bar | Search [Input](/product-design/input), filter [Dropdown Menus](/product-design/dropdown-menu), **More filters**, **Download list** on the right |
+| Footer | "Showing 7 of 25,000 candidates" (14px `#71717A`) + [Pagination](/product-design/pagination) |
+
+Wide tables scroll horizontally; keep the select and name columns visible.
 
 ## Install
 
 ```bash
-npx shadcn@latest add table checkbox dropdown-menu badge
-npm install @tanstack/react-table
+npx shadcn@latest add table checkbox badge input dropdown-menu pagination button
 ```
-
-Use plain `Table` for static lists. Use the Data Table pattern (TanStack Table on top of `Table`) when you need sorting, selection or pagination.
 
 ## Usage
 
 ```tsx
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Badge } from "@/components/ui/badge"
+
+const statusTone = { Completed: "success", Interested: "info", Failed: "danger", "No answer yet": "muted", "Not interested": "warning" }
 
 <Table>
   <TableHeader>
-    <TableRow>
+    <TableRow className="h-12">
       <TableHead className="w-10"><Checkbox aria-label="Select all" /></TableHead>
-      <TableHead>Name</TableHead>
-      <TableHead>Status</TableHead>
-      <TableHead className="text-right">Sent</TableHead>
-      <TableHead className="w-10" />
+      <TableHead className="text-sm font-medium text-muted-foreground">Candidates</TableHead>
+      <TableHead className="text-sm font-medium text-muted-foreground">Status</TableHead>
+      <TableHead className="text-sm font-medium text-muted-foreground">Work they know</TableHead>
+      <TableHead className="text-sm font-medium text-muted-foreground">Language</TableHead>
     </TableRow>
   </TableHeader>
   <TableBody>
-    <TableRow>
-      <TableCell><Checkbox aria-label="Select row" /></TableCell>
-      <TableCell className="font-medium">Warehouse Picker</TableCell>
-      <TableCell><Badge variant="secondary">Live</Badge></TableCell>
-      <TableCell className="text-right">245</TableCell>
-      <TableCell>{/* row actions DropdownMenu */}</TableCell>
-    </TableRow>
+    {candidates.map((c) => (
+      <TableRow key={c.id} className="h-16">
+        <TableCell className="px-4"><Checkbox aria-label={`Select ${c.name}`} /></TableCell>
+        <TableCell className="px-4">
+          <div className="text-sm font-medium">{c.name}</div>
+          <div className="text-xs text-[#8A8F98]">{c.phoneMasked}</div>
+        </TableCell>
+        <TableCell className="px-4"><Badge tone={statusTone[c.status]} shape="pill">{c.status}</Badge></TableCell>
+        <TableCell className="px-4">{c.skill ? <Badge tone="outline" shape="chip">{c.skill}</Badge> : "—"}</TableCell>
+        <TableCell className="px-4 text-sm">{c.language}</TableCell>
+      </TableRow>
+    ))}
   </TableBody>
 </Table>
 ```
 
-## Cell types used in the screens
+For sorting, filtering and selection, wrap this in the shadcn **Data Table** pattern (TanStack Table): see the [shadcn data table guide](https://ui.shadcn.com/docs/components/data-table).
 
-| Figma part | Variants used |
-| --- | --- |
-| Table / Head | Left and right aligned text |
-| Table / Cell | Default, Badge, Toggle Group; regular and bold text; left and right aligned |
-| Data Table / TableHead | Checkbox, Button (sortable), Action |
-| Data Table / TableCell | Checkbox, Action (three-dot menu) |
-
-The kit also has Avatar, Switch, Button, Dropdown, Progress, Image and Input cells, not used yet.
-
-## Rules
-
-- Right-align numbers (`text-right`).
-- Wide tables scroll horizontally; don't squeeze columns.
-- The row action menu always includes **Edit**.
-
-## Specs
-
-| Property | Value |
-| --- | --- |
-| Row height | 52px |
-| Cell padding | 8px |
-| Row divider | `border-b` (#E4E4E7) |
+<Tip>
+  Mask phone numbers in lists (`+9186677*****`). Show the full number only on the candidate's detail view.
+</Tip>

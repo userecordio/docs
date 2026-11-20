@@ -1,232 +1,176 @@
-## Font Families
-
-| Token | Value | Usage |
-| --- | --- | --- |
-| `--typography-font-family-font-sans` | `DM Sans` | Default UI font — body text, headings, components |
-| `--typography-font-family-font-serif` | `Georgia` | Editorial / long-form content |
-| `--typography-font-family-font-mono` | `Menlo` | Code, inline code, technical values |
-
-```css
-font-family: var(--typography-font-family-font-sans);
-font-family: var(--typography-font-family-font-mono);
-```
-
+---
+title: "Typography"
+icon: "type"
+description: "Font families, text styles, the type scale, weights and letter spacing, taken from the Figma variables."
+keywords:
+  - "typography"
+  - "font"
+  - "dm sans"
+  - "font size"
+  - "font weight"
+  - "line height"
+  - "letter spacing"
+  - "tailwind"
 ---
 
-## Type Scale
+Use Tailwind classes, not pixel values. Every value below comes from the Figma **Theme** and **TailwindCSS** variable collections.
 
-Base font sizes, available as `--font-size-text-*`.
+```tsx
+<h2 className="text-2xl font-semibold tracking-tight">Overview</h2>
+<p className="text-sm text-muted-foreground">Last 30 days</p>
+```
 
-| Token | Variable | Size |
-| --- | --- | --- |
-| xs | `--font-size-text-xs` | `12px` |
-| sm | `--font-size-text-sm` | `14px` |
-| base | `--font-size-text-base` | `16px` |
-| lg | `--font-size-text-lg` | `18px` |
-| xl | `--font-size-text-xl` | `20px` |
-| 2xl | `--font-size-text-2xl` | `24px` |
-| 3xl | `--font-size-text-3xl` | `30px` |
-| 4xl | `--font-size-text-4xl` | `36px` |
-| 5xl | `--font-size-text-5xl` | `48px` |
-| 6xl | `--font-size-text-6xl` | `60px` |
+## Font families
 
-<Accordion title="Display sizes (7xl – 9xl)">
-  | Token | Variable | Size |
+<FontFamilies />
+
+## Text styles
+
+Ready-made styles for headings and body copy.
+
+<TextStyles />
+
+## Type scale
+
+<TypeScale />
+
+## Font weight
+
+<Weights />
+
+## Letter spacing
+
+<Tracking />
+
+<Accordion title="All values as a table">
+  | Class | Size | Line height |
   | --- | --- | --- |
-  | 7xl | `--font-size-text-7xl` | `72px` |
-  | 8xl | `--font-size-text-8xl` | `96px` |
-  | 9xl | `--font-size-text-9xl` | `128px` |
+  | `text-xs` | 12px | 16px |
+  | `text-sm` | 14px | 20px |
+  | `text-base` | 16px | 24px |
+  | `text-lg` | 18px | 28px |
+  | `text-xl` | 20px | 28px |
+  | `text-2xl` | 24px | 32px |
+  | `text-3xl` | 30px | 36px |
+  | `text-4xl` | 36px | 40px |
+  | `text-5xl` | 48px | 1 |
+  | `text-6xl` | 60px | 1 |
+  | `text-7xl` | 72px | 1 |
+  | `text-8xl` | 96px | 1 |
+  | `text-9xl` | 128px | 1 |
+
+  | Weight class | Value |
+  | --- | --- |
+  | `font-thin` | 100 |
+  | `font-extralight` | 200 |
+  | `font-light` | 300 |
+  | `font-normal` | 400 |
+  | `font-medium` | 500 |
+  | `font-semibold` | 600 |
+  | `font-bold` | 700 |
+  | `font-extrabold` | 800 |
+  | `font-black` | 900 |
+
+  | Tracking class | Value |
+  | --- | --- |
+  | `tracking-tighter` | -0.8px |
+  | `tracking-tight` | -0.4px |
+  | `tracking-normal` | 0 |
+  | `tracking-wide` | 0.4px |
+  | `tracking-wider` | 0.8px |
+  | `tracking-widest` | 1.6px |
 </Accordion>
 
----
+export const TypoRow = ({ left, sub, children }) => (
+  <div style={{ display: "grid", gridTemplateColumns: "180px minmax(0,1fr)", gap: 24, alignItems: "center", padding: "14px 16px", borderTop: "1px solid rgba(127,127,127,.15)" }}>
+    <div style={{ minWidth: 0 }}>
+      <div style={{ fontSize: 13, fontWeight: 600, fontFamily: "ui-monospace, Menlo, monospace" }}>{left}</div>
+      <div style={{ fontSize: 12, opacity: .6, fontFamily: "ui-monospace, Menlo, monospace" }}>{sub}</div>
+    </div>
+    <div style={{ minWidth: 0, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>{children}</div>
+  </div>
+);
 
-## Font Weights
+export const TypoBox = ({ children }) => (
+  <div className="not-prose" style={{ border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, overflow: "hidden", marginTop: -1 }}>
+    <div style={{ marginTop: -1 }}>{children}</div>
+  </div>
+);
 
-| Name | Token | Value |
-| --- | --- | --- |
-| Thin | `--font-weight-thin` | `100` |
-| Extra Light | `--font-weight-extralight` | `200` |
-| Light | `--font-weight-light` | `300` |
-| Normal | `--font-weight-normal` | `400` |
-| Medium | `--font-weight-medium` | `500` |
-| Semibold | `--font-weight-semibold` | `600` |
-| Bold | `--font-weight-bold` | `700` |
-| Extra Bold | `--font-weight-extrabold` | `800` |
-| Black | `--font-weight-black` | `900` |
+export const FontFamilies = () => {
+  const F = [["font-sans", "DM Sans", "'DM Sans', ui-sans-serif, system-ui, sans-serif", "All product UI"], ["font-serif", "Georgia", "Georgia, serif", "Not used in product UI"], ["font-mono", "Menlo", "Menlo, ui-monospace, monospace", "Code, IDs, API keys"]];
+  return (
+    <div className="not-prose" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
+      {F.map(([cls, name, stack, use]) => (
+        <div key={cls} style={{ border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, padding: 16, display: "grid", gap: 8, minWidth: 0 }}>
+          <div style={{ fontFamily: stack, fontSize: 40, lineHeight: 1 }}>Aa</div>
+          <div style={{ fontSize: 15, fontWeight: 600 }}>{name}</div>
+          <div style={{ fontSize: 12, fontFamily: "ui-monospace, Menlo, monospace", opacity: .7 }}>{cls}</div>
+          <div style={{ fontSize: 12, opacity: .65 }}>{use}</div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
----
+export const TextStyles = () => {
+  const S = [
+    ["h1", "text-4xl lg:text-5xl font-extrabold tracking-tight", 36, 40, 800, -0.4, "Verify skills faster"],
+    ["h2", "text-3xl font-semibold tracking-tight", 30, 36, 600, -0.4, "Job mandates"],
+    ["h3", "text-2xl font-semibold tracking-tight", 24, 32, 600, -0.4, "Campaign details"],
+    ["h4", "text-xl font-semibold tracking-tight", 20, 28, 600, -0.4, "Candidates"],
+    ["lead", "text-xl text-muted-foreground", 20, 28, 400, 0, "Collect skills from every candidate."],
+    ["large", "text-lg font-semibold", 18, 28, 600, 0, "Are you sure?"],
+    ["p", "leading-7", 16, 28, 400, 0, "Verifications sent directly to candidates."],
+    ["small", "text-sm font-medium leading-none", 14, 14, 500, 0, "Last updated 2 hours ago"],
+    ["inline code", "font-mono text-sm font-semibold", 14, 20, 600, 0, "en_r4n8d2b7"],
+  ];
+  return (
+    <TypoBox>
+      {S.map(([name, cls, size, lh, w, ls, sample]) => (
+        <TypoRow key={name} left={name} sub={size + " / " + lh + " · " + w}>
+          <span style={{ fontSize: size, lineHeight: lh + "px", fontWeight: w, letterSpacing: ls, fontFamily: name === "inline code" ? "Menlo, ui-monospace, monospace" : undefined }}>{sample}</span>
+        </TypoRow>
+      ))}
+    </TypoBox>
+  );
+};
 
-## Line Heights
+export const TypeScale = () => {
+  const T = [["text-xs", 12, 16], ["text-sm", 14, 20], ["text-base", 16, 24], ["text-lg", 18, 28], ["text-xl", 20, 28], ["text-2xl", 24, 32], ["text-3xl", 30, 36], ["text-4xl", 36, 40], ["text-5xl", 48, 48], ["text-6xl", 60, 60], ["text-7xl", 72, 72], ["text-8xl", 96, 96], ["text-9xl", 128, 128]];
+  return (
+    <TypoBox>
+      {T.map(([cls, size, lh]) => (
+        <TypoRow key={cls} left={cls} sub={size + "px / " + lh + "px"}>
+          <span style={{ fontSize: size, lineHeight: 1.1 }}>Record</span>
+        </TypoRow>
+      ))}
+    </TypoBox>
+  );
+};
 
-| Token | Value |
-| --- | --- |
-| `--font-line-height-leading-3` | `12px` |
-| `--font-line-height-leading-4` | `16px` |
-| `--font-line-height-leading-5` | `20px` |
-| `--font-line-height-leading-6` | `24px` |
-| `--font-line-height-leading-7` | `28px` |
-| `--font-line-height-leading-8` | `32px` |
-| `--font-line-height-leading-9` | `36px` |
-| `--font-line-height-leading-10` | `40px` |
+export const Weights = () => {
+  const W = [["font-thin", 100], ["font-extralight", 200], ["font-light", 300], ["font-normal", 400], ["font-medium", 500], ["font-semibold", 600], ["font-bold", 700], ["font-extrabold", 800], ["font-black", 900]];
+  return (
+    <TypoBox>
+      {W.map(([cls, w]) => (
+        <TypoRow key={cls} left={cls} sub={String(w)}>
+          <span style={{ fontSize: 20, fontWeight: w }}>Skill verification</span>
+        </TypoRow>
+      ))}
+    </TypoBox>
+  );
+};
 
----
-
-## Letter Spacing
-
-| Name | Token | Value |
-| --- | --- | --- |
-| Tighter | `--font-letter-spacing-tighter` | `-0.8px` |
-| Tight | `--font-letter-spacing-tight` | `-0.4px` |
-| Normal | `--font-letter-spacing-normal` | `0` |
-| Wide | `--font-letter-spacing-wide` | `0.4px` |
-| Wider | `--font-letter-spacing-wider` | `0.8px` |
-| Widest | `--font-letter-spacing-widest` | `1.6px` |
-
----
-
-## Text Style Components
-
-Pre-composed text styles combining font size, line height, weight, and letter spacing for common content elements.
-
-<div style={{display:"flex", flexDirection:"column", gap:"16px", padding:"20px", border:"1px solid #e4e4e7", borderRadius:"8px", fontFamily:"DM Sans, sans-serif"}}>
-  <div style={{fontSize:"36px", lineHeight:"40px", fontWeight:800, letterSpacing:"-0.4px"}}>Heading 1 — text-4xl / extrabold</div>
-  <div style={{fontSize:"30px", lineHeight:"36px", fontWeight:600, letterSpacing:"-0.4px"}}>Heading 2 — text-3xl / semibold</div>
-  <div style={{fontSize:"24px", lineHeight:"32px", fontWeight:600, letterSpacing:"-0.4px"}}>Heading 3 — text-2xl / semibold</div>
-  <div style={{fontSize:"20px", lineHeight:"28px", fontWeight:600, letterSpacing:"-0.4px"}}>Heading 4 — text-xl / semibold</div>
-  <div style={{fontSize:"20px", lineHeight:"28px", fontWeight:400}}>Lead — text-xl / normal. Used for intro paragraphs and standout copy.</div>
-  <div style={{fontSize:"16px", lineHeight:"28px", fontWeight:400}}>Paragraph — text-base / normal. The default body text style used across the product for general content and descriptions.</div>
-  <div style={{fontSize:"18px", lineHeight:"28px", fontWeight:600}}>Large — text-lg / semibold</div>
-  <div style={{fontSize:"14px", fontWeight:500}}>Small — text-sm / medium</div>
-  <div style={{fontSize:"16px", lineHeight:"24px", fontWeight:400, fontStyle:"italic", borderLeft:"3px solid #e4e4e7", paddingLeft:"12px"}}>Blockquote — text-base / normal / italic</div>
-  <div style={{fontFamily:"Menlo, monospace", fontSize:"14px", lineHeight:"20px", fontWeight:600, background:"#f4f4f5", padding:"2px 6px", borderRadius:"4px", display:"inline-block", width:"fit-content"}}>inline-code — font-mono / text-sm / semibold</div>
-</div>
-
-<div style={{display:"flex", flexDirection:"column", gap:"16px", padding:"20px", border:"1px solid #e4e4e7", borderRadius:"8px", fontFamily:"DM Sans, sans-serif"}}>
-  <div style={{fontSize:"36px", lineHeight:"40px", fontWeight:800, letterSpacing:"-0.4px"}}>Heading 1 — text-4xl / extrabold</div>
-  <div style={{fontSize:"30px", lineHeight:"36px", fontWeight:600, letterSpacing:"-0.4px"}}>Heading 2 — text-3xl / semibold</div>
-  <div style={{fontSize:"24px", lineHeight:"32px", fontWeight:600, letterSpacing:"-0.4px"}}>Heading 3 — text-2xl / semibold</div>
-  <div style={{fontSize:"20px", lineHeight:"28px", fontWeight:600, letterSpacing:"-0.4px"}}>Heading 4 — text-xl / semibold</div>
-  <div style={{fontSize:"20px", lineHeight:"28px", fontWeight:400}}>Lead — text-xl / normal. Used for intro paragraphs and standout copy.</div>
-  <div style={{fontSize:"16px", lineHeight:"28px", fontWeight:400}}>Paragraph — text-base / normal. The default body text style used across the product.</div>
-  <div style={{fontSize:"18px", lineHeight:"28px", fontWeight:600}}>Large — text-lg / semibold</div>
-  <div style={{fontSize:"14px", fontWeight:500}}>Small — text-sm / medium</div>
-  <div style={{fontSize:"16px", lineHeight:"24px", fontWeight:400, fontStyle:"italic", borderLeft:"3px solid #e4e4e7", paddingLeft:"12px"}}>Blockquote — text-base / normal / italic</div>
-  <div style={{fontFamily:"Menlo, monospace", fontSize:"14px", lineHeight:"20px", fontWeight:600, background:"#f4f4f5", padding:"2px 6px", borderRadius:"4px", display:"inline-block", width:"fit-content"}}>inline-code — font-mono / text-sm / semibold</div>
-</div>
-
-| Element | Font Size | Line Height | Weight | Letter Spacing |
-| --- | --- | --- | --- | --- |
-| `h1` | `text-4xl` (36px) | `leading-10` (40px) | `extrabold` (800) | `tight` (-0.4px) |
-| `h2` | `text-3xl` (30px) | `leading-9` (36px) | `semibold` (600) | `tight` (-0.4px) |
-| `h3` | `text-2xl` (24px) | `leading-8` (32px) | `semibold` (600) | `tight` (-0.4px) |
-| `h4` | `text-xl` (20px) | `leading-7` (28px) | `semibold` (600) | `tight` (-0.4px) |
-| `p` | `text-base` (16px) | `leading-7` (28px) | `normal` (400) | `normal` (0) |
-| `lead` | `text-xl` (20px) | `leading-7` (28px) | `normal` (400) | `normal` (0) |
-| `large` | `text-lg` (18px) | `leading-7` (28px) | `semibold` (600) | `normal` (0) |
-| `small` | `text-sm` (14px) | `leading-4` (16px) | `medium` (500) | — |
-| `blockquote` | `text-base` (16px) | `leading-6` (24px) | `normal` (400) | `normal` (0), italic |
-| `inline-code` | `text-sm` (14px), `font-mono` | `leading-5` (20px) | `semibold` (600) | `normal` (0) |
-
-```css
-/* H1 */
-font-family: var(--typography-typography-components-h1-font-family);
-font-size: var(--typography-typography-components-h1-font-size);
-font-weight: var(--typography-typography-components-h1-font-weight);
-line-height: var(--typography-typography-components-h1-line-height);
-letter-spacing: var(--typography-typography-components-h1-letter-spacing);
-
-/* Body paragraph */
-font-family: var(--typography-typography-components-p-font-family);
-font-size: var(--typography-typography-components-p-font-size);
-font-weight: var(--typography-typography-components-p-font-weight);
-line-height: var(--typography-typography-components-p-line-height);
-```
-
----
-
-## Base Size Aliases
-
-Convenience aliases for the most common UI text sizes (buttons, inputs, badges).
-
-| Alias | Font Size Token | Line Height Token |
-| --- | --- | --- |
-| `extra-small` | `--font-size-text-xs` (12px) | `--font-line-height-leading-4` (16px) |
-| `small` | `--font-size-text-sm` (14px) | `--font-line-height-leading-5` (20px) |
-| `base` | `--font-size-text-base` (16px) | `--font-line-height-leading-6` (24px) |
-| `large` | `--font-size-text-lg` (18px) | `--font-line-height-leading-7` (28px) |
-| `xlarge` | `--font-size-text-xl` (20px) | `--font-line-height-leading-7` (28px) |
-| `2x-large` | `--font-size-text-2xl` (24px) | `--font-line-height-leading-8` (32px) |
-| `3x-large` | `--font-size-text-3xl` (30px) | `--font-line-height-leading-9` (36px) |
-| `4x-large` | `--font-size-text-4xl` (36px) | `--font-line-height-leading-10` (40px) |
-
----
-
-## Usage
-
-<CodeGroup>
-
-```css CSS utility class
-.text-base-leading-normal-regular {
-  font-family: var(--typography-font-family-font-sans);
-  font-size: var(--typography-base-sizes-base-font-size);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--typography-base-sizes-base-line-height);
-  letter-spacing: 0%;
-}
-```
-
-```tsx Tailwind (React)
-<h1 className="font-sans text-4xl font-extrabold tracking-tight">
-  Page title
-</h1>
-<p className="font-sans text-base leading-7 text-foreground">
-  Body copy goes here.
-</p>
-<code className="font-mono text-sm font-semibold bg-muted px-1.5 py-0.5 rounded">
-  npm install
-</code>
-```
-
-</CodeGroup>
-
-Convenience aliases for the most common UI text sizes (buttons, inputs, badges).
-
-| Alias | Font Size Token | Line Height Token |
-| --- | --- | --- |
-| `extra-small` | `--font-size-text-xs` (12px) | `--font-line-height-leading-4` (16px) |
-| `small` | `--font-size-text-sm` (14px) | `--font-line-height-leading-5` (20px) |
-| `base` | `--font-size-text-base` (16px) | `--font-line-height-leading-6` (24px) |
-| `large` | `--font-size-text-lg` (18px) | `--font-line-height-leading-7` (28px) |
-| `xlarge` | `--font-size-text-xl` (20px) | `--font-line-height-leading-7` (28px) |
-| `2x-large` | `--font-size-text-2xl` (24px) | `--font-line-height-leading-8` (32px) |
-| `3x-large` | `--font-size-text-3xl` (30px) | `--font-line-height-leading-9` (36px) |
-| `4x-large` | `--font-size-text-4xl` (36px) | `--font-line-height-leading-10` (40px) |
-
----
-
----
-
-## Text Style Classes
-
-The CSS file ships pre-composed utility classes following the pattern:
-
-```text
-.text-{size}-leading-{normal|none}-{weight}
-```
-
-Examples:
-
-```css
-/* 14px / 20px line-height / semibold */
-.text-small-leading-normal-semibold { ... }
-
-/* 16px / 100% line-height / bold */
-.text-base-leading-none-bold { ... }
-
-/* 24px / 32px line-height / medium */
-.text-2x-large-leading-normal-medium { ... }
-```
-
-Supported sizes: `extra-small · small · base · large · extra-large · 2x-large · 3x-large · 4x-large`
-
-Supported weights per size: `regular · medium · semibold · bold · italic · underlined · strikethrough`
+export const Tracking = () => {
+  const L = [["tracking-tighter", -0.8], ["tracking-tight", -0.4], ["tracking-normal", 0], ["tracking-wide", 0.4], ["tracking-wider", 0.8], ["tracking-widest", 1.6]];
+  return (
+    <TypoBox>
+      {L.map(([cls, v]) => (
+        <TypoRow key={cls} left={cls} sub={v + "px"}>
+          <span style={{ fontSize: 18, letterSpacing: v }}>SKILL VERIFICATION</span>
+        </TypoRow>
+      ))}
+    </TypoBox>
+  );
+};

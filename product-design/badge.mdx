@@ -1,252 +1,105 @@
 ---
 title: "Badge"
-description: "Small inline label for status, counts, and categories. Always pill-shaped using the full-radius token."
 icon: "tag"
+description: "The status, type and count badges used in the Record desktop screens, with exact colours and code."
+keywords:
+  - "badge"
+  - "status"
+  - "tag"
+  - "pill"
+  - "shadcn"
 ---
 
-## Variants
+**Used in:** Desktop
 
-<Tabs>
-  <Tab title="Default">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid transparent',background:'#18181b',color:'#fafafa',whiteSpace:'nowrap'}}>
-        New
-      </span>
-    </div>
+The screens use **soft, colour-coded badges** (light background, darker text of the same colour), not the shadcn defaults. The colour tells the user what kind of information it is.
 
-    General-purpose label for highlighting items. Uses `--base-primary` (zinc-900) background — highest visual weight of all variants.
+<Frame caption="Real badges from the desktop screens">
+  ![Badges: green, blue, violet, yellow, red, neutral, grey, pill, outline and beta](/images/product-design/components/badge.png)
+</Frame>
 
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--base-primary` | `#18181b` (zinc-900) |
-    | Text | `--base-primary-foreground` | `#fafafa` (zinc-50) |
-    | Border radius | `--border-radius-full` | `9999px` |
-    | Font size | `--font-size-text-xs` | `12px` |
-    | Font weight | `--font-weight-semibold` | `600` |
-  </Tab>
+## Tones
 
-  <Tab title="Secondary">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid transparent',background:'#f4f4f5',color:'#18181b',whiteSpace:'nowrap'}}>
-        Draft
-      </span>
-    </div>
+| Tone | Background | Text | Used for |
+| --- | --- | --- | --- |
+| `success` | `#F0FDF4` (green-50) | `#16A34A` (green-600) | Live, Complete, WhatsApp, Blue / Grey Collar |
+| `info` | `#EFF6FF` (blue-50) | `#2563EB` (blue-600) | White Collar, Voice call |
+| `type` | `#F5F3FF` (violet-50) | `#7C3AED` (violet-600) | Enrichment, Initiate, Candidate-led |
+| `warning` | `#FEFCE8` (yellow-50) | `#CA8A04` (yellow-600) | In progress, Maybe, Low trust |
+| `danger` | `#FEF2F2` (red-50) | `#DC2626` (red-600) | Failed, No response, Declined, SMS backup |
+| `pending` | `#F9FAFB` (gray-50) | `#71717A` (zinc-500) | Pending counts |
+| `muted` | `#F4F4F5` (zinc-100) | `#3F3F46` (zinc-700) | Counts such as "7 open", Completed, Closed |
+| `outline` | transparent, border `#E4E4E7` | `#18181B` | Question type (Voice, Yes / No) |
+| `beta` | `#FF5723` | `#FAFAFA` | Beta tag next to a sidebar item |
 
-    Neutral, low-emphasis label. Uses `--base-secondary` (zinc-100) — sits quietly alongside primary content without drawing attention.
+## Shapes and sizes
 
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--base-secondary` | `#f4f4f5` (zinc-100) |
-    | Text | `--base-secondary-foreground` | `#18181b` (zinc-900) |
-    | Border radius | `--border-radius-full` | `9999px` |
-  </Tab>
+| Shape | Radius | Height | Where |
+| --- | --- | --- | --- |
+| Default | 6px (`rounded-md`) | 28px | Most tables, cards and headers |
+| Compact | 6px | 24px | Inside dense cards |
+| Pill | `rounded-full` | 28px | Candidate status in candidate tables |
+| Skill chip | `rounded-full` | 24px, outline, 12px regular text | "Forklift · 4 yrs" |
 
-  <Tab title="Destructive">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid transparent',background:'#ee634e',color:'#fef2f2',whiteSpace:'nowrap'}}>
-        Failed
-      </span>
-    </div>
+Text is 12px semibold.
 
-    Error, danger, or removal state. Uses the brand `--base-destructive` orange token — reserved for critical status only.
+## Install
 
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--base-destructive` | `#ee634e` (brand orange) |
-    | Text | `--base-destructive-foreground` | `#fef2f2` (red-50) |
-    | Border radius | `--border-radius-full` | `9999px` |
-  </Tab>
-
-  <Tab title="Outline">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid #e4e4e7',background:'transparent',color:'#18181b',whiteSpace:'nowrap'}}>
-        Design
-      </span>
-    </div>
-
-    Minimal, bordered badge with no fill. Ideal for category tags and filter chips where color should not imply status.
-
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | transparent | — |
-    | Text | `--base-foreground` | `#18181b` (zinc-900) |
-    | Border | `--base-border` | `#e4e4e7` (zinc-200) |
-    | Border radius | `--border-radius-full` | `9999px` |
-  </Tab>
-
-  <Tab title="Success">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid transparent',background:'#dcfce7',color:'#166534',whiteSpace:'nowrap'}}>
-        Active
-      </span>
-    </div>
-
-    Positive status indicator. Uses the Tailwind green palette directly — green-100 background with green-800 text for accessible contrast.
-
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--tailwind-colors-green-100` | `#dcfce7` |
-    | Text | `--tailwind-colors-green-800` | `#166534` |
-    | Border radius | `--border-radius-full` | `9999px` |
-  </Tab>
-
-  <Tab title="Warning">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',padding:'4px 10px',fontFamily:'DM Sans, sans-serif',fontSize:'12px',fontWeight:600,lineHeight:'16px',letterSpacing:'0.4px',borderRadius:'9999px',border:'1px solid transparent',background:'#fef3c7',color:'#92400e',whiteSpace:'nowrap'}}>
-        Pending
-      </span>
-    </div>
-
-    Caution or in-progress state. Uses the Tailwind amber palette — amber-100 background with amber-800 text for clear visibility without alarming urgency.
-
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--tailwind-colors-amber-100` | `#fef3c7` |
-    | Text | `--tailwind-colors-amber-800` | `#92400e` |
-    | Border radius | `--border-radius-full` | `9999px` |
-  </Tab>
-</Tabs>
-
----
-
-## Design Tokens Used
-
-| Property | Token | Value |
-|----------|-------|-------|
-| Border radius | `--border-radius-full` | `9999px` |
-| Padding | `--spacing-1` `--spacing-2-5` | `4px 10px` |
-| Font size | `--font-size-text-xs` | `12px` |
-| Font weight | `--font-weight-semibold` | `600` |
-| Line height | `--font-line-height-leading-4` | `16px` |
-| Background (default) | `--base-primary` | zinc-900 / zinc-50 |
-| Text (default) | `--base-primary-foreground` | zinc-50 / zinc-900 |
-| Background (secondary) | `--base-secondary` | zinc-100 / zinc-800 |
-| Text (secondary) | `--base-secondary-foreground` | zinc-900 / zinc-50 |
-| Background (destructive) | `--base-destructive` | `#ee634e` |
-| Border (outline) | `--base-border` | zinc-200 / zinc-800 |
-
----
-
-## CSS Implementation
-
-```css
-.badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-1);
-  padding: var(--spacing-1) var(--spacing-2-5);
-  font-family: var(--typography-font-family-font-sans);
-  font-size: var(--font-size-text-xs);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--font-line-height-leading-4);
-  letter-spacing: var(--font-letter-spacing-wide);
-  border-radius: var(--border-radius-full);
-  border: var(--border-width-border-1) solid transparent;
-  white-space: nowrap;
-}
-
-/* Variants */
-.badge--default {
-  background-color: var(--base-primary);
-  color: var(--base-primary-foreground);
-}
-
-.badge--secondary {
-  background-color: var(--base-secondary);
-  color: var(--base-secondary-foreground);
-}
-
-.badge--destructive {
-  background-color: var(--base-destructive);
-  color: var(--base-destructive-foreground);
-}
-
-.badge--outline {
-  background-color: transparent;
-  color: var(--base-foreground);
-  border-color: var(--base-border);
-}
-
-.badge--success {
-  background-color: var(--tailwind-colors-green-100);
-  color: var(--tailwind-colors-green-800);
-}
-
-.badge--warning {
-  background-color: var(--tailwind-colors-amber-100);
-  color: var(--tailwind-colors-amber-800);
-}
+```bash
+npx shadcn@latest add badge
 ```
 
----
+Then replace the variants in `components/ui/badge.tsx`:
 
-## React / TSX
+```tsx components/ui/badge.tsx
+const badgeVariants = cva(
+  "inline-flex items-center gap-1 whitespace-nowrap px-2.5 text-xs font-semibold",
+  {
+    variants: {
+      tone: {
+        success: "bg-green-50 text-green-600",
+        info: "bg-blue-50 text-blue-600",
+        type: "bg-violet-50 text-violet-600",
+        warning: "bg-yellow-50 text-yellow-600",
+        danger: "bg-red-50 text-red-600",
+        pending: "bg-gray-50 text-zinc-500",
+        muted: "bg-zinc-100 text-zinc-700",
+        outline: "border border-input text-foreground",
+        beta: "h-4 rounded px-1.5 text-[10px] font-medium bg-primary text-zinc-50",
+      },
+      shape: {
+        default: "h-7 rounded-md",
+        compact: "h-6 rounded-md",
+        pill: "h-7 rounded-full",
+        chip: "h-6 rounded-full font-normal",
+      },
+    },
+    defaultVariants: { tone: "muted", shape: "default" },
+  }
+)
+```
+
+## Usage
 
 ```tsx
-import { cn } from "@/lib/utils";
-import { HTMLAttributes } from "react";
-
-type BadgeVariant = "default" | "secondary" | "destructive" | "outline" | "success" | "warning";
-
-interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  variant?: BadgeVariant;
-}
-
-const variantClass: Record<BadgeVariant, string> = {
-  default: "badge--default",
-  secondary: "badge--secondary",
-  destructive: "badge--destructive",
-  outline: "badge--outline",
-  success: "badge--success",
-  warning: "badge--warning",
-};
-
-export function Badge({ variant = "default", className, ...props }: BadgeProps) {
-  return (
-    <span
-      className={cn("badge", variantClass[variant], className)}
-      {...props}
-    />
-  );
-}
+<Badge tone="success">Live</Badge>
+<Badge tone="info">White Collar</Badge>
+<Badge tone="type">Enrichment</Badge>
+<Badge tone="warning">In progress</Badge>
+<Badge tone="danger">No response</Badge>
+<Badge tone="pending">Pending: 188</Badge>
+<Badge tone="muted" shape="compact">7 open</Badge>
+<Badge tone="success" shape="pill">Completed</Badge>
+<Badge tone="outline" shape="chip">Forklift · 4 yrs</Badge>
+<Badge tone="beta">Beta</Badge>
 ```
 
----
+## Which tone to use
 
-## Usage Examples
+- Map each **status** to one tone and keep it the same everywhere: Live and Completed are `success`, In progress is `warning`, Failed is `danger`.
+- Use `type` for what something **is** (Enrichment, Initiate), not how it's doing.
+- Hiring type: **Blue / Grey Collar** is `success`, **White Collar** is `info`.
 
-```tsx
-{/* Status badges */}
-<Badge variant="success">Active</Badge>
-<Badge variant="warning">Pending</Badge>
-<Badge variant="destructive">Failed</Badge>
-<Badge variant="secondary">Draft</Badge>
-
-{/* Category tag */}
-<Badge variant="outline">Design</Badge>
-
-{/* Count badge */}
-<Badge>12 new</Badge>
-
-{/* With icon */}
-<Badge variant="success">
-  <CheckIcon size={10} />
-  Verified
-</Badge>
-```
-
----
-
-## Accessibility
-
-<Note>
-  Badges are purely visual. If a badge conveys important status information, also communicate it to screen readers via `aria-label` on the parent element or `<span className="sr-only">` inside the badge.
-</Note>
-
-```tsx
-<button aria-label="Notifications, 3 unread">
-  <BellIcon />
-  <Badge aria-hidden="true">3</Badge>
-</button>
-```
+<Warning>
+  Figma uses slightly different text shades for the same tone in places (for example green-500, -600 and -700). Use the shades in the table above; design should align the frames.
+</Warning>

@@ -1,0 +1,107 @@
+---
+title: "Mobile app"
+sidebarTitle: "Components in use"
+icon: "smartphone"
+description: "Every component the Record mobile app uses, shown exactly as it appears in the screens, with how to build it."
+keywords:
+  - "mobile"
+  - "components"
+  - "shadcn"
+  - "skill verification"
+---
+
+<Info>
+  Mobile only. Screens are designed at **360 × 800**.
+</Info>
+
+<Columns cols={2}>
+  <Frame caption="Language selection">
+    <img
+      src="/images/product-design/mobile/choose-language.png"
+      alt="Mobile screen with a chat message, language options and a Continue button"
+      style={{ maxWidth: "280px" }}
+    />
+  </Frame>
+
+  <Frame caption="Sound check">
+    <img
+      src="/images/product-design/mobile/speaker-check.png"
+      alt="Mobile screen with a chat message and Yes and No buttons"
+      style={{ maxWidth: "280px" }}
+    />
+  </Frame>
+</Columns>
+
+## Install everything at once
+
+```bash
+npx shadcn@latest add button radio-group progress
+```
+
+Then add the mobile sizes and variants from [Button](/product-design/button) (`mobile`, `mobile-lg`, `positive`, `neutral`, `answer`).
+
+## Buttons
+
+Full-width, 46px tall, 12px corners. Orange for the main action, green for accepting, grey for alternatives, and the outlined Yes / No for quick answers.
+
+![Mobile buttons as used in the screens](/images/product-design/components/button-mobile.png)
+
+[Button →](/product-design/button)
+
+```tsx
+<Button size="mobile"><Camera /> Check my camera first</Button>
+<Button variant="positive" size="mobile">I’m interested</Button>
+<Button variant="neutral" size="mobile"><RotateCcw /> Start over</Button>
+<Button variant="answer" size="mobile"><X /> No</Button>
+```
+
+## Option card (Radio Group)
+
+Pick one option, for example the job the candidate is working in.
+
+![Option card as used in the screens](/images/product-design/components/radio.png)
+
+[Radio Group →](/product-design/radio-group)
+
+## Progress
+
+Green progress bar. See [Progress →](/product-design/progress).
+
+## Custom blocks
+
+Not shadcn/ui. Build from the [colour](/product-design/colors), [spacing](/product-design/spacing) and [radius](/product-design/radius) tokens.
+
+<table>
+  <colgroup>
+    <col width="192" />
+    <col width="544" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Block</th>
+      <th>Where</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Header</td>
+      <td>Client logo and name, Skill assessment, language, Help</td>
+    </tr>
+    <tr>
+      <td>Stage progress</td>
+      <td>"Language · 1 of 6" bar across every screen</td>
+    </tr>
+    <tr>
+      <td>Chat bubbles</td>
+      <td>Maaya's messages with Play again</td>
+    </tr>
+    <tr>
+      <td>Language options</td>
+      <td>Script letter + native name + English name</td>
+    </tr>
+    <tr>
+      <td>Recording controls</td>
+      <td>Voice and video answers</td>
+    </tr>
+  </tbody>
+</table>

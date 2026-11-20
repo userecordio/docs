@@ -1,0 +1,157 @@
+---
+title: "Desktop app"
+sidebarTitle: "Components in use"
+icon: "monitor"
+description: "Every component the Record desktop app uses, shown exactly as it appears in the screens, with how to build it."
+keywords:
+  - "desktop"
+  - "components"
+  - "shadcn"
+  - "sidebar"
+  - "app shell"
+---
+
+<Info>
+  Desktop only. Screens are designed at **1440px** wide.
+</Info>
+
+![Record desktop app: sidebar, page header and content area](/images/product-design/desktop/dashboard-all-hiring.png)
+
+## Install everything at once
+
+```bash
+npx shadcn@latest add button badge switch sidebar breadcrumb tabs dropdown-menu table progress input checkbox pagination toggle-group chart
+```
+
+Then apply the Record variants from each component page (Button and Badge especially).
+
+## App shell
+
+| Area | Components |
+| --- | --- |
+| Sidebar | [Sidebar](/product-design/sidebar), [Switch](/product-design/switch) (Test mode), [Badge](/product-design/badge) (Beta tag) |
+| Top bar | [Breadcrumb](/product-design/breadcrumb), [Button](/product-design/button) |
+| Page header | Title, date range, primary [Button](/product-design/button) |
+
+## Buttons
+
+Primary orange with an icon for the main action, outline for secondary actions, dark for stepping forward in modals.
+
+![Desktop buttons as used in the screens](/images/product-design/components/button-desktop.png)
+
+[Button →](/product-design/button)
+
+```tsx
+<Button><Plus /> New campaign</Button>
+<Button variant="outline"><Pencil /> Edit</Button>
+```
+
+## Badges
+
+Soft, colour-coded status and type labels.
+
+![Badges as used in the screens](/images/product-design/components/badge.png)
+
+[Badge →](/product-design/badge)
+
+```tsx
+<Badge tone="success">Live</Badge>
+<Badge tone="type">Enrichment</Badge>
+```
+
+## Sidebar
+
+<img
+  src="/images/product-design/components/sidebar.png"
+  alt="Record sidebar"
+  style={{ maxWidth: "220px" }}
+/>
+
+[Sidebar →](/product-design/sidebar)
+
+## Switch
+
+![Switches as used in the screens](/images/product-design/components/switch.png)
+
+[Switch →](/product-design/switch)
+
+## Breadcrumb
+
+![Breadcrumb as used in the top bar](/images/product-design/components/breadcrumb.png)
+
+[Breadcrumb →](/product-design/breadcrumb)
+
+## Tabs
+
+Segmented tabs with counts, verdict tabs and Yes / No.
+
+![Tabs as used in the screens](/images/product-design/components/tabs.png)
+
+[Tabs →](/product-design/tabs)
+
+## Dropdown Menu
+
+Filters above tables and the menus they open.
+
+![Filters and menu as used in the screens](/images/product-design/components/dropdown.png)
+
+[Dropdown Menu →](/product-design/dropdown-menu)
+
+## Table
+
+Filter bar, rows with status badges, and pagination.
+
+<img
+  src="/images/product-design/components/table.png"
+  alt="Candidate table as used in the screens"
+  style={{ background: "#fff", borderRadius: "8px" }}
+/>
+
+[Table →](/product-design/table)
+
+## Progress
+
+![Progress bars as used in the screens](/images/product-design/components/progress.png)
+
+[Progress →](/product-design/progress)
+
+## Input
+
+![Inputs as used in the screens](/images/product-design/components/input.png)
+
+[Input →](/product-design/input)
+
+## Checkbox
+
+![Checkboxes as used in the screens](/images/product-design/components/checkbox.png)
+
+[Checkbox →](/product-design/checkbox)
+
+## Pagination
+
+![Pagination as used under tables](/images/product-design/components/pagination.png)
+
+[Pagination →](/product-design/pagination)
+
+## Chart
+
+<img
+  src="/images/product-design/components/chart-bar.png"
+  alt="Bar chart in a question card"
+  style={{ background: "#fff", borderRadius: "8px", padding: "8px", maxWidth: "480px" }}
+/>
+
+[Chart →](/product-design/chart)
+
+## Also used
+
+- [Toggle Group](/product-design/toggle-group)
+
+## Custom blocks
+
+Not shadcn/ui. Build from the tokens.
+
+| Block | Where |
+| --- | --- |
+| Tab Nav Links (Pro Blocks) | Page-level tabs inside an item (Overview, Configuration, Campaigns…) |
+| Upgrade Button | Sidebar |

@@ -157,13 +157,15 @@
           {
             "group": "get Started",
             "pages": [
-              "product-design/introduction"
+              "product-design/introduction",
+              "product-design/installation"
             ]
           },
           {
             "group": "Design Tokens",
             "pages": [
               "product-design/colors",
+              "product-design/typography",
               "product-design/spacing",
               "product-design/radius"
             ]
@@ -171,10 +173,35 @@
           {
             "group": "Components",
             "pages": [
+              "product-design/badge",
+              "product-design/breadcrumb",
               "product-design/button",
+              "product-design/chart",
+              "product-design/checkbox",
+              "product-design/dropdown-menu",
               "product-design/input",
-              "product-design/card",
-              "product-design/badge"
+              "product-design/pagination",
+              "product-design/progress",
+              "product-design/radio-group",
+              "product-design/sidebar",
+              "product-design/switch",
+              "product-design/table",
+              "product-design/tabs",
+              "product-design/toggle-group"
+            ]
+          },
+          {
+            "group": "Desktop app",
+            "icon": "monitor",
+            "pages": [
+              "product-design/desktop/overview"
+            ]
+          },
+          {
+            "group": "Mobile app",
+            "icon": "smartphone",
+            "pages": [
+              "product-design/mobile/overview"
             ]
           }
         ]

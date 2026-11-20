@@ -1,0 +1,54 @@
+---
+title: "Toggle Group"
+icon: "toggle-left"
+description: "A set of buttons where one or more can be pressed. shadcn/ui Toggle Group."
+keywords: ["toggle", "toggle group", "segmented", "filter", "shadcn"]
+---
+
+**Used in:** Desktop, including inside table cells.
+
+<div className="not-prose" style={{ display: "flex", flexWrap: "wrap", gap: 24, padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 14 }}>
+  <div style={{ display: "inline-flex", gap: 4 }}>
+    <span style={{ display: "inline-flex", alignItems: "center", height: 36, padding: "0 12px", borderRadius: 6, border: "1px solid #e4e4e7", background: "#f4f4f5", fontWeight: 500 }}>Day</span>
+    <span style={{ display: "inline-flex", alignItems: "center", height: 36, padding: "0 12px", borderRadius: 6, border: "1px solid #e4e4e7", fontWeight: 500 }}>Week</span>
+    <span style={{ display: "inline-flex", alignItems: "center", height: 36, padding: "0 12px", borderRadius: 6, border: "1px solid #e4e4e7", fontWeight: 500 }}>Month</span>
+  </div>
+</div>
+
+<Note>Labels are examples.</Note>
+
+## Install
+
+```bash
+npx shadcn@latest add toggle-group
+```
+
+## Usage
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+
+<ToggleGroup type="single" variant="outline" defaultValue="day">
+  <ToggleGroupItem value="day">Day</ToggleGroupItem>
+  <ToggleGroupItem value="week">Week</ToggleGroupItem>
+  <ToggleGroupItem value="month">Month</ToggleGroupItem>
+</ToggleGroup>
+```
+
+## Variants
+
+| Figma variant | Used in screens | Code |
+| --- | --- | --- |
+| Default | Yes | `variant="default"` |
+| Outline | Yes | `variant="outline"` |
+
+Size: `default` (36px high). The kit also has `sm` and `lg`.
+
+## Specs
+
+| Property | Value |
+| --- | --- |
+| Height | 36px |
+| Padding | 12px horizontal |
+| Radius | `rounded-md` (6px) |
+| Pressed | `bg-accent` |

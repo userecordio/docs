@@ -1,193 +1,182 @@
 ---
 title: "Introduction"
 icon: "book-open"
-description: "An overview of the product design system — tokens, theming, and how to use this documentation."
+description: "The Record design system: shadcn/ui components, Tailwind CSS tokens from Figma, and the screens for our desktop and mobile products."
 sidebarTitle: "Introduction"
 mode: "default"
+keywords:
+  - "design system"
+  - "shadcn"
+  - "tailwind"
+  - "tokens"
+  - "figma"
 ---
 
-## Welcome
+This is the single source of truth for how Record looks and is built: the tokens and the components, taken from our Figma file **Infra Design – Record**.
 
-This is the documentation for our **Product Design System** — a single source of truth for the colors, typography, spacing, radius, and core UI components used across our products.
+## What it's built on
 
-The system is built on **CSS variables (design tokens)** generated from Figma via Kigen, and consumed in code through **Tailwind CSS** and **React \+ TypeScript** components.
+<Columns cols={3}>
+  <Card title="shadcn/ui" icon="component">
+    Every component is a shadcn/ui component, customised to match our screens. Each page shows the real component from Figma and the code for Record's variants.
+  </Card>
 
----
+  <Card title="Tailwind CSS" icon="wind">
+    Spacing, sizes, radius, type and colours are standard Tailwind tokens, plus Record's brand colours.
+  </Card>
 
-## How the system is structured
+  <Card title="Figma" icon="figma">
+    Tokens are exported from the Figma variables collection. Figma is the source; this site mirrors it.
+  </Card>
+</Columns>
 
-All tokens are defined as **CSS custom properties** in a single file, `design-tokens.css`. They are layered in three tiers:
+## Two products, documented separately
+
+We ship two products. They share the same tokens and components. Each has a page listing the components it uses.
+
+<Columns cols={2}>
+  <Card title="Desktop app" icon="monitor" href="/product-design/desktop/overview">
+    The Record platform for recruiters. Desktop only.
+  </Card>
+
+  <Card title="Mobile app" icon="smartphone" href="/product-design/mobile/overview">
+    Skill verification for candidates. Mobile only.
+  </Card>
+</Columns>
+
+## How to use this site
 
 <Steps>
-  <Step title="Base tokens">
-    Raw values — the actual pixel, color, or font values. Examples: `--spacing-4: 16px`, `--tailwind-colors-zinc-900: #18181b`, `--radius-rounded-md: 6px`.
+  <Step title="Set up once">
+    Follow [Installation](/product-design/installation) to add shadcn/ui and the Record tokens to your project.
   </Step>
-  <Step title="Alias tokens">
-    Semantic names that point to base tokens, split by theme (`Light` / `Dark`). Examples: `--colors-primary-light: var(--tailwind-colors-zinc-900)`, `--colors-background-dark: var(--tailwind-colors-zinc-950)`.
+  <Step title="Build with tokens, not raw values">
+    Use Tailwind classes (`bg-primary`, `p-4`, `rounded-lg`) or the semantic CSS variables. Don't paste a hex code or pixel value into a component.
   </Step>
-  <Step title="Theme tokens (--base-*)">
-    The tokens components actually consume. They resolve automatically based on the active theme via the `[data-theme]` attribute on the `<html>` or `<body>` element. Examples: `--base-primary`, `--base-background`, `--base-border`.
+  <Step title="Pick components from the library">
+    Each component page shows the component exactly as it appears in our screens, with the install command, Record's variants and usage code.
+  </Step>
+  <Step title="Check what your product uses">
+    The Desktop app and Mobile app pages list the components each product uses. Reuse those before adding anything new.
   </Step>
 </Steps>
 
 <Tip>
-  When building components, **always use `--base-*` tokens** (e.g. `var(--base-primary)`), never the raw Tailwind color or alias tokens directly. This is what makes light/dark theming automatic.
+  If code and Figma disagree, Figma wins. Tell the design team so this site gets updated too.
 </Tip>
 
----
+## Foundations
 
-## Theming
-
-Switch between light and dark mode by setting the `data-theme` attribute:
-
-```html
-<!-- Light mode -->
-<html data-theme="Light">
-
-<!-- Dark mode -->
-<html data-theme="Dark">
-```
-
-Every `--base-*` token is redefined inside `[data-theme='Light']` and `[data-theme='Dark']` blocks, so the whole UI re-themes instantly without changing any component code.
-
----
-
-## Installation
-
-<Steps>
-  <Step title="Add the tokens file">
-    Copy `design-tokens.css` into your project (e.g. `src/styles/design-tokens.css`) and import it once at your app root:
-
-    ```tsx
-    import "@/styles/design-tokens.css";
-    ```
-  </Step>
-  <Step title="Map tokens into Tailwind">
-    In `tailwind.config.ts`, map the semantic tokens so you can use classes like `bg-background`, `text-foreground`, `border-border`, etc.
-
-    ```ts
-    // tailwind.config.ts
-    export default {
-      darkMode: ["selector", '[data-theme="Dark"]'],
-      theme: {
-        extend: {
-          colors: {
-            background: "var(--base-background)",
-            foreground: "var(--base-foreground)",
-            primary: {
-              DEFAULT: "var(--base-primary)",
-              foreground: "var(--base-primary-foreground)",
-            },
-            secondary: {
-              DEFAULT: "var(--base-secondary)",
-              foreground: "var(--base-secondary-foreground)",
-            },
-            destructive: {
-              DEFAULT: "var(--base-destructive)",
-              foreground: "var(--base-destructive-foreground)",
-            },
-            muted: {
-              DEFAULT: "var(--base-muted)",
-              foreground: "var(--base-muted-foreground)",
-            },
-            accent: {
-              DEFAULT: "var(--base-accent)",
-              foreground: "var(--base-accent-foreground)",
-            },
-            card: {
-              DEFAULT: "var(--base-card)",
-              foreground: "var(--base-card-foreground)",
-            },
-            popover: {
-              DEFAULT: "var(--base-popover)",
-              foreground: "var(--base-popover-foreground)",
-            },
-            border: "var(--base-border)",
-            input: "var(--base-input)",
-            ring: "var(--base-ring)",
-          },
-          borderRadius: {
-            sm: "var(--border-radius-sm)",
-            DEFAULT: "var(--border-radius-default)",
-            md: "var(--border-radius-md)",
-            lg: "var(--border-radius-lg)",
-            xl: "var(--border-radius-xl)",
-            "2xl": "var(--border-radius-2xl)",
-            "3xl": "var(--border-radius-3xl)",
-            full: "var(--border-radius-full)",
-          },
-          fontFamily: {
-            sans: ["var(--typography-font-family-font-sans)"],
-            serif: ["var(--typography-font-family-font-serif)"],
-            mono: ["var(--typography-font-family-font-mono)"],
-          },
-        },
-      },
-    };
-    ```
-  </Step>
-  <Step title="Add the utility helper">
-    Components on the following pages use a small `cn()` helper to merge class names.
-
-    ```ts
-    // lib/utils.ts
-    import { clsx, type ClassValue } from "clsx";
-    import { twMerge } from "tailwind-merge";
-    
-    export function cn(...inputs: ClassValue[]) {
-      return twMerge(clsx(inputs));
-    }
-    ```
-
-    ```bash
-    npm install clsx tailwind-merge class-variance-authority
-    ```
-  </Step>
-  <Step title="Start using components">
-    Head to the Design Tokens section for the full token reference and ready-to-use `Button`, `Input`, `Card`, and `Badge` components.
-  </Step>
-</Steps>
-
-<Note>
-  The full raw token file is available at [`design-tokens.css`](/design-tokens/colors) — referenced throughout this documentation.
-</Note>
-
-### Design Tokens
-
-<CardGroup cols={2}>
+<Columns cols={2}>
   <Card title="Colors" icon="palette" href="/product-design/colors">
-    Semantic tokens, brand palette, and Tailwind color ramps
+    Semantic tokens, brand colours and Tailwind ramps
   </Card>
 
   <Card title="Typography" icon="type" href="/product-design/typography">
-    Type scale, font weights, headings, and text style classes
+    Font sizes, weights, line heights and letter spacing
   </Card>
 
   <Card title="Spacing" icon="ruler" href="/product-design/spacing">
-    4px-based scale for padding, margin, and gap
+    The 4px scale for padding, margin and gap
   </Card>
 
   <Card title="Radius" icon="square-rounded" href="/product-design/radius">
-    Border-radius tokens from sharp to fully circular
+    Corner radius from sharp to fully round
   </Card>
-</CardGroup>
+</Columns>
 
-### Components
+## Components
 
-<CardGroup cols={2}>
-  <Card title="Button" icon="rectangle-ellipsis" href="/product-design/button">
-    Four variants, three sizes, CSS and TSX
-  </Card>
+Every shadcn/ui component used across both products.
 
-  <Card title="Input" icon="text-cursor-input" href="/product-design/input">
-    Label, helper text, error states, and accessibility
-  </Card>
-
-  <Card title="Card" icon="credit-card" href="/product-design/card">
-    Header, content, footer, and media slots
-  </Card>
-
-  <Card title="Badge" icon="tag" href="/product-design/badge">
-    Status, count, and category labels
-  </Card>
-</CardGroup>
+<table>
+  <colgroup>
+    <col width="231" />
+    <col width="231" />
+    <col width="257" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Desktop</th>
+      <th>Mobile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>[Badge](/product-design/badge)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Breadcrumb](/product-design/breadcrumb)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Button](/product-design/button)</td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td>[Chart](/product-design/chart)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Checkbox](/product-design/checkbox)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Dropdown Menu](/product-design/dropdown-menu)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Input](/product-design/input)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Pagination](/product-design/pagination)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Progress](/product-design/progress)</td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td>[Radio Group](/product-design/radio-group)</td>
+      <td></td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td>[Sidebar](/product-design/sidebar)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Switch](/product-design/switch)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Table](/product-design/table)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Tabs](/product-design/tabs)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>[Toggle Group](/product-design/toggle-group)</td>
+      <td>✓</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

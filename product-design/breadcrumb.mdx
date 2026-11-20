@@ -1,0 +1,41 @@
+---
+title: "Breadcrumb"
+icon: "chevrons-right"
+description: "The breadcrumb in the desktop top bar."
+keywords:
+  - "breadcrumb"
+  - "top bar"
+  - "shadcn"
+---
+
+**Used in:** Desktop, in the top bar of every page.
+
+<Frame caption="Real breadcrumb from the desktop top bar">
+  ![Breadcrumb showing the current section](/images/product-design/components/breadcrumb.png)
+</Frame>
+
+| Property | Value |
+| --- | --- |
+| Size | `md` |
+| Text | 14px regular, `#71717A`; current page `#18181B` |
+| Item types in the kit | Link, Link Current, Ellipsis, Dropdown |
+
+## Install
+
+```bash
+npx shadcn@latest add breadcrumb
+```
+
+## Usage
+
+```tsx
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem><BreadcrumbLink href="/enrichment">Enrichment</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbPage>Campaign details</BreadcrumbPage></BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```

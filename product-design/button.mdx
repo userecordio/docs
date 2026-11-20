@@ -1,239 +1,135 @@
 ---
 title: "Button"
-description: "Interactive action trigger. Available in four variants and three sizes, all powered by semantic design tokens."
-icon: "box"
+icon: "rectangle-ellipsis"
+description: "Every button style used in the Record desktop and mobile screens, with the exact values and the code to build them."
+keywords:
+  - "button"
+  - "cta"
+  - "shadcn"
+  - "variant"
+  - "size"
+  - "mobile"
 ---
 
-## Variants
+**Used in:** Desktop · Mobile
+
+Built on the shadcn/ui Button, but the screens customise it: desktop buttons use **8px corners and bold text**, and mobile has its own larger set. Use the variants below, not the shadcn defaults.
 
 <Tabs>
-  <Tab title="Primary">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'none',cursor:'pointer',height:'40px',padding:'0 16px',background:'#18181b',color:'#fafafa',letterSpacing:'0'}}>
-        Get started
-      </button>
-    </div>
+  <Tab title="Desktop">
+    <Frame caption="Real buttons from the desktop screens">
+      ![Desktop buttons: primary, dark, outline, secondary, ghost, destructive and disabled](/images/product-design/components/button-desktop.png)
+    </Frame>
 
-    The default high-emphasis action. Uses `--base-primary` (`#18181b`) background with `--base-primary-foreground` (`#fafafa`) text.
+    | Style | `variant` / `size` | Background | Text | Height | Radius |
+    | --- | --- | --- | --- | --- | --- |
+    | Primary | `default` | `#FF5723` | white, 14px bold | 36px | 8px |
+    | Primary · large | `default` / `lg` | `#FF5723` | white, 14px semibold | 40px | 8px |
+    | Dark | `dark` | `#0E0E0C` | `#FAFAFA`, 14px semibold | 40px | 6px |
+    | Outline | `outline` | white, border `#E4E4E7` | `#18181B`, 14px semibold | 36px | 8px |
+    | Outline · small | `outline` / `sm` | white, border `#E4E4E7` | `#18181B`, 12px medium | 32px | 6px |
+    | Secondary | `secondary` | `#F4F4F5` | `#18181B`, 14px medium | 36px | 8px |
+    | Secondary · small | `secondary` / `sm` | `#F4F4F5` | `#18181B`, 12px medium | 28px | 8px |
+    | Ghost | `ghost` | transparent | `#18181B`, 14px medium | 28–36px | 8px |
+    | Destructive | `destructive` | `#EE634E` | `#FEF2F2`, 14px medium | 36px | 8px |
+    | Disabled | `disabled` | `#71717A` | `#FAFAFA` | as variant | as variant |
 
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--base-primary` | `#18181b` (zinc-900) |
-    | Text | `--base-primary-foreground` | `#fafafa` (zinc-50) |
-    | Border radius | `--border-radius-lg` | `8px` |
-
-    ```tsx
-    <button className="btn-primary">Get started</button>
-    ```
+    - **Primary** is the main action of the page, usually with a leading icon (`+ New campaign`, `+ New job mandate`).
+    - **Dark** moves a modal or multi-step flow forward (`Continue >`).
+    - **Outline** is for page-header and card actions (`Edit`, `View enrichment`, `Download`).
+    - **Ghost** is for in-card links (`See all >`).
   </Tab>
-  <Tab title="Secondary">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'1px solid #e4e4e7',cursor:'pointer',height:'40px',padding:'0 16px',background:'#f4f4f5',color:'#18181b'}}>
-        Learn more
-      </button>
-    </div>
+  <Tab title="Mobile">
+    <Frame caption="Real buttons from the mobile screens">
+      ![Mobile buttons: primary, start, inactive, positive, neutral, ghost and Yes / No answer](/images/product-design/components/button-mobile.png)
+    </Frame>
 
-    Medium-emphasis — for secondary or alternative actions. Uses `--base-secondary` background with a visible border.
+    | Style | `variant` / `size` | Background | Text | Height | Radius |
+    | --- | --- | --- | --- | --- | --- |
+    | Primary | `default` / `mobile` | `#FF5723` | white, 18px bold | 46px | 12px |
+    | Primary · start | `default` / `mobile-lg` | `#FF5723` | white, 18px bold | 52px | 12px |
+    | Primary · inactive | `default` / `mobile`, disabled | `#F9916F` | white, 18px bold | 46px | 12px |
+    | Positive | `positive` / `mobile` | `#DCF3D5` | `#18181B`, 16px semibold | 46px | 12px |
+    | Neutral | `neutral` / `mobile` | `#F4F4F5`, border `#B8B8B8` | `#18181B`, 15px semibold | 46px | 12px |
+    | Ghost | `ghost` / `mobile` | transparent | `#4B5563`, 16px semibold | 46px | 12px |
+    | Answer (Yes / No) | `answer` / `mobile` | light orange tint, border `#F4672B` | `#F4672B`, 20px bold | 46px | 12px |
 
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--base-secondary` | `#f4f4f5` (zinc-100) |
-    | Text | `--base-secondary-foreground` | `#18181b` (zinc-900) |
-    | Border | `--base-border` | `#e4e4e7` (zinc-200) |
-    | Border radius | `--border-radius-lg` | `8px` |
+    Mobile buttons are full width and sit in the footer of each step.
 
-    ```tsx
-    <button className="btn-secondary">Learn more</button>
-    ```
-  </Tab>
-  <Tab title="Destructive">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'none',cursor:'pointer',height:'40px',padding:'0 16px',background:'#ee634e',color:'#fef2f2'}}>
-        Delete account
-      </button>
-    </div>
-
-    For irreversible or dangerous actions. Uses the brand `--base-destructive` orange token.
-
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--base-destructive` | `#ee634e` (brand orange) |
-    | Text | `--base-destructive-foreground` | `#fef2f2` (red-50) |
-    | Border radius | `--border-radius-lg` | `8px` |
-
-    ```tsx
-    <button className="btn-destructive">Delete account</button>
-    ```
-  </Tab>
-  <Tab title="Ghost">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'none',cursor:'pointer',height:'40px',padding:'0 16px',background:'transparent',color:'#18181b'}}>
-        Cancel
-      </button>
-    </div>
-
-    Low-emphasis with a transparent background. Reveals `--base-accent` background on hover — ideal for toolbar actions and dismissals.
-
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `transparent` | — |
-    | Text | `--base-foreground` | `#18181b` (zinc-900) |
-    | Hover background | `--base-accent` | `#f4f4f5` (zinc-100) |
-    | Border radius | `--border-radius-lg` | `8px` |
-
-    ```tsx
-    <button className="btn-ghost">Cancel</button>
-    ```
+    <Warning>
+      Some mobile primary buttons in Figma use `#F4672B` instead of `#FF5723`. Use `#FF5723` (`bg-primary`) in code; design should align the frames.
+    </Warning>
   </Tab>
 </Tabs>
 
----
+## Install
 
-## Sizes
-
-| Size | Height | Padding (H) | Font Size | Token |
-|------|--------|-------------|-----------|-------|
-| sm | `32px` | `12px` | `14px` | `--spacing-3` / `--font-size-text-sm` |
-| default | `40px` | `16px` | `14px` | `--spacing-4` / `--font-size-text-sm` |
-| lg | `44px` | `24px` | `16px` | `--spacing-6` / `--font-size-text-base` |
-
----
-
-## Design Tokens Used
-
-| Property | Token | Value |
-|----------|-------|-------|
-| Background (primary) | `--base-primary` | zinc-900 / zinc-50 |
-| Text (primary) | `--base-primary-foreground` | zinc-50 / zinc-900 |
-| Background (secondary) | `--base-secondary` | zinc-100 / zinc-800 |
-| Text (secondary) | `--base-secondary-foreground` | zinc-900 / zinc-50 |
-| Background (destructive) | `--base-destructive` | `#ee634e` |
-| Text (destructive) | `--base-destructive-foreground` | red-50 |
-| Border radius | `--border-radius-lg` | `8px` |
-| Focus ring | `--base-ring` | zinc-900 / zinc-300 |
-| Hover accent | `--base-accent` | zinc-100 / zinc-800 |
-
----
-
-## CSS Implementation
-
-```css
-.btn-base {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-2);
-  font-family: var(--typography-font-family-font-sans);
-  font-size: var(--font-size-text-sm);
-  font-weight: var(--font-weight-medium);
-  border-radius: var(--border-radius-lg);
-  border: var(--border-width-border-1) solid transparent;
-  cursor: pointer;
-  transition: background-color 0.15s, opacity 0.15s;
-
-  /* default size */
-  height: var(--height-h-10);
-  padding: 0 var(--spacing-4);
-}
-
-.btn-primary {
-  background-color: var(--base-primary);
-  color: var(--base-primary-foreground);
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-}
-
-.btn-secondary {
-  background-color: var(--base-secondary);
-  color: var(--base-secondary-foreground);
-  border-color: var(--base-border);
-}
-
-.btn-destructive {
-  background-color: var(--base-destructive);
-  color: var(--base-destructive-foreground);
-}
-
-.btn-ghost {
-  background-color: transparent;
-  color: var(--base-foreground);
-}
-
-.btn-ghost:hover {
-  background-color: var(--base-accent);
-  color: var(--base-accent-foreground);
-}
-
-/* Sizes */
-.btn-sm {
-  height: var(--height-h-8);
-  padding: 0 var(--spacing-3);
-  font-size: var(--font-size-text-sm);
-}
-
-.btn-lg {
-  height: var(--height-h-11);
-  padding: 0 var(--spacing-6);
-  font-size: var(--font-size-text-base);
-}
-
-/* Focus ring */
-.btn-base:focus-visible {
-  outline: 2px solid var(--base-ring);
-  outline-offset: 2px;
-}
-
-/* Disabled */
-.btn-base:disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
+```bash
+npx shadcn@latest add button
 ```
 
----
+Then replace the variants in `components/ui/button.tsx` with Record's:
 
-## React / TSX
-
-```tsx
-import { cn } from "@/lib/utils";
-import { ButtonHTMLAttributes, forwardRef } from "react";
-
-type Variant = "primary" | "secondary" | "destructive" | "ghost";
-type Size = "sm" | "default" | "lg";
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: Variant;
-  size?: Size;
-}
-
-const variantClass: Record<Variant, string> = {
-  primary: "btn-primary",
-  secondary: "btn-secondary",
-  destructive: "btn-destructive",
-  ghost: "btn-ghost",
-};
-
-const sizeClass: Record<Size, string> = {
-  sm: "btn-sm",
-  default: "",
-  lg: "btn-lg",
-};
-
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "primary", size = "default", className, ...props }, ref) => (
-    <button
-      ref={ref}
-      className={cn("btn-base", variantClass[variant], sizeClass[size], className)}
-      {...props}
-    />
-  )
-);
-
-Button.displayName = "Button";
+```tsx components/ui/button.tsx
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors disabled:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground font-bold hover:bg-primary/90 disabled:bg-zinc-500",
+        dark: "bg-[#0E0E0C] text-zinc-50 font-semibold hover:bg-[#0E0E0C]/90",
+        outline: "border border-input bg-background text-foreground font-semibold hover:bg-accent",
+        secondary: "bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80",
+        ghost: "text-foreground font-medium hover:bg-accent",
+        destructive: "bg-destructive text-destructive-foreground font-medium hover:bg-destructive/90",
+        // mobile
+        positive: "bg-[#DCF3D5] text-zinc-900 font-semibold",
+        neutral: "border border-[#B8B8B8] bg-zinc-100 text-zinc-900 font-semibold",
+        answer: "border border-[#F4672B] bg-[#FFF3EE] text-[#F4672B] font-bold",
+      },
+      size: {
+        sm: "h-8 rounded-md px-3 text-xs",
+        default: "h-9 rounded-lg px-4 text-sm",
+        lg: "h-10 rounded-lg px-8 text-sm",
+        icon: "size-8 rounded-md",
+        mobile: "h-[46px] w-full rounded-xl px-4 text-lg",
+        "mobile-lg": "h-[52px] w-full rounded-xl px-4 text-lg",
+      },
+    },
+    defaultVariants: { variant: "default", size: "default" },
+  }
+)
 ```
 
-<Info>
-  The brand orange (`--custom-colors-prim-new-orange-prim`: `#ff5723`) can be applied as a custom primary by overriding `--base-primary` in a scoped selector.
-</Info>
+<Note>
+  The `answer` background is a light orange gradient in Figma. `#FFF3EE` is a flat approximation; confirm with design.
+</Note>
+
+## Usage
+
+<CodeGroup>
+
+```tsx Desktop
+<Button><Plus /> New campaign</Button>
+<Button variant="dark" size="lg">Continue <ChevronRight /></Button>
+<Button variant="outline"><Pencil /> Edit</Button>
+<Button variant="outline" size="sm">View enrichment</Button>
+<Button variant="secondary" size="sm">Open <ArrowRight /></Button>
+<Button variant="ghost">See all <ChevronRight /></Button>
+<Button variant="destructive">Discard and close</Button>
+<Button disabled>Continue</Button>
+```
+
+```tsx Mobile
+<Button size="mobile"><Camera /> Check my camera first</Button>
+<Button size="mobile-lg">Start verification <ArrowRight /></Button>
+<Button size="mobile" disabled className="disabled:bg-[#F9916F]">Continue</Button>
+<Button variant="positive" size="mobile">I’m interested</Button>
+<Button variant="neutral" size="mobile"><RotateCcw /> Start over</Button>
+<Button variant="ghost" size="mobile" className="text-gray-600">Not now</Button>
+<Button variant="answer" size="mobile"><X /> No</Button>
+```
+
+</CodeGroup>
+
+Icons are [Lucide](https://lucide.dev), 16px, before the label (after it for arrows and chevrons).

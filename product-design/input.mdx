@@ -33,18 +33,18 @@ icon: "text-cursor-input"
   <div style={{display:'flex',flexDirection:'column',gap:'6px',width:'280px'}}>
     <label style={{fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,color:'#18181b'}}>Email address</label>
 
-    <input readOnly defaultValue="you@example.com" style={{width:'100%',height:'40px',padding:'0 12px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',color:'#18181b',background:'#ffffff',border:'1px solid #18181b',borderRadius:'6px',outline:'none',boxShadow:'0 0 0 2px #18181b',boxSizing:'border-box'}} />
+    <input readOnly defaultValue="you@example.com" style={{width:'100%',height:'40px',padding:'0 12px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',color:'#18181b',background:'#ffffff',border:'1px solid #ff5723',borderRadius:'6px',outline:'none',boxShadow:'0 0 0 2px #ff5723',boxSizing:'border-box'}} />
 
     <span style={{fontFamily:'DM Sans, sans-serif',fontSize:'12px',color:'#71717a'}}>We'll never share your email.</span>
   </div>
 </div>
 
-    Active/focused state. Border and focus ring both use `--base-ring` (zinc-900), applied via `box-shadow`.
+    Active/focused state. Border and focus ring both use `--base-ring` (`#ff5723`, Record orange), applied via `box-shadow`.
 
     | Property | Token | Value |
     | --- | --- | --- |
-    | Border | `--base-ring` | `#18181b` (zinc-900) |
-    | Focus ring | `--base-ring` | `box-shadow: 0 0 0 2px #18181b` |
+    | Border | `--base-ring` | `#ff5723` (Record orange) |
+    | Focus ring | `--base-ring` | `box-shadow: 0 0 0 2px #ff5723` |
     | Background | `--base-background` | `#ffffff` |
     | Text | `--base-foreground` | `#18181b` (zinc-900) |
   </Tab>
@@ -123,7 +123,7 @@ icon: "text-cursor-input"
 |----------|-------|-------|
 | Background | `--base-background` | white / zinc-950 |
 | Border (default) | `--base-input` | zinc-200 / zinc-800 |
-| Border (focus) | `--base-ring` | zinc-900 / zinc-300 |
+| Border (focus) | `--base-ring` | `#ff5723` |
 | Border (error) | `--base-destructive` | `#ee634e` |
 | Text | `--base-foreground` | zinc-900 / zinc-50 |
 | Placeholder | `--base-muted-foreground` | zinc-500 / zinc-400 |

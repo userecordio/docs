@@ -1,75 +1,61 @@
 ---
-title: "Mobile app overview"
-sidebarTitle: "Overview"
+title: "Mobile app"
+sidebarTitle: "Components in use"
 icon: "smartphone"
-description: "Skill verification for candidates: a chat-style flow on the phone, led by the assistant Maaya, in six stages."
-keywords: ["mobile", "skill verification", "candidate", "maaya", "progress", "stages"]
+description: "Which design system components the Record mobile app uses, and how to install them."
+keywords:
+  - "mobile"
+  - "components"
+  - "shadcn"
+  - "skill verification"
 ---
 
 <Info>
-  Mobile only. Every screen is designed at **360 × 800**. There is no desktop layout for this product.
+  Mobile only. Screens are designed at **360 × 800**.
 </Info>
 
-Candidates open a link and verify their skills in a chat with **Maaya**, Record's assistant. Maaya speaks each message aloud, and every message is also shown as text.
+<Columns cols={2}>
+  <Frame caption="Language selection">
+    <img
+      src="/images/product-design/mobile/choose-language.png"
+      alt="Mobile screen with a chat message, language options and a Continue button"
+      style={{ maxWidth: "280px" }}
+    />
+  </Frame>
 
-<Card title="Open in Figma" icon="figma" href="https://www.figma.com/design/cxBWcyyaRrn6J8GOOglw6t/Infra-Design---Record?node-id=83103-160615" horizontal>
-  RCD-346 App UX improvements v3, New design flow
-</Card>
+  <Frame caption="Sound check">
+    <img
+      src="/images/product-design/mobile/speaker-check.png"
+      alt="Mobile screen with a chat message and Yes and No buttons"
+      style={{ maxWidth: "280px" }}
+    />
+  </Frame>
+</Columns>
 
 ## Screen layout
 
-<Frame caption="Choose language screen">
-  <img
-    src="/images/product-design/mobile/choose-language.png"
-    alt="Choose language screen with header, Maaya message, language list and Continue button"
-    style={{ maxWidth: "300px" }}
-  />
-</Frame>
-
-| Area | What's in it |
+| Area | shadcn/ui components |
 | --- | --- |
-| Header | Client logo and name (for example ABC Corp), **Skill assessment**, language (**EN**), **Help** |
-| Progress | Stage name and position, for example **Language · 1 of 6** |
-| Chat | Maaya's messages with **Play again** for audio |
-| Answer area | Options, recording controls or buttons for the current question |
-| Footer | Primary button and the Terms & Conditions agreement |
+| Header (client logo, language, Help) | `button` |
+| Chat area | Custom chat bubbles |
+| Answer area (options, Yes / No) | `button` |
+| Footer (primary action, Terms & Conditions) | `button`, `checkbox` |
 
-<Note>
-  The logo placeholder shows the **client's** logo, not Record's.
-</Note>
+## Components in use
 
-## The six stages
+Counted across **58 mobile screens** in Figma.
 
-One progress bar runs across every screen. It moves **by stage, not by question**, so it stays correct when the number of questions changes per job. Inside a stage the label shows the detail, for example *Skill check · Scenario 1 of 3*.
-
-| # | Stage | What happens |
+| Component | shadcn/ui | Screens using it |
 | --- | --- | --- |
-| 1 | Language | Pick a language, then a sound check |
-| 2 | Job details | Read the job, choose interested or not interested |
-| 3 | Permissions | Allow camera and microphone |
-| 4 | Quick questions | Yes/no, voice answers, check answers |
-| 5 | Skill check | Scenarios 1, 2 and 3 with video answers |
-| 6 | More about you | Interest questions after the scenarios |
-
-## Screens
-
-<Columns cols={2}>
-  <Card title="Language and sound check" icon="languages" href="/product-design/mobile/language-and-sound">
-    Stage 1: start, pick a language, check the speaker
-  </Card>
-</Columns>
-
-<Note>
-  Job details, permissions, quick questions, skill check, interest collection, feedback and the not-interested path are being added next.
-</Note>
-
-## Components used
-
-| Figma component | shadcn/ui | Used for |
-| --- | --- | --- |
-| Button | `button` | Continue, Yes / No, Play again |
-| Checkbox | `checkbox` | I agree to the Terms & Conditions |
+| Checkbox | `checkbox` | 57 |
+| Button | `button` | 53 |
+| Radio Group | `radio-group` | 3 |
+| Progress | `progress` | 1 |
 
 ```bash
-npx shadcn@latest add button checkbox
+npx shadcn@latest add button checkbox radio-group progress
 ```
+
+### Custom blocks
+
+Chat bubbles, language options and recording controls are custom. Build them from the [colour](/product-design/colors), [spacing](/product-design/spacing) and [radius](/product-design/radius) tokens.

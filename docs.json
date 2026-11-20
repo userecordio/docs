@@ -183,17 +183,14 @@
             "group": "Desktop app",
             "icon": "monitor",
             "pages": [
-              "product-design/desktop/overview",
-              "product-design/desktop/dashboard",
-              "product-design/desktop/enrichment"
+              "product-design/desktop/overview"
             ]
           },
           {
             "group": "Mobile app",
             "icon": "smartphone",
             "pages": [
-              "product-design/mobile/overview",
-              "product-design/mobile/language-and-sound"
+              "product-design/mobile/overview"
             ]
           }
         ]

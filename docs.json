@@ -192,7 +192,8 @@
             "group": "Mobile app",
             "icon": "smartphone",
             "pages": [
-              "product-design/mobile/overview"
+              "product-design/mobile/overview",
+              "product-design/mobile/language-and-sound"
             ]
           }
         ]

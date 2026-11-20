@@ -1,16 +1,31 @@
 ---
 title: "Switch"
 icon: "toggle-right"
-description: "Turns a setting on or off, such as Test mode. shadcn/ui Switch."
-keywords: ["switch", "toggle", "on off", "test mode", "shadcn"]
+description: "The on/off switch used for Test mode and settings in the Record desktop app."
+keywords:
+  - "switch"
+  - "toggle"
+  - "test mode"
+  - "shadcn"
 ---
 
-**Used in:** Desktop (66 of 80 screens), for **Test mode** in the sidebar.
+**Used in:** Desktop (66 of 80 screens): **Test mode** in the sidebar, and on/off settings in setup steps.
 
-<div className="not-prose" style={{ display: "flex", gap: 32, alignItems: "center", padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 14 }}>
-  <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><span style={{ width: 36, height: 20, borderRadius: 9999, background: "#e4e4e7", padding: 2, boxSizing: "border-box", display: "inline-flex" }}><span style={{ width: 16, height: 16, borderRadius: 9999, background: "#ffffff", boxShadow: "0 1px 2px rgba(0,0,0,.2)" }} /></span> Off</span>
-  <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><span style={{ width: 36, height: 20, borderRadius: 9999, background: "#ff5723", padding: 2, boxSizing: "border-box", display: "inline-flex", justifyContent: "flex-end" }}><span style={{ width: 16, height: 16, borderRadius: 9999, background: "#ffffff" }} /></span> On</span>
-</div>
+<Frame caption="Real switches from the desktop screens">
+  ![Switch off in the sidebar, off in settings, and on](/images/product-design/components/switch.png)
+</Frame>
+
+| State | Track | Thumb |
+| --- | --- | --- |
+| Off | `#F2F2F7` | white |
+| On | `#FF5723` (`bg-primary`) | white |
+
+| Size | Height | Where |
+| --- | --- | --- |
+| Small | 15px | Sidebar Test mode |
+| Default | 20px | Settings in setup steps |
+
+In Figma this is the `toggle` component (states **Default** = off, **Right** = on).
 
 ## Install
 
@@ -25,13 +40,16 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 
 <div className="flex items-center gap-2">
-  <Switch id="test-mode" checked={testMode} onCheckedChange={setTestMode} />
+  <Switch
+    id="test-mode"
+    checked={testMode}
+    onCheckedChange={setTestMode}
+    className="data-[state=unchecked]:bg-[#F2F2F7] data-[state=checked]:bg-primary"
+  />
   <Label htmlFor="test-mode">Test mode</Label>
 </div>
 ```
 
-## States
-
-In Figma this is the `toggle` component with two states: **Default** (off) and **Right** (on). Both appear in the screens.
-
-The checked track uses `bg-primary`.
+<Warning>
+  One setup screen shows the switch on in blue (`#3B82F6`). Use orange (`bg-primary`) everywhere.
+</Warning>

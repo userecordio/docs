@@ -2,7 +2,7 @@
 title: "Mobile app"
 sidebarTitle: "Components in use"
 icon: "smartphone"
-description: "Which design system components the Record mobile app uses, and how to install them."
+description: "Every component the Record mobile app uses, shown exactly as it appears in the screens, with how to build it."
 keywords:
   - "mobile"
   - "components"
@@ -11,7 +11,7 @@ keywords:
 ---
 
 <Info>
-  Mobile only. Screens are designed at **360 × 800**.
+  Mobile only. Screens are designed at **360 × 800**. Counts are from 58 mobile screens in Figma, visible layers only.
 </Info>
 
 <Columns cols={2}>
@@ -32,30 +32,49 @@ keywords:
   </Frame>
 </Columns>
 
-## Screen layout
-
-| Area | shadcn/ui components |
-| --- | --- |
-| Header (client logo, language, Help) | `button` |
-| Chat area | Custom chat bubbles |
-| Answer area (options, Yes / No) | `button` |
-| Footer (primary action, Terms & Conditions) | `button`, `checkbox` |
-
-## Components in use
-
-Counted across **58 mobile screens** in Figma.
-
-| Component | shadcn/ui | Screens using it |
-| --- | --- | --- |
-| [Checkbox](/product-design/checkbox) | `checkbox` | 57 |
-| [Button](/product-design/button) | `button` | 53 |
-| [Radio Group](/product-design/radio-group) | `radio-group` | 3 |
-| [Progress](/product-design/progress) | `progress` | 1 |
+## Install everything at once
 
 ```bash
-npx shadcn@latest add button checkbox radio-group progress
+npx shadcn@latest add button radio-group progress
 ```
 
-### Custom blocks
+Then add the mobile sizes and variants from [Button](/product-design/button) (`mobile`, `mobile-lg`, `positive`, `neutral`, `answer`).
 
-Chat bubbles, language options and recording controls are custom. Build them from the [colour](/product-design/colors), [spacing](/product-design/spacing) and [radius](/product-design/radius) tokens.
+## Buttons · 48 screens
+
+Full-width, 46px tall, 12px corners. Orange for the main action, green for accepting, grey for alternatives, and the outlined Yes / No for quick answers.
+
+![Mobile buttons as used in the screens](/images/product-design/components/button-mobile.png)
+
+[Button →](/product-design/button)
+
+```tsx
+<Button size="mobile"><Camera /> Check my camera first</Button>
+<Button variant="positive" size="mobile">I’m interested</Button>
+<Button variant="neutral" size="mobile"><RotateCcw /> Start over</Button>
+<Button variant="answer" size="mobile"><X /> No</Button>
+```
+
+## Option card (Radio Group) · 3 screens
+
+Pick one option, for example the job the candidate is working in.
+
+![Option card as used in the screens](/images/product-design/components/radio.png)
+
+[Radio Group →](/product-design/radio-group)
+
+## Progress · 1 screen
+
+Green progress bar. See [Progress →](/product-design/progress).
+
+## Custom blocks
+
+Not shadcn/ui. Build from the [colour](/product-design/colors), [spacing](/product-design/spacing) and [radius](/product-design/radius) tokens.
+
+| Block | Where |
+| --- | --- |
+| Header | Client logo and name, Skill assessment, language, Help |
+| Stage progress | "Language · 1 of 6" bar across every screen |
+| Chat bubbles | Maaya's messages with Play again |
+| Language options | Script letter + native name + English name |
+| Recording controls | Voice and video answers |

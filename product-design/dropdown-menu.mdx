@@ -1,70 +1,60 @@
 ---
 title: "Dropdown Menu"
 icon: "list"
-description: "A menu of actions opened from a button, such as a table row's three-dot menu. shadcn/ui Dropdown Menu."
-keywords: ["dropdown", "menu", "actions", "three dots", "shadcn"]
+description: "Filter buttons and the menus they open, as used above tables in the Record desktop screens."
+keywords:
+  - "dropdown"
+  - "filter"
+  - "menu"
+  - "shadcn"
 ---
 
-**Used in:** Desktop (35 of 80 screens)
+**Used in:** Desktop (35 of 80 screens), mostly as **filters above tables**.
 
-<div className="not-prose" style={{ padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 14 }}>
-  <div style={{ width: 200, border: "1px solid #e4e4e7", borderRadius: 6, background: "#ffffff", color: "#09090b", padding: 4, boxShadow: "0 4px 6px -1px rgba(0,0,0,.1)" }}>
-    <div style={{ padding: "6px 8px", fontSize: 14, fontWeight: 600 }}>Actions</div>
-    <div style={{ height: 1, background: "#e4e4e7", margin: "4px -4px" }} />
-    <div style={{ padding: "6px 8px", borderRadius: 4, background: "#f4f4f5" }}>Edit</div>
-    <div style={{ padding: "6px 8px", borderRadius: 4 }}>Duplicate</div>
-    <div style={{ padding: "6px 8px", borderRadius: 4, display: "flex", justifyContent: "space-between" }}>More <span>›</span></div>
-  </div>
-</div>
+<Frame caption="Real filters and menu from the desktop screens">
+  ![Outline filter button, secondary filter button, search filter and an open menu with checkbox items](/images/product-design/components/dropdown.png)
+</Frame>
+
+| Part | Spec | Example |
+| --- | --- | --- |
+| Filter · outline | Outline button, `sm`, 36px high, 8px radius, 12px medium, chevron down | Language, Status, Verdict, Campaign |
+| Filter · secondary | `#F4F4F5` background, `#71717A` text, 36px high, 8px radius, chevron down | All campaigns, All statuses |
+| Search filter | Outline, search icon, `#9CA3AF` placeholder | Search candidate, Search state |
+| Menu | White, border `#E4E4E7`, 6px radius; label 14px semibold `#71717A`; checkbox items | More filters: Shift, Sound, Language, Campaign |
 
 ## Install
 
 ```bash
-npx shadcn@latest add dropdown-menu
+npx shadcn@latest add dropdown-menu button
 ```
 
 ## Usage
 
 ```tsx
 import {
-  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel,
-  DropdownMenuSeparator, DropdownMenuItem, DropdownMenuSub,
-  DropdownMenuSubTrigger, DropdownMenuSubContent,
+  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
+  DropdownMenuLabel, DropdownMenuCheckboxItem,
 } from "@/components/ui/dropdown-menu"
 
 <DropdownMenu>
   <DropdownMenuTrigger asChild>
-    <Button variant="ghost" size="icon" aria-label="Row actions"><MoreHorizontal /></Button>
+    <Button variant="outline" size="sm" className="h-9 rounded-lg">
+      Language <ChevronDown />
+    </Button>
   </DropdownMenuTrigger>
-  <DropdownMenuContent align="end">
-    <DropdownMenuLabel>Actions</DropdownMenuLabel>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem>Edit</DropdownMenuItem>
-    <DropdownMenuItem>Duplicate</DropdownMenuItem>
+  <DropdownMenuContent align="start">
+    <DropdownMenuLabel className="text-muted-foreground">More filters</DropdownMenuLabel>
+    <DropdownMenuCheckboxItem checked={shift} onCheckedChange={setShift}>Shift</DropdownMenuCheckboxItem>
+    <DropdownMenuCheckboxItem checked={sound} onCheckedChange={setSound}>Sound</DropdownMenuCheckboxItem>
   </DropdownMenuContent>
 </DropdownMenu>
+
+{/* Secondary filter */}
+<Button variant="secondary" size="sm" className="h-9 rounded-lg text-muted-foreground">
+  All campaigns <ChevronDown />
+</Button>
 ```
 
-## Parts used in the screens
-
-| Figma part | Code |
-| --- | --- |
-| Menu | `DropdownMenuContent` |
-| Item / Label | `DropdownMenuLabel` |
-| Item / Separator | `DropdownMenuSeparator` |
-| Item / Default | `DropdownMenuItem` |
-| Item / SubTrigger | `DropdownMenuSubTrigger` |
-
-Checkbox and radio items exist in the kit but aren't used yet.
-
 <Tip>
-  Every table row with a three-dot menu should include an **Edit** option.
+  Row three-dot menus in tables must include an **Edit** option.
 </Tip>
-
-## Specs
-
-| Property | Value |
-| --- | --- |
-| Menu radius | `rounded-md` (6px) |
-| Menu border | `border` (#E4E4E7) |
-| Menu padding | 4px |

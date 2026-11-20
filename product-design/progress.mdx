@@ -1,17 +1,28 @@
 ---
 title: "Progress"
 icon: "loader"
-description: "Shows how far along something is, such as positions filled or campaign progress. shadcn/ui Progress."
-keywords: ["progress", "bar", "percentage", "shadcn"]
+description: "Progress bars as used in the Record screens: default, blue, orange and green."
+keywords:
+  - "progress"
+  - "bar"
+  - "shadcn"
 ---
 
-**Used in:** Desktop (35 of 80 screens) · Mobile (1 of 58 screens)
+**Used in:** Desktop (29 of 80 screens) · Mobile (1 of 58 screens)
 
-<div className="not-prose" style={{ display: "grid", gap: 14, padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 12 }}>
-  <div style={{ display: "grid", gridTemplateColumns: "40px 1fr", gap: 12, alignItems: "center" }}><span>25%</span><div style={{ height: 8, borderRadius: 9999, background: "rgba(255,87,35,.2)" }}><div style={{ width: "25%", height: "100%", borderRadius: 9999, background: "#ff5723" }} /></div></div>
-  <div style={{ display: "grid", gridTemplateColumns: "40px 1fr", gap: 12, alignItems: "center" }}><span>50%</span><div style={{ height: 8, borderRadius: 9999, background: "rgba(255,87,35,.2)" }}><div style={{ width: "50%", height: "100%", borderRadius: 9999, background: "#ff5723" }} /></div></div>
-  <div style={{ display: "grid", gridTemplateColumns: "40px 1fr", gap: 12, alignItems: "center" }}><span>75%</span><div style={{ height: 8, borderRadius: 9999, background: "rgba(255,87,35,.2)" }}><div style={{ width: "75%", height: "100%", borderRadius: 9999, background: "#ff5723" }} /></div></div>
-</div>
+<Frame caption="Real progress bars from the screens">
+  ![Progress bars in black, blue, orange, green and a soft variant](/images/product-design/components/progress.png)
+</Frame>
+
+| Colour | Indicator | Used for |
+| --- | --- | --- |
+| Default | `#18181B` (zinc-900) | Positions filled on job mandate cards, campaign progress |
+| Blue | `#2563EB` (blue-600) | Analytics breakdowns |
+| Orange | `#FF5723` (`bg-primary`) | Highlighted or top value |
+| Green | `#16A34A` (green-600) | Mobile progress |
+| Soft | `#F3F4F6` / `#E2E8F0` | Low-emphasis rows |
+
+All bars are **8px high** (a few analytics bars are 6px or 12px) and fully rounded.
 
 ## Install
 
@@ -24,15 +35,10 @@ npx shadcn@latest add progress
 ```tsx
 import { Progress } from "@/components/ui/progress"
 
-<Progress value={30} />
+<Progress value={30} className="h-2 [&>div]:bg-zinc-900" />
+<Progress value={75} className="h-2 [&>div]:bg-blue-600" />
+<Progress value={50} className="h-2 [&>div]:bg-primary" />
+<Progress value={50} className="h-2 [&>div]:bg-green-600" />
 ```
 
-The Figma kit has fixed steps (0%, 25%, 50%, 75%, 100%). In code, pass the real value from 0 to 100.
-
-## Specs
-
-| Property | Value |
-| --- | --- |
-| Indicator | `bg-primary` |
-| Track | `bg-primary/20` |
-| Radius | `rounded-full` |
+The Figma kit has fixed steps (0, 25, 50, 75, 100%). In code, pass the real value.

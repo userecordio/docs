@@ -2,7 +2,7 @@
 title: "Desktop app"
 sidebarTitle: "Components in use"
 icon: "monitor"
-description: "Which design system components the Record desktop app uses, and how to install them."
+description: "Every component the Record desktop app uses, shown exactly as it appears in the screens, with how to build it."
 keywords:
   - "desktop"
   - "components"
@@ -12,56 +12,122 @@ keywords:
 ---
 
 <Info>
-  Desktop only. Screens are designed at **1440px** wide.
+  Desktop only. Screens are designed at **1440px** wide. Counts are from 80 desktop screens in Figma, visible layers only.
 </Info>
 
 ![Record desktop app: sidebar, page header and content area](/images/product-design/desktop/dashboard-all-hiring.png)
 
-## App shell
-
-Every page uses the same shell.
-
-| Area | shadcn/ui components |
-| --- | --- |
-| Sidebar (navigation, Get started checklist, Test mode) | `sidebar`, `radio-group`, `switch` |
-| Top bar | `breadcrumb`, `button` |
-| Page header (title, primary action) | `button` |
-
-## Components in use
-
-Counted across **80 desktop screens** in Figma.
-
-| Component | shadcn/ui | Screens using it |
-| --- | --- | --- |
-| [Button](/product-design/button) | `button` | 77 |
-| [Badge](/product-design/badge) | `badge` | 72 |
-| [Switch](/product-design/switch) | `switch` | 66 |
-| [Sidebar](/product-design/sidebar) | `sidebar` | 65 |
-| [Breadcrumb](/product-design/breadcrumb) | `breadcrumb` | 65 |
-| [Radio Group](/product-design/radio-group) | `radio-group` | 57 |
-| [Tabs](/product-design/tabs) | `tabs` | 54 |
-| [Checkbox](/product-design/checkbox) | `checkbox` | 37 |
-| [Table / Data Table](/product-design/table) | `table` | 35 |
-| [Progress](/product-design/progress) | `progress` | 35 |
-| [Dropdown Menu](/product-design/dropdown-menu) | `dropdown-menu` | 35 |
-| [Input](/product-design/input) | `input` | 30 |
-| [Pagination](/product-design/pagination) | `pagination` | 25 |
-| [Toggle Group](/product-design/toggle-group) | `toggle-group` | 8 |
-| [Chart](/product-design/chart) | `chart` | 4 |
+## Install everything at once
 
 ```bash
-npx shadcn@latest add button badge switch sidebar breadcrumb radio-group tabs checkbox table progress dropdown-menu input pagination toggle-group chart
+npx shadcn@latest add button badge switch sidebar breadcrumb tabs dropdown-menu table progress input checkbox pagination toggle-group chart
 ```
 
-### Custom blocks
+Then apply the Record variants from each component page (Button and Badge especially).
 
-These are not shadcn/ui components. Build them from the tokens.
+## App shell
+
+| Area | Components |
+| --- | --- |
+| Sidebar | [Sidebar](/product-design/sidebar), [Switch](/product-design/switch) (Test mode), [Badge](/product-design/badge) (Beta tag) |
+| Top bar | [Breadcrumb](/product-design/breadcrumb), [Button](/product-design/button) |
+| Page header | Title, date range, primary [Button](/product-design/button) |
+
+## Buttons · 76 screens
+
+Primary orange with an icon for the main action, outline for secondary actions, dark for stepping forward in modals.
+
+![Desktop buttons as used in the screens](/images/product-design/components/button-desktop.png)
+
+[Button →](/product-design/button)
+
+```tsx
+<Button><Plus /> New campaign</Button>
+<Button variant="outline"><Pencil /> Edit</Button>
+```
+
+## Badges · 71 screens
+
+Soft, colour-coded status and type labels.
+
+![Badges as used in the screens](/images/product-design/components/badge.png)
+
+[Badge →](/product-design/badge)
+
+```tsx
+<Badge tone="success">Live</Badge>
+<Badge tone="type">Enrichment</Badge>
+```
+
+## Switch · 66 screens
+
+![Switches as used in the screens](/images/product-design/components/switch.png)
+
+[Switch →](/product-design/switch)
+
+## Breadcrumb · 65 screens
+
+![Breadcrumb as used in the top bar](/images/product-design/components/breadcrumb.png)
+
+[Breadcrumb →](/product-design/breadcrumb)
+
+## Tabs · 54 screens
+
+Segmented tabs with counts, verdict tabs and Yes / No.
+
+![Tabs as used in the screens](/images/product-design/components/tabs.png)
+
+[Tabs →](/product-design/tabs)
+
+## Dropdown Menu · 35 screens
+
+Filters above tables and the menus they open.
+
+![Filters and menu as used in the screens](/images/product-design/components/dropdown.png)
+
+[Dropdown Menu →](/product-design/dropdown-menu)
+
+## Table · 33 screens
+
+Candidate, campaign and enrichment lists. See [Table →](/product-design/table).
+
+## Progress · 29 screens
+
+![Progress bars as used in the screens](/images/product-design/components/progress.png)
+
+[Progress →](/product-design/progress)
+
+## Input · 17 screens
+
+![Inputs as used in the screens](/images/product-design/components/input.png)
+
+[Input →](/product-design/input)
+
+## Checkbox · 12 screens
+
+![Checkboxes as used in the screens](/images/product-design/components/checkbox.png)
+
+[Checkbox →](/product-design/checkbox)
+
+## Pagination · 8 screens
+
+![Pagination as used under tables](/images/product-design/components/pagination.png)
+
+[Pagination →](/product-design/pagination)
+
+## Also used
+
+| Component | Screens |
+| --- | --- |
+| [Sidebar](/product-design/sidebar) | 65 |
+| [Toggle Group](/product-design/toggle-group) | 8 |
+| [Chart](/product-design/chart) | 1 |
+
+## Custom blocks
+
+Not shadcn/ui. Build from the tokens.
 
 | Block | Where |
 | --- | --- |
-| Tab Nav Links (Pro Blocks) | Page-level tab navigation |
+| Tab Nav Links (Pro Blocks) | Page-level tabs inside an item (Overview, Configuration, Campaigns…) |
 | Upgrade Button | Sidebar |
-
-<Tip>
-  New screen? Check this list first. If a component you need isn't here, check with design before adding a new one.
-</Tip>

@@ -11,7 +11,7 @@ keywords:
   - "tailwind"
 ---
 
-Most components use **6px** (`rounded-md`). Use the class, not the pixel value.
+Desktop buttons and tabs use **8px** (`rounded-lg`), most other controls **6px** (`rounded-md`), and mobile buttons **12px** (`rounded-xl`). Use the class, not the pixel value.
 
 ```tsx
 <div className="rounded-md border">…</div>
@@ -23,7 +23,7 @@ Most components use **6px** (`rounded-md`). Use the class, not the pixel value.
 
 ## What each component uses
 
-Measured from the components in Figma.
+Measured from the components as they appear in the screens.
 
 <ComponentRadius />
 
@@ -70,7 +70,7 @@ export const RadiusScale = () => {
 };
 
 export const ComponentRadius = () => {
-  const C = [["Button", "rounded-md", 6], ["Input", "rounded-md", 6], ["Badge", "rounded-md", 6], ["Toggle", "rounded-md", 6], ["Dropdown Menu", "rounded-md", 6], ["Pagination item", "rounded-md", 6], ["Tabs list", "rounded-lg", 8], ["Checkbox", "rounded-sm", 2], ["Table cell", "rounded-none", 0]];
+  const C = [["Button (desktop)", "rounded-lg", 8], ["Button · sm", "rounded-md", 6], ["Button (mobile)", "rounded-xl", 12], ["Tabs list", "rounded-lg", 8], ["Filter button", "rounded-lg", 8], ["Input", "rounded-md", 6], ["Badge", "rounded-md", 6], ["Badge · pill", "rounded-full", 9999], ["Dropdown Menu", "rounded-md", 6], ["Pagination item", "rounded-md", 6], ["Checkbox", "rounded-sm", 2], ["Table cell", "rounded-none", 0]];
   const row = { display: "grid", gridTemplateColumns: "minmax(0,1fr) 120px 56px 40px", gap: 16, alignItems: "center", padding: "10px 16px" };
   const mono = { fontSize: 13, fontFamily: "ui-monospace, Menlo, monospace" };
   return (
@@ -82,7 +82,7 @@ export const ComponentRadius = () => {
         <div key={name} style={{ ...row, borderTop: "1px solid rgba(127,127,127,.15)" }}>
           <span style={{ fontSize: 14, fontWeight: 500 }}>{name}</span>
           <span style={mono}>{cls}</span>
-          <span style={{ ...mono, opacity: .7 }}>{px}px</span>
+          <span style={{ ...mono, opacity: .7 }}>{px === 9999 ? "full" : px + "px"}</span>
           <div style={{ width: 28, height: 20, border: "2px solid #ff5723", borderRadius: px }} />
         </div>
       ))}

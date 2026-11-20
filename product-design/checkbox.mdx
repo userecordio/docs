@@ -1,17 +1,27 @@
 ---
 title: "Checkbox"
 icon: "square-check"
-description: "Lets the user select one or more options, or agree to terms. shadcn/ui Checkbox."
-keywords: ["checkbox", "select", "terms", "form", "shadcn"]
+description: "Checkboxes in the Record desktop screens: labelled options and table row selection."
+keywords:
+  - "checkbox"
+  - "select"
+  - "table"
+  - "shadcn"
 ---
 
-**Used in:** Desktop (37 of 80 screens) · Mobile (57 of 58 screens)
+**Used in:** Desktop (12 of 80 screens). Not used on mobile.
 
-<div className="not-prose" style={{ display: "flex", flexWrap: "wrap", gap: 32, alignItems: "center", padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 14 }}>
-  <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #18181b", background: "#ffffff" }} /> Unchecked</span>
-  <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #ff5723", background: "#ff5723", color: "#fff", fontSize: 11, lineHeight: "16px", textAlign: "center" }}>✓</span> Checked</span>
-  <span style={{ display: "inline-flex", alignItems: "center", gap: 8, opacity: .5 }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #18181b", background: "#ffffff" }} /> Disabled</span>
-</div>
+<Frame caption="Real checkboxes from the desktop screens">
+  ![Checkbox with label Select all days, and a table row checkbox](/images/product-design/components/checkbox.png)
+</Frame>
+
+| Use | Spec |
+| --- | --- |
+| With label | 16px box, `#18181B` border, 2px radius; label 14px medium, 8px gap |
+| Table row | Same box, no visible label (add `aria-label`) |
+| In a menu | Inside the filter menu (see [Dropdown Menu](/product-design/dropdown-menu)) |
+
+Checked state uses `bg-primary`.
 
 ## Install
 
@@ -26,25 +36,14 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 
 <div className="flex items-center gap-2">
-  <Checkbox id="terms" />
-  <Label htmlFor="terms">I agree to the Terms & Conditions</Label>
+  <Checkbox id="all-days" />
+  <Label htmlFor="all-days" className="text-sm font-medium">Select all days</Label>
 </div>
+
+{/* In a table */}
+<Checkbox aria-label="Select row" />
 ```
 
-## Where it's used
-
-| Product | Use |
-| --- | --- |
-| Mobile | Terms & Conditions agreement in the footer of almost every screen |
-| Desktop | Row selection in tables, options in setup forms |
-
-## Specs
-
-| Property | Value |
-| --- | --- |
-| Size | 16 × 16px |
-| Radius | `rounded-sm` (2px) |
-| Checked fill | `bg-primary` |
-| Label gap | 8px (`gap-2`) |
-
-Figma states: Inactive / Active, Default / Disabled.
+<Note>
+  The day selector in Schedule (Mon, Tue, Wed…) is built on Checkbox but shown as text chips; the selected day is highlighted in orange.
+</Note>

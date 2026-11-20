@@ -1,16 +1,29 @@
 ---
 title: "Radio Group"
 icon: "circle-dot"
-description: "Lets the user pick one option from a list. shadcn/ui Radio Group."
-keywords: ["radio", "radio group", "select one", "checklist", "shadcn"]
+description: "The option card used on mobile to pick one choice, built on shadcn/ui Radio Group."
+keywords:
+  - "radio"
+  - "option card"
+  - "mobile"
+  - "shadcn"
 ---
 
-**Used in:** Desktop (57 of 80 screens) · Mobile (3 of 58 screens)
+**Used in:** Mobile (3 of 58 screens). Not used on desktop.
 
-<div className="not-prose" style={{ display: "grid", gap: 12, padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif" }}>
-  <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}><span style={{ width: 16, height: 16, borderRadius: 9999, border: "1px solid #ff5723", display: "inline-flex", alignItems: "center", justifyContent: "center", marginTop: 2 }}><span style={{ width: 8, height: 8, borderRadius: 9999, background: "#ff5723" }} /></span><span style={{ display: "grid", gap: 2 }}><span style={{ fontSize: 14, fontWeight: 500 }}>Create your first workflow</span><span style={{ fontSize: 14, color: "#71717a" }}>Selected</span></span></div>
-  <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}><span style={{ width: 16, height: 16, borderRadius: 9999, border: "1px solid #18181b", marginTop: 2 }} /><span style={{ display: "grid", gap: 2 }}><span style={{ fontSize: 14, fontWeight: 500 }}>Test in Playground</span><span style={{ fontSize: 14, color: "#71717a" }}>Not selected</span></span></div>
-</div>
+<Frame caption="Real option card from the mobile screens">
+  ![Option card with an icon, job title, subtitle and a radio on the right](/images/product-design/components/radio.png)
+</Frame>
+
+Candidates pick one option, for example which job they're currently working in.
+
+| Part | Spec |
+| --- | --- |
+| Icon | Orange icon on a light orange tile |
+| Title | 14px semibold, `#18181B` |
+| Subtitle | 12px regular, `#71717A` |
+| Radio | 16px circle on the right |
+| Row | Full width (288px on a 360px screen), 36px tall |
 
 ## Install
 
@@ -24,18 +37,14 @@ npx shadcn@latest add radio-group label
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 
-<RadioGroup defaultValue="workflow">
-  <div className="flex items-start gap-2">
-    <RadioGroupItem value="workflow" id="workflow" />
-    <Label htmlFor="workflow">Create your first workflow</Label>
-  </div>
-  <div className="flex items-start gap-2">
-    <RadioGroupItem value="playground" id="playground" />
-    <Label htmlFor="playground">Test in Playground</Label>
-  </div>
+<RadioGroup value={job} onValueChange={setJob} className="gap-3">
+  <Label htmlFor="picker" className="flex items-center gap-3">
+    <span className="flex size-8 items-center justify-center rounded-md bg-orange-50 text-primary"><Briefcase className="size-4" /></span>
+    <span className="grid flex-1 gap-0.5">
+      <span className="text-sm font-semibold">Picker & Packer</span>
+      <span className="text-xs text-muted-foreground">The job you applied for</span>
+    </span>
+    <RadioGroupItem value="picker" id="picker" />
+  </Label>
 </RadioGroup>
 ```
-
-## Where it's used
-
-On desktop, mostly in the sidebar's **Get started** checklist. The Figma item has a label, a description and two weights (Medium, Regular); the screens use Medium.

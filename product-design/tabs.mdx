@@ -1,19 +1,29 @@
 ---
 title: "Tabs"
 icon: "folder"
-description: "Switches between views of the same content, such as hiring types. shadcn/ui Tabs."
-keywords: ["tabs", "segmented", "views", "shadcn"]
+description: "Segmented tabs and coloured verdict tabs as used in the Record desktop screens."
+keywords:
+  - "tabs"
+  - "segmented"
+  - "filter"
+  - "verdict"
+  - "shadcn"
 ---
 
 **Used in:** Desktop (54 of 80 screens)
 
-<div className="not-prose" style={{ padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 14 }}>
-  <div style={{ display: "inline-flex", alignItems: "center", height: 36, padding: 4, borderRadius: 8, background: "#f4f4f5", boxSizing: "border-box" }}>
-    <span style={{ padding: "4px 12px", borderRadius: 6, background: "#ffffff", color: "#09090b", fontWeight: 500, boxShadow: "0 1px 2px rgba(0,0,0,.08)" }}>All hiring</span>
-    <span style={{ padding: "4px 12px", color: "#71717a", fontWeight: 500 }}>Blue & grey collar</span>
-    <span style={{ padding: "4px 12px", color: "#71717a", fontWeight: 500 }}>White collar</span>
-  </div>
-</div>
+<Frame caption="Real tabs from the desktop screens">
+  ![Segmented tabs with counts, two-option tabs, status counts, coloured verdict tabs and Yes / No](/images/product-design/components/tabs.png)
+</Frame>
+
+## Styles
+
+| Style | List | Active trigger | Inactive trigger | Used for |
+| --- | --- | --- | --- | --- |
+| Segmented | `#F4F4F5`, 36px high, 8px radius | white, `#18181B`, 12px medium, 6px radius | `#71717A` | Hiring type (with counts), Manual entry / Bulk upload, Current location / States |
+| Status counts | Same as segmented | Count in green `#16A34A` | `#71717A` | "Ready 160" on upload review |
+| Verdict | Same as segmented | Coloured: red-50 / red-600 (Not a Fit), yellow-50 / yellow-600 (Maybe), stone-100 / stone-600 (Review) | `#71717A` | Candidate verdict |
+| Yes / No | Same as segmented | `#FF5723`, white text | `#71717A` | Yes / No question setting |
 
 ## Install
 
@@ -26,28 +36,28 @@ npx shadcn@latest add tabs
 ```tsx
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
+{/* Segmented, with counts */}
 <Tabs defaultValue="all">
-  <TabsList>
-    <TabsTrigger value="all">All hiring</TabsTrigger>
-    <TabsTrigger value="blue-grey">Blue & grey collar</TabsTrigger>
-    <TabsTrigger value="white">White collar</TabsTrigger>
+  <TabsList className="h-9 rounded-lg bg-muted p-1">
+    <TabsTrigger value="all" className="rounded-md text-xs font-medium data-[state=active]:bg-background">
+      All Hiring <span className="ml-1 text-muted-foreground">1,430</span>
+    </TabsTrigger>
+    <TabsTrigger value="bg" className="rounded-md text-xs font-medium">Blue & grey collar <span className="ml-1 text-muted-foreground">930</span></TabsTrigger>
+    <TabsTrigger value="wc" className="rounded-md text-xs font-medium">White collar <span className="ml-1 text-muted-foreground">310</span></TabsTrigger>
   </TabsList>
-  <TabsContent value="all">…</TabsContent>
 </Tabs>
+
+{/* Yes / No */}
+<TabsList className="h-9 rounded-lg bg-muted p-1">
+  <TabsTrigger value="yes" className="rounded-md text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Yes</TabsTrigger>
+  <TabsTrigger value="no" className="rounded-md text-xs">No</TabsTrigger>
+</TabsList>
+
+{/* Verdict: set the active colour per value */}
+<TabsTrigger value="not-fit" className="data-[state=active]:bg-red-50 data-[state=active]:text-red-600 font-semibold">Not a Fit</TabsTrigger>
+<TabsTrigger value="maybe" className="data-[state=active]:bg-yellow-50 data-[state=active]:text-yellow-600 font-semibold">Maybe</TabsTrigger>
 ```
 
-## Specs
-
-| Property | Value |
-| --- | --- |
-| List height | 36px |
-| List padding | 4px |
-| List radius | `rounded-lg` (8px) |
-| List background | `bg-muted` (#F4F4F5) |
-| Active trigger | `bg-background`, slight shadow |
-
-Figma trigger states: Active On / Off.
-
 <Note>
-  Page-level navigation (for example Overview, Configuration, Campaigns) uses **Tab Nav Links**, a custom block from Pro Blocks, not this component.
+  Page-level navigation (Overview, Configuration, Campaigns, Candidates, Analytics, API) is **Tab Nav Links**, a custom block from Pro Blocks, not this component.
 </Note>

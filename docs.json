@@ -183,7 +183,8 @@
             "group": "Desktop app",
             "icon": "monitor",
             "pages": [
-              "product-design/desktop/overview"
+              "product-design/desktop/overview",
+              "product-design/desktop/dashboard"
             ]
           },
           {

@@ -157,7 +157,8 @@
           {
             "group": "get Started",
             "pages": [
-              "product-design/introduction"
+              "product-design/introduction",
+              "product-design/installation"
             ]
           },
           {

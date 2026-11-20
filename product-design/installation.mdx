@@ -1,0 +1,119 @@
+---
+title: "Installation"
+sidebarTitle: "Installation"
+icon: "download"
+description: "Set up shadcn/ui and the Record design tokens in a React + Tailwind project."
+keywords: ["install", "setup", "shadcn", "tailwind", "tokens", "theme"]
+---
+
+Do this once per project. After that, every component on this site is one command away.
+
+<Steps>
+  <Step title="Initialise shadcn/ui">
+    Run the shadcn CLI in your React + Tailwind project. It creates `components.json` and the `cn()` helper in `lib/utils.ts`.
+
+    ```bash
+    npx shadcn@latest init
+    ```
+  </Step>
+  <Step title="Add the Record tokens">
+    Copy `design-tokens.css` into your project (for example `src/styles/design-tokens.css`) and import it once at your app root.
+
+    ```tsx
+    import "@/styles/design-tokens.css";
+    ```
+  </Step>
+  <Step title="Point Tailwind at the tokens">
+    Map the semantic tokens in `tailwind.config.ts` so shadcn's class names (`bg-primary`, `text-muted-foreground`, `border-border`) use Record's values.
+
+    ```ts tailwind.config.ts
+    export default {
+      darkMode: ["selector", '[data-theme="Dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            background: "var(--base-background)",
+            foreground: "var(--base-foreground)",
+            primary: {
+              DEFAULT: "var(--base-primary)",
+              foreground: "var(--base-primary-foreground)",
+            },
+            secondary: {
+              DEFAULT: "var(--base-secondary)",
+              foreground: "var(--base-secondary-foreground)",
+            },
+            destructive: {
+              DEFAULT: "var(--base-destructive)",
+              foreground: "var(--base-destructive-foreground)",
+            },
+            muted: {
+              DEFAULT: "var(--base-muted)",
+              foreground: "var(--base-muted-foreground)",
+            },
+            accent: {
+              DEFAULT: "var(--base-accent)",
+              foreground: "var(--base-accent-foreground)",
+            },
+            card: {
+              DEFAULT: "var(--base-card)",
+              foreground: "var(--base-card-foreground)",
+            },
+            popover: {
+              DEFAULT: "var(--base-popover)",
+              foreground: "var(--base-popover-foreground)",
+            },
+            border: "var(--base-border)",
+            input: "var(--base-input)",
+            ring: "var(--base-ring)",
+          },
+          borderRadius: {
+            sm: "var(--border-radius-sm)",
+            DEFAULT: "var(--border-radius-default)",
+            md: "var(--border-radius-md)",
+            lg: "var(--border-radius-lg)",
+            xl: "var(--border-radius-xl)",
+            "2xl": "var(--border-radius-2xl)",
+            "3xl": "var(--border-radius-3xl)",
+            full: "var(--border-radius-full)",
+          },
+          fontFamily: {
+            sans: ["var(--typography-font-family-font-sans)"],
+            serif: ["var(--typography-font-family-font-serif)"],
+            mono: ["var(--typography-font-family-font-mono)"],
+          },
+        },
+      },
+    };
+    ```
+  </Step>
+  <Step title="Add components as you need them">
+    Install only what a screen uses. Each component page lists its command.
+
+    ```bash
+    npx shadcn@latest add button input card badge
+    ```
+  </Step>
+</Steps>
+
+## How the tokens are layered
+
+All tokens are CSS custom properties in `design-tokens.css`, in three layers. Components only ever use the top layer.
+
+| Layer | What it holds | Example |
+| --- | --- | --- |
+| Base | Raw values from Figma | `--spacing-4: 16px`, `--tailwind-colors-zinc-900: #18181b` |
+| Alias | Semantic names per theme | `--colors-primary-light: var(--tailwind-colors-zinc-900)` |
+| Theme (`--base-*`) | What components use; switches with the theme | `--base-primary`, `--base-background`, `--base-border` |
+
+<Tip>
+  In components, use Tailwind classes like `bg-primary` or `var(--base-primary)`. Never use a raw Tailwind colour or alias token directly; that is what keeps light and dark themes working.
+</Tip>
+
+## Light and dark theme
+
+Set `data-theme` on `<html>`. Every `--base-*` token is redefined for each theme, so components need no changes.
+
+```html
+<html data-theme="Light">
+<html data-theme="Dark">
+```

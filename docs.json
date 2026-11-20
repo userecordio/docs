@@ -178,6 +178,16 @@
               "product-design/card",
               "product-design/badge"
             ]
+          },
+          {
+            "group": "Desktop app",
+            "icon": "monitor",
+            "pages": []
+          },
+          {
+            "group": "Mobile app",
+            "icon": "smartphone",
+            "pages": []
           }
         ]
       }

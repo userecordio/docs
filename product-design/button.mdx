@@ -1,239 +1,71 @@
 ---
 title: "Button"
-description: "Interactive action trigger. Available in four variants and three sizes, all powered by semantic design tokens."
-icon: "box"
+icon: "rectangle-ellipsis"
+description: "Triggers an action. shadcn/ui Button with Record's primary colour."
+keywords:
+  - "button"
+  - "cta"
+  - "shadcn"
+  - "variant"
+  - "size"
 ---
+
+**Used in:** Desktop (77 of 80 screens) · Mobile (53 of 58 screens)
+
+<div className="not-prose" style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center", padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif" }}>
+  <span style={{ display: "inline-flex", alignItems: "center", height: 36, padding: "0 16px", borderRadius: 6, background: "#ff5723", color: "#ffffff", fontSize: 14, fontWeight: 500 }}>Default</span>
+  <span style={{ display: "inline-flex", alignItems: "center", height: 36, padding: "0 16px", borderRadius: 6, background: "#f4f4f5", color: "#18181b", fontSize: 14, fontWeight: 500 }}>Secondary</span>
+  <span style={{ display: "inline-flex", alignItems: "center", height: 36, padding: "0 16px", borderRadius: 6, background: "#ffffff", color: "#18181b", border: "1px solid #e4e4e7", fontSize: 14, fontWeight: 500 }}>Outline</span>
+  <span style={{ display: "inline-flex", alignItems: "center", height: 36, padding: "0 16px", borderRadius: 6, color: "inherit", fontSize: 14, fontWeight: 500 }}>Ghost</span>
+  <span style={{ display: "inline-flex", alignItems: "center", height: 36, padding: "0 16px", borderRadius: 6, background: "#ee634e", color: "#fef2f2", fontSize: 14, fontWeight: 500 }}>Destructive</span>
+</div>
+
+## Install
+
+```bash
+npx shadcn@latest add button
+```
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+<Button>New job mandate</Button>
+<Button variant="secondary">Cancel</Button>
+<Button variant="outline" size="sm">View logs</Button>
+<Button variant="ghost">See all</Button>
+<Button variant="destructive">Delete</Button>
+<Button size="icon" variant="outline" aria-label="More"><MoreHorizontal /></Button>
+```
 
 ## Variants
 
-<Tabs>
-  <Tab title="Primary">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-  <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'none',cursor:'pointer',height:'40px',padding:'0 16px',background:'#ff5723',color:'#ffffff',letterSpacing:'0'}}>
-    Get started
-  </button>
-</div>
+| `variant` | Colours | When to use |
+| --- | --- | --- |
+| `default` | `bg-primary` (#FF5723), white text | The main action on a screen. One per view. |
+| `secondary` | `bg-secondary` (#F4F4F5) | Supporting actions |
+| `outline` | White, `border-input` | Toolbar and table actions |
+| `ghost` | Transparent, `bg-accent` on hover | Low-emphasis actions, links in cards |
+| `destructive` | `bg-destructive` (#EE634E) | Delete, remove, irreversible actions |
 
-    The default high-emphasis action. Uses `--base-primary` (`#ff5723`, Record orange) background with `--base-primary-foreground` (`#ffffff`) text.
-
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--base-primary` | `#ff5723` (Record orange) |
-    | Text | `--base-primary-foreground` | `#ffffff` (white) |
-    | Border radius | `--border-radius-lg` | `8px` |
-
-    ```tsx
-    <button className="btn-primary">Get started</button>
-    ```
-  </Tab>
-  <Tab title="Secondary">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'1px solid #e4e4e7',cursor:'pointer',height:'40px',padding:'0 16px',background:'#f4f4f5',color:'#18181b'}}>
-        Learn more
-      </button>
-    </div>
-
-    Medium-emphasis — for secondary or alternative actions. Uses `--base-secondary` background with a visible border.
-
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--base-secondary` | `#f4f4f5` (zinc-100) |
-    | Text | `--base-secondary-foreground` | `#18181b` (zinc-900) |
-    | Border | `--base-border` | `#e4e4e7` (zinc-200) |
-    | Border radius | `--border-radius-lg` | `8px` |
-
-    ```tsx
-    <button className="btn-secondary">Learn more</button>
-    ```
-  </Tab>
-  <Tab title="Destructive">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'none',cursor:'pointer',height:'40px',padding:'0 16px',background:'#ee634e',color:'#fef2f2'}}>
-        Delete account
-      </button>
-    </div>
-
-    For irreversible or dangerous actions. Uses the brand `--base-destructive` orange token.
-
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `--base-destructive` | `#ee634e` (brand orange) |
-    | Text | `--base-destructive-foreground` | `#fef2f2` (red-50) |
-    | Border radius | `--border-radius-lg` | `8px` |
-
-    ```tsx
-    <button className="btn-destructive">Delete account</button>
-    ```
-  </Tab>
-  <Tab title="Ghost">
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#f9fafb',borderRadius:'10px',border:'1px solid #e4e4e7',marginBottom:'16px'}}>
-      <button style={{display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'8px',fontFamily:'DM Sans, sans-serif',fontSize:'14px',fontWeight:500,borderRadius:'8px',border:'none',cursor:'pointer',height:'40px',padding:'0 16px',background:'transparent',color:'#18181b'}}>
-        Cancel
-      </button>
-    </div>
-
-    Low-emphasis with a transparent background. Reveals `--base-accent` background on hover — ideal for toolbar actions and dismissals.
-
-    | Property | Token | Value |
-    | --- | --- | --- |
-    | Background | `transparent` | — |
-    | Text | `--base-foreground` | `#18181b` (zinc-900) |
-    | Hover background | `--base-accent` | `#f4f4f5` (zinc-100) |
-    | Border radius | `--border-radius-lg` | `8px` |
-
-    ```tsx
-    <button className="btn-ghost">Cancel</button>
-    ```
-  </Tab>
-</Tabs>
-
----
+`link` exists in the Figma kit but isn't used in the product screens.
 
 ## Sizes
 
-| Size | Height | Padding (H) | Font Size | Token |
-|------|--------|-------------|-----------|-------|
-| sm | `32px` | `12px` | `14px` | `--spacing-3` / `--font-size-text-sm` |
-| default | `40px` | `16px` | `14px` | `--spacing-4` / `--font-size-text-sm` |
-| lg | `44px` | `24px` | `16px` | `--spacing-6` / `--font-size-text-base` |
+| `size` | Height | Horizontal padding |
+| --- | --- | --- |
+| `sm` | 32px | 12px |
+| `default` | 36px | 16px |
+| `lg` | 40px | 32px |
+| `icon` | 36 × 36px | — |
 
----
+All sizes use `rounded-md` (6px), `text-sm font-medium` and an 8px gap between icon and label.
 
-## Design Tokens Used
+## States
 
-| Property | Token | Value |
-|----------|-------|-------|
-| Background (primary) | `--base-primary` | `#ff5723` |
-| Text (primary) | `--base-primary-foreground` | `#ffffff` |
-| Background (secondary) | `--base-secondary` | zinc-100 / zinc-800 |
-| Text (secondary) | `--base-secondary-foreground` | zinc-900 / zinc-50 |
-| Background (destructive) | `--base-destructive` | `#ee634e` |
-| Text (destructive) | `--base-destructive-foreground` | red-50 |
-| Border radius | `--border-radius-lg` | `8px` |
-| Focus ring | `--base-ring` | `#ff5723` |
-| Hover accent | `--base-accent` | zinc-100 / zinc-800 |
-
----
-
-## CSS Implementation
-
-```css
-.btn-base {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-2);
-  font-family: var(--typography-font-family-font-sans);
-  font-size: var(--font-size-text-sm);
-  font-weight: var(--font-weight-medium);
-  border-radius: var(--border-radius-lg);
-  border: var(--border-width-border-1) solid transparent;
-  cursor: pointer;
-  transition: background-color 0.15s, opacity 0.15s;
-
-  /* default size */
-  height: var(--height-h-10);
-  padding: 0 var(--spacing-4);
-}
-
-.btn-primary {
-  background-color: var(--base-primary);
-  color: var(--base-primary-foreground);
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-}
-
-.btn-secondary {
-  background-color: var(--base-secondary);
-  color: var(--base-secondary-foreground);
-  border-color: var(--base-border);
-}
-
-.btn-destructive {
-  background-color: var(--base-destructive);
-  color: var(--base-destructive-foreground);
-}
-
-.btn-ghost {
-  background-color: transparent;
-  color: var(--base-foreground);
-}
-
-.btn-ghost:hover {
-  background-color: var(--base-accent);
-  color: var(--base-accent-foreground);
-}
-
-/* Sizes */
-.btn-sm {
-  height: var(--height-h-8);
-  padding: 0 var(--spacing-3);
-  font-size: var(--font-size-text-sm);
-}
-
-.btn-lg {
-  height: var(--height-h-11);
-  padding: 0 var(--spacing-6);
-  font-size: var(--font-size-text-base);
-}
-
-/* Focus ring */
-.btn-base:focus-visible {
-  outline: 2px solid var(--base-ring);
-  outline-offset: 2px;
-}
-
-/* Disabled */
-.btn-base:disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-```
-
----
-
-## React / TSX
+The screens use **Default** and **Disabled**. Disable with the `disabled` prop; don't restyle it by hand.
 
 ```tsx
-import { cn } from "@/lib/utils";
-import { ButtonHTMLAttributes, forwardRef } from "react";
-
-type Variant = "primary" | "secondary" | "destructive" | "ghost";
-type Size = "sm" | "default" | "lg";
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: Variant;
-  size?: Size;
-}
-
-const variantClass: Record<Variant, string> = {
-  primary: "btn-primary",
-  secondary: "btn-secondary",
-  destructive: "btn-destructive",
-  ghost: "btn-ghost",
-};
-
-const sizeClass: Record<Size, string> = {
-  sm: "btn-sm",
-  default: "",
-  lg: "btn-lg",
-};
-
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "primary", size = "default", className, ...props }, ref) => (
-    <button
-      ref={ref}
-      className={cn("btn-base", variantClass[variant], sizeClass[size], className)}
-      {...props}
-    />
-  )
-);
-
-Button.displayName = "Button";
+<Button disabled>Deploy</Button>
 ```
-
-<Info>
-  The brand orange (`--custom-colors-prim-new-orange-prim`: `#ff5723`) can be applied as a custom primary by overriding `--base-primary` in a scoped selector.
-</Info>

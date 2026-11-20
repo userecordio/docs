@@ -1,0 +1,52 @@
+---
+title: "Breadcrumb"
+icon: "chevrons-right"
+description: "Shows where the user is in the app. shadcn/ui Breadcrumb, used in the desktop top bar."
+keywords: ["breadcrumb", "navigation", "top bar", "shadcn"]
+---
+
+**Used in:** Desktop (65 of 80 screens), in the top bar of every page.
+
+<div className="not-prose" style={{ display: "flex", alignItems: "center", gap: 8, padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 14 }}>
+  <span style={{ color: "#71717a" }}>Enrichment</span>
+  <span style={{ color: "#a1a1aa" }}>/</span>
+  <span style={{ color: "#71717a" }}>…</span>
+  <span style={{ color: "#a1a1aa" }}>/</span>
+  <span style={{ fontWeight: 500 }}>Campaign details</span>
+</div>
+
+## Install
+
+```bash
+npx shadcn@latest add breadcrumb
+```
+
+## Usage
+
+```tsx
+import {
+  Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink,
+  BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis,
+} from "@/components/ui/breadcrumb"
+
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem><BreadcrumbLink href="/enrichment">Enrichment</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbEllipsis /></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbPage>Campaign details</BreadcrumbPage></BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## Item variants used
+
+| Figma variant | Code |
+| --- | --- |
+| Link | `BreadcrumbLink` |
+| Link Current | `BreadcrumbPage` |
+| Ellipsis | `BreadcrumbEllipsis` |
+| Dropdown | `BreadcrumbItem` with a `DropdownMenu` inside |
+
+Size: `md` (the kit also has `sm`).

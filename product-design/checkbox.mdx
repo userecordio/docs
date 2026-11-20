@@ -1,0 +1,50 @@
+---
+title: "Checkbox"
+icon: "square-check"
+description: "Lets the user select one or more options, or agree to terms. shadcn/ui Checkbox."
+keywords: ["checkbox", "select", "terms", "form", "shadcn"]
+---
+
+**Used in:** Desktop (37 of 80 screens) · Mobile (57 of 58 screens)
+
+<div className="not-prose" style={{ display: "flex", flexWrap: "wrap", gap: 32, alignItems: "center", padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 14 }}>
+  <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #18181b", background: "#ffffff" }} /> Unchecked</span>
+  <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #ff5723", background: "#ff5723", color: "#fff", fontSize: 11, lineHeight: "16px", textAlign: "center" }}>✓</span> Checked</span>
+  <span style={{ display: "inline-flex", alignItems: "center", gap: 8, opacity: .5 }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #18181b", background: "#ffffff" }} /> Disabled</span>
+</div>
+
+## Install
+
+```bash
+npx shadcn@latest add checkbox label
+```
+
+## Usage
+
+```tsx
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
+
+<div className="flex items-center gap-2">
+  <Checkbox id="terms" />
+  <Label htmlFor="terms">I agree to the Terms & Conditions</Label>
+</div>
+```
+
+## Where it's used
+
+| Product | Use |
+| --- | --- |
+| Mobile | Terms & Conditions agreement in the footer of almost every screen |
+| Desktop | Row selection in tables, options in setup forms |
+
+## Specs
+
+| Property | Value |
+| --- | --- |
+| Size | 16 × 16px |
+| Radius | `rounded-sm` (2px) |
+| Checked fill | `bg-primary` |
+| Label gap | 8px (`gap-2`) |
+
+Figma states: Inactive / Active, Default / Disabled.

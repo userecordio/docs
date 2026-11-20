@@ -1,0 +1,61 @@
+---
+title: "Chart"
+icon: "chart-column"
+description: "Bar charts built on shadcn/ui Chart (Recharts) with the chart colour tokens."
+keywords: ["chart", "bar chart", "recharts", "analytics", "shadcn"]
+---
+
+**Used in:** Desktop (4 of 80 screens), on analytics views.
+
+<div className="not-prose" style={{ padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif" }}>
+  <div style={{ display: "flex", alignItems: "flex-end", gap: 16, height: 140, borderBottom: "1px solid #e4e4e7" }}>
+    <div style={{ width: 40, height: "45%", background: "#2a9d90", borderRadius: "4px 4px 0 0" }} />
+    <div style={{ width: 40, height: "80%", background: "#2a9d90", borderRadius: "4px 4px 0 0" }} />
+    <div style={{ width: 40, height: "60%", background: "#2a9d90", borderRadius: "4px 4px 0 0" }} />
+    <div style={{ width: 40, height: "95%", background: "#2a9d90", borderRadius: "4px 4px 0 0" }} />
+    <div style={{ width: 40, height: "35%", background: "#2a9d90", borderRadius: "4px 4px 0 0" }} />
+  </div>
+  <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 12, fontSize: 12, color: "#71717a" }}>
+    <span style={{ width: 8, height: 8, borderRadius: 2, background: "#2a9d90" }} /> Candidates
+  </div>
+</div>
+
+<Note>Illustration only. Bar heights are placeholders.</Note>
+
+## Install
+
+```bash
+npx shadcn@latest add chart
+```
+
+## Usage
+
+```tsx
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
+
+const chartConfig = {
+  candidates: { label: "Candidates", color: "var(--chart-1)" },
+}
+
+<ChartContainer config={chartConfig} className="h-[240px] w-full">
+  <BarChart data={data}>
+    <CartesianGrid vertical={false} />
+    <XAxis dataKey="label" tickLine={false} axisLine={false} />
+    <ChartTooltip content={<ChartTooltipContent />} />
+    <ChartLegend content={<ChartLegendContent />} />
+    <Bar dataKey="candidates" fill="var(--color-candidates)" radius={4} />
+  </BarChart>
+</ChartContainer>
+```
+
+## What the screens use
+
+| Figma part | Used | Code |
+| --- | --- | --- |
+| Bar chart, vertical, single series | Yes | `<Bar />` |
+| Grid, vertical lines off | Yes | `<CartesianGrid vertical={false} />` |
+| Legend | Yes | `<ChartLegend />` |
+| Stacked, negative and horizontal bars | In the kit, not used yet | — |
+
+Colours come from `chart-1` to `chart-5`. See [Colors](/product-design/colors#chart-colours).

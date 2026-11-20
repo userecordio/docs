@@ -1,0 +1,69 @@
+---
+title: "Sidebar"
+icon: "panel-left"
+description: "The desktop app's main navigation. shadcn/ui Sidebar."
+keywords: ["sidebar", "navigation", "menu", "app shell", "shadcn"]
+---
+
+**Used in:** Desktop (65 of 80 screens), on every app page.
+
+<div className="not-prose" style={{ padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif" }}>
+  <div style={{ width: 240, background: "#fafafa", color: "#3f3f46", border: "1px solid #e5e7eb", borderRadius: 8, padding: 8, fontSize: 14 }}>
+    <div style={{ padding: "4px 8px", fontSize: 12, color: "#71717a" }}>Overview</div>
+    <div style={{ padding: "6px 8px", borderRadius: 6, background: "#f4f4f5", color: "#18181b", fontWeight: 500 }}>Dashboard</div>
+    <div style={{ padding: "4px 8px", marginTop: 8, fontSize: 12, color: "#71717a" }}>Issue & Track</div>
+    <div style={{ padding: "6px 8px", borderRadius: 6 }}>Workflows</div>
+    <div style={{ padding: "6px 8px", borderRadius: 6 }}>Campaigns</div>
+    <div style={{ padding: "6px 8px", borderRadius: 6 }}>Logs</div>
+  </div>
+</div>
+
+## Install
+
+```bash
+npx shadcn@latest add sidebar
+```
+
+## Usage
+
+```tsx
+import {
+  SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarFooter,
+  SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem,
+  SidebarMenuButton, SidebarMenuSub, SidebarMenuSubItem,
+} from "@/components/ui/sidebar"
+
+<SidebarProvider>
+  <Sidebar>
+    <SidebarHeader>{/* logo */}</SidebarHeader>
+    <SidebarContent>
+      <SidebarGroup>
+        <SidebarGroupLabel>Overview</SidebarGroupLabel>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton isActive>Dashboard</SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarGroup>
+    </SidebarContent>
+    <SidebarFooter>{/* Test mode, Settings */}</SidebarFooter>
+  </Sidebar>
+  <main>{children}</main>
+</SidebarProvider>
+```
+
+## Parts used in the screens
+
+| Figma part | Variant used | Code |
+| --- | --- | --- |
+| SidebarGroupLabel | Default, text size xs and sm | `SidebarGroupLabel` |
+| SidebarMenuItem | Without submenu | `SidebarMenuItem` |
+| SidebarMenuButton | Simple and Collapsible; Default and Active | `SidebarMenuButton isActive` |
+| SidebarMenuSub | Border | `SidebarMenuSub` |
+| Header Button | Default | `SidebarHeader` with a `Button` |
+
+The sidebar footer also holds the **Test mode** [Switch](/product-design/switch) and the **Get started** checklist ([Radio Group](/product-design/radio-group)).
+
+## Colours
+
+The sidebar has its own tokens (`bg-sidebar`, `text-sidebar-foreground`, `bg-sidebar-accent`). See [Colors](/product-design/colors#sidebar).

@@ -1,0 +1,53 @@
+---
+title: "Pagination"
+icon: "ellipsis"
+description: "Moves between pages of a table. shadcn/ui Pagination."
+keywords: ["pagination", "pages", "table", "shadcn"]
+---
+
+**Used in:** Desktop (25 of 80 screens), under tables.
+
+<div className="not-prose" style={{ display: "flex", alignItems: "center", gap: 4, padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 14 }}>
+  <span style={{ display: "inline-flex", alignItems: "center", height: 36, padding: "0 10px", borderRadius: 6 }}>‹ Previous</span>
+  <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 6 }}>1</span>
+  <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 6, border: "1px solid #e4e4e7" }}>2</span>
+  <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 6 }}>3</span>
+  <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36 }}>…</span>
+  <span style={{ display: "inline-flex", alignItems: "center", height: 36, padding: "0 16px", borderRadius: 6 }}>Next ›</span>
+</div>
+
+## Install
+
+```bash
+npx shadcn@latest add pagination
+```
+
+## Usage
+
+```tsx
+import {
+  Pagination, PaginationContent, PaginationItem, PaginationLink,
+  PaginationPrevious, PaginationNext, PaginationEllipsis,
+} from "@/components/ui/pagination"
+
+<Pagination>
+  <PaginationContent>
+    <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+    <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationEllipsis /></PaginationItem>
+    <PaginationItem><PaginationNext href="#" /></PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+
+## Specs
+
+| Property | Value |
+| --- | --- |
+| Item size | 36 × 36px |
+| Radius | `rounded-md` (6px) |
+| Active page | Outlined, `border` (#E4E4E7) |
+
+Figma variants used: Previous, Link, Ellipsis, Next. States used: Default, Active.

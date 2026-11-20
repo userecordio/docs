@@ -1,0 +1,41 @@
+---
+title: "Radio Group"
+icon: "circle-dot"
+description: "Lets the user pick one option from a list. shadcn/ui Radio Group."
+keywords: ["radio", "radio group", "select one", "checklist", "shadcn"]
+---
+
+**Used in:** Desktop (57 of 80 screens) · Mobile (3 of 58 screens)
+
+<div className="not-prose" style={{ display: "grid", gap: 12, padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif" }}>
+  <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}><span style={{ width: 16, height: 16, borderRadius: 9999, border: "1px solid #ff5723", display: "inline-flex", alignItems: "center", justifyContent: "center", marginTop: 2 }}><span style={{ width: 8, height: 8, borderRadius: 9999, background: "#ff5723" }} /></span><span style={{ display: "grid", gap: 2 }}><span style={{ fontSize: 14, fontWeight: 500 }}>Create your first workflow</span><span style={{ fontSize: 14, color: "#71717a" }}>Selected</span></span></div>
+  <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}><span style={{ width: 16, height: 16, borderRadius: 9999, border: "1px solid #18181b", marginTop: 2 }} /><span style={{ display: "grid", gap: 2 }}><span style={{ fontSize: 14, fontWeight: 500 }}>Test in Playground</span><span style={{ fontSize: 14, color: "#71717a" }}>Not selected</span></span></div>
+</div>
+
+## Install
+
+```bash
+npx shadcn@latest add radio-group label
+```
+
+## Usage
+
+```tsx
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
+
+<RadioGroup defaultValue="workflow">
+  <div className="flex items-start gap-2">
+    <RadioGroupItem value="workflow" id="workflow" />
+    <Label htmlFor="workflow">Create your first workflow</Label>
+  </div>
+  <div className="flex items-start gap-2">
+    <RadioGroupItem value="playground" id="playground" />
+    <Label htmlFor="playground">Test in Playground</Label>
+  </div>
+</RadioGroup>
+```
+
+## Where it's used
+
+On desktop, mostly in the sidebar's **Get started** checklist. The Figma item has a label, a description and two weights (Medium, Regular); the screens use Medium.

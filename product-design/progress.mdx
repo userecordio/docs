@@ -1,0 +1,38 @@
+---
+title: "Progress"
+icon: "loader"
+description: "Shows how far along something is, such as positions filled or campaign progress. shadcn/ui Progress."
+keywords: ["progress", "bar", "percentage", "shadcn"]
+---
+
+**Used in:** Desktop (35 of 80 screens) · Mobile (1 of 58 screens)
+
+<div className="not-prose" style={{ display: "grid", gap: 14, padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 12 }}>
+  <div style={{ display: "grid", gridTemplateColumns: "40px 1fr", gap: 12, alignItems: "center" }}><span>25%</span><div style={{ height: 8, borderRadius: 9999, background: "rgba(255,87,35,.2)" }}><div style={{ width: "25%", height: "100%", borderRadius: 9999, background: "#ff5723" }} /></div></div>
+  <div style={{ display: "grid", gridTemplateColumns: "40px 1fr", gap: 12, alignItems: "center" }}><span>50%</span><div style={{ height: 8, borderRadius: 9999, background: "rgba(255,87,35,.2)" }}><div style={{ width: "50%", height: "100%", borderRadius: 9999, background: "#ff5723" }} /></div></div>
+  <div style={{ display: "grid", gridTemplateColumns: "40px 1fr", gap: 12, alignItems: "center" }}><span>75%</span><div style={{ height: 8, borderRadius: 9999, background: "rgba(255,87,35,.2)" }}><div style={{ width: "75%", height: "100%", borderRadius: 9999, background: "#ff5723" }} /></div></div>
+</div>
+
+## Install
+
+```bash
+npx shadcn@latest add progress
+```
+
+## Usage
+
+```tsx
+import { Progress } from "@/components/ui/progress"
+
+<Progress value={30} />
+```
+
+The Figma kit has fixed steps (0%, 25%, 50%, 75%, 100%). In code, pass the real value from 0 to 100.
+
+## Specs
+
+| Property | Value |
+| --- | --- |
+| Indicator | `bg-primary` |
+| Track | `bg-primary/20` |
+| Radius | `rounded-full` |

@@ -173,10 +173,22 @@
           {
             "group": "Components",
             "pages": [
+              "product-design/badge",
+              "product-design/breadcrumb",
               "product-design/button",
-              "product-design/input",
               "product-design/card",
-              "product-design/badge"
+              "product-design/chart",
+              "product-design/checkbox",
+              "product-design/dropdown-menu",
+              "product-design/input",
+              "product-design/pagination",
+              "product-design/progress",
+              "product-design/radio-group",
+              "product-design/sidebar",
+              "product-design/switch",
+              "product-design/table",
+              "product-design/tabs",
+              "product-design/toggle-group"
             ]
           },
           {

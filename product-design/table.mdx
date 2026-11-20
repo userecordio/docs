@@ -1,0 +1,77 @@
+---
+title: "Table"
+icon: "table"
+description: "Rows of records with sorting, selection and row actions. shadcn/ui Table and Data Table."
+keywords: ["table", "data table", "rows", "tanstack", "shadcn"]
+---
+
+**Used in:** Desktop (35 of 80 screens)
+
+<div className="not-prose" style={{ padding: 24, border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 14, overflowX: "auto" }}>
+  <div style={{ minWidth: 480, border: "1px solid #e4e4e7", borderRadius: 8, overflow: "hidden" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 120px 100px 40px", alignItems: "center", height: 40, padding: "0 8px", color: "#71717a", fontWeight: 500, borderBottom: "1px solid #e4e4e7" }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #18181b" }} /><span>Name</span><span>Status</span><span style={{ textAlign: "right" }}>Sent</span><span /></div>
+    <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 120px 100px 40px", alignItems: "center", height: 52, padding: "0 8px", borderBottom: "1px solid #e4e4e7" }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #18181b" }} /><span style={{ fontWeight: 500 }}>Warehouse Picker</span><span><span style={{ padding: "2px 10px", borderRadius: 6, background: "#f4f4f5", fontSize: 12, fontWeight: 600 }}>Live</span></span><span style={{ textAlign: "right" }}>245</span><span style={{ textAlign: "center" }}>⋯</span></div>
+    <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 120px 100px 40px", alignItems: "center", height: 52, padding: "0 8px" }}><span style={{ width: 16, height: 16, borderRadius: 2, border: "1px solid #18181b" }} /><span style={{ fontWeight: 500 }}>Forklift Operator</span><span><span style={{ padding: "2px 10px", borderRadius: 6, border: "1px solid #e4e4e7", fontSize: 12, fontWeight: 600 }}>Closed</span></span><span style={{ textAlign: "right" }}>300</span><span style={{ textAlign: "center" }}>⋯</span></div>
+  </div>
+</div>
+
+## Install
+
+```bash
+npx shadcn@latest add table checkbox dropdown-menu badge
+npm install @tanstack/react-table
+```
+
+Use plain `Table` for static lists. Use the Data Table pattern (TanStack Table on top of `Table`) when you need sorting, selection or pagination.
+
+## Usage
+
+```tsx
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-10"><Checkbox aria-label="Select all" /></TableHead>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead className="text-right">Sent</TableHead>
+      <TableHead className="w-10" />
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><Checkbox aria-label="Select row" /></TableCell>
+      <TableCell className="font-medium">Warehouse Picker</TableCell>
+      <TableCell><Badge variant="secondary">Live</Badge></TableCell>
+      <TableCell className="text-right">245</TableCell>
+      <TableCell>{/* row actions DropdownMenu */}</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## Cell types used in the screens
+
+| Figma part | Variants used |
+| --- | --- |
+| Table / Head | Left and right aligned text |
+| Table / Cell | Default, Badge, Toggle Group; regular and bold text; left and right aligned |
+| Data Table / TableHead | Checkbox, Button (sortable), Action |
+| Data Table / TableCell | Checkbox, Action (three-dot menu) |
+
+The kit also has Avatar, Switch, Button, Dropdown, Progress, Image and Input cells, not used yet.
+
+## Rules
+
+- Right-align numbers (`text-right`).
+- Wide tables scroll horizontally; don't squeeze columns.
+- The row action menu always includes **Edit**.
+
+## Specs
+
+| Property | Value |
+| --- | --- |
+| Row height | 52px |
+| Cell padding | 8px |
+| Row divider | `border-b` (#E4E4E7) |

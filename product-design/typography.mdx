@@ -1,9 +1,11 @@
 ---
 title: "Typography"
 icon: "type"
-description: "Font sizes, weights, line heights and letter spacing from the Figma variables, with the Tailwind class to use for each."
+description: "Font families, text styles, the type scale, weights and letter spacing, taken from the Figma variables."
 keywords:
   - "typography"
+  - "font"
+  - "dm sans"
   - "font size"
   - "font weight"
   - "line height"
@@ -11,72 +13,164 @@ keywords:
   - "tailwind"
 ---
 
-Every value below comes from the Figma variables collection and matches a standard Tailwind class. Use the class, not the pixel value.
+Use Tailwind classes, not pixel values. Every value below comes from the Figma **Theme** and **TailwindCSS** variable collections.
 
 ```tsx
 <h2 className="text-2xl font-semibold tracking-tight">Overview</h2>
 <p className="text-sm text-muted-foreground">Last 30 days</p>
 ```
 
-## Font size
+## Font families
 
-| Class | Size | Sample |
-| --- | --- | --- |
-| `text-xs` | `12px` | <span style={{fontSize: '12px', lineHeight: 1.2}}>Aa</span> |
-| `text-sm` | `14px` | <span style={{fontSize: '14px', lineHeight: 1.2}}>Aa</span> |
-| `text-base` | `16px` | <span style={{fontSize: '16px', lineHeight: 1.2}}>Aa</span> |
-| `text-lg` | `18px` | <span style={{fontSize: '18px', lineHeight: 1.2}}>Aa</span> |
-| `text-xl` | `20px` | <span style={{fontSize: '20px', lineHeight: 1.2}}>Aa</span> |
-| `text-2xl` | `24px` | <span style={{fontSize: '24px', lineHeight: 1.2}}>Aa</span> |
-| `text-3xl` | `30px` | <span style={{fontSize: '30px', lineHeight: 1.2}}>Aa</span> |
-| `text-4xl` | `36px` | <span style={{fontSize: '36px', lineHeight: 1.2}}>Aa</span> |
-| `text-5xl` | `48px` | <span style={{fontSize: '48px', lineHeight: 1.2}}>Aa</span> |
-| `text-6xl` | `60px` | Display only; too large to preview here |
-| `text-7xl` | `72px` | Display only; too large to preview here |
-| `text-8xl` | `96px` | Display only; too large to preview here |
-| `text-9xl` | `128px` | Display only; too large to preview here |
+<FontFamilies />
+
+## Text styles
+
+Ready-made styles for headings and body copy.
+
+<TextStyles />
+
+## Type scale
+
+<TypeScale />
 
 ## Font weight
 
-| Class | Weight | Sample |
-| --- | --- | --- |
-| `font-thin` | `100` | <span style={{fontWeight: 100}}>Record verification</span> |
-| `font-extralight` | `200` | <span style={{fontWeight: 200}}>Record verification</span> |
-| `font-light` | `300` | <span style={{fontWeight: 300}}>Record verification</span> |
-| `font-normal` | `400` | <span style={{fontWeight: 400}}>Record verification</span> |
-| `font-medium` | `500` | <span style={{fontWeight: 500}}>Record verification</span> |
-| `font-semibold` | `600` | <span style={{fontWeight: 600}}>Record verification</span> |
-| `font-bold` | `700` | <span style={{fontWeight: 700}}>Record verification</span> |
-| `font-extrabold` | `800` | <span style={{fontWeight: 800}}>Record verification</span> |
-| `font-black` | `900` | <span style={{fontWeight: 900}}>Record verification</span> |
-
-## Line height
-
-| Class | Line height |
-| --- | --- |
-| `leading-3` | `12px` |
-| `leading-4` | `16px` |
-| `leading-5` | `20px` |
-| `leading-6` | `24px` |
-| `leading-7` | `28px` |
-| `leading-8` | `32px` |
-| `leading-9` | `36px` |
-| `leading-10` | `40px` |
+<Weights />
 
 ## Letter spacing
 
-| Class | Value |
-| --- | --- |
-| `tracking-tighter` | `-0.8px` |
-| `tracking-tight` | `-0.4px` |
-| `tracking-normal` | `0px` |
-| `tracking-wide` | `0.4px` |
-| `tracking-wider` | `0.8px` |
-| `tracking-widest` | `1.6px` |
+<Tracking />
 
-## Font style
+<Accordion title="All values as a table">
+  | Class | Size | Line height |
+  | --- | --- | --- |
+  | `text-xs` | 12px | 16px |
+  | `text-sm` | 14px | 20px |
+  | `text-base` | 16px | 24px |
+  | `text-lg` | 18px | 28px |
+  | `text-xl` | 20px | 28px |
+  | `text-2xl` | 24px | 32px |
+  | `text-3xl` | 30px | 36px |
+  | `text-4xl` | 36px | 40px |
+  | `text-5xl` | 48px | 1 |
+  | `text-6xl` | 60px | 1 |
+  | `text-7xl` | 72px | 1 |
+  | `text-8xl` | 96px | 1 |
+  | `text-9xl` | 128px | 1 |
 
-| Class | Value |
-| --- | --- |
-| `italic` | `italic` |
-| `not-italic` | `normal` |
+  | Weight class | Value |
+  | --- | --- |
+  | `font-thin` | 100 |
+  | `font-extralight` | 200 |
+  | `font-light` | 300 |
+  | `font-normal` | 400 |
+  | `font-medium` | 500 |
+  | `font-semibold` | 600 |
+  | `font-bold` | 700 |
+  | `font-extrabold` | 800 |
+  | `font-black` | 900 |
+
+  | Tracking class | Value |
+  | --- | --- |
+  | `tracking-tighter` | -0.8px |
+  | `tracking-tight` | -0.4px |
+  | `tracking-normal` | 0 |
+  | `tracking-wide` | 0.4px |
+  | `tracking-wider` | 0.8px |
+  | `tracking-widest` | 1.6px |
+</Accordion>
+
+export const TypoRow = ({ left, sub, children }) => (
+  <div style={{ display: "grid", gridTemplateColumns: "180px minmax(0,1fr)", gap: 24, alignItems: "center", padding: "14px 16px", borderTop: "1px solid rgba(127,127,127,.15)" }}>
+    <div style={{ minWidth: 0 }}>
+      <div style={{ fontSize: 13, fontWeight: 600, fontFamily: "ui-monospace, Menlo, monospace" }}>{left}</div>
+      <div style={{ fontSize: 12, opacity: .6, fontFamily: "ui-monospace, Menlo, monospace" }}>{sub}</div>
+    </div>
+    <div style={{ minWidth: 0, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}>{children}</div>
+  </div>
+);
+
+export const TypoBox = ({ children }) => (
+  <div className="not-prose" style={{ border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, overflow: "hidden", marginTop: -1 }}>
+    <div style={{ marginTop: -1 }}>{children}</div>
+  </div>
+);
+
+export const FontFamilies = () => {
+  const F = [["font-sans", "DM Sans", "'DM Sans', ui-sans-serif, system-ui, sans-serif", "All product UI"], ["font-serif", "Georgia", "Georgia, serif", "Not used in product UI"], ["font-mono", "Menlo", "Menlo, ui-monospace, monospace", "Code, IDs, API keys"]];
+  return (
+    <div className="not-prose" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
+      {F.map(([cls, name, stack, use]) => (
+        <div key={cls} style={{ border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, padding: 16, display: "grid", gap: 8, minWidth: 0 }}>
+          <div style={{ fontFamily: stack, fontSize: 40, lineHeight: 1 }}>Aa</div>
+          <div style={{ fontSize: 15, fontWeight: 600 }}>{name}</div>
+          <div style={{ fontSize: 12, fontFamily: "ui-monospace, Menlo, monospace", opacity: .7 }}>{cls}</div>
+          <div style={{ fontSize: 12, opacity: .65 }}>{use}</div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const TextStyles = () => {
+  const S = [
+    ["h1", "text-4xl lg:text-5xl font-extrabold tracking-tight", 36, 40, 800, -0.4, "Verify skills faster"],
+    ["h2", "text-3xl font-semibold tracking-tight", 30, 36, 600, -0.4, "Job mandates"],
+    ["h3", "text-2xl font-semibold tracking-tight", 24, 32, 600, -0.4, "Campaign details"],
+    ["h4", "text-xl font-semibold tracking-tight", 20, 28, 600, -0.4, "Candidates"],
+    ["lead", "text-xl text-muted-foreground", 20, 28, 400, 0, "Collect skills from every candidate."],
+    ["large", "text-lg font-semibold", 18, 28, 600, 0, "Are you sure?"],
+    ["p", "leading-7", 16, 28, 400, 0, "Verifications sent directly to candidates."],
+    ["small", "text-sm font-medium leading-none", 14, 14, 500, 0, "Last updated 2 hours ago"],
+    ["inline code", "font-mono text-sm font-semibold", 14, 20, 600, 0, "en_r4n8d2b7"],
+  ];
+  return (
+    <TypoBox>
+      {S.map(([name, cls, size, lh, w, ls, sample]) => (
+        <TypoRow key={name} left={name} sub={size + " / " + lh + " · " + w}>
+          <span style={{ fontSize: size, lineHeight: lh + "px", fontWeight: w, letterSpacing: ls, fontFamily: name === "inline code" ? "Menlo, ui-monospace, monospace" : undefined }}>{sample}</span>
+        </TypoRow>
+      ))}
+    </TypoBox>
+  );
+};
+
+export const TypeScale = () => {
+  const T = [["text-xs", 12, 16], ["text-sm", 14, 20], ["text-base", 16, 24], ["text-lg", 18, 28], ["text-xl", 20, 28], ["text-2xl", 24, 32], ["text-3xl", 30, 36], ["text-4xl", 36, 40], ["text-5xl", 48, 48], ["text-6xl", 60, 60], ["text-7xl", 72, 72], ["text-8xl", 96, 96], ["text-9xl", 128, 128]];
+  return (
+    <TypoBox>
+      {T.map(([cls, size, lh]) => (
+        <TypoRow key={cls} left={cls} sub={size + "px / " + lh + "px"}>
+          <span style={{ fontSize: size, lineHeight: 1.1 }}>Record</span>
+        </TypoRow>
+      ))}
+    </TypoBox>
+  );
+};
+
+export const Weights = () => {
+  const W = [["font-thin", 100], ["font-extralight", 200], ["font-light", 300], ["font-normal", 400], ["font-medium", 500], ["font-semibold", 600], ["font-bold", 700], ["font-extrabold", 800], ["font-black", 900]];
+  return (
+    <TypoBox>
+      {W.map(([cls, w]) => (
+        <TypoRow key={cls} left={cls} sub={String(w)}>
+          <span style={{ fontSize: 20, fontWeight: w }}>Skill verification</span>
+        </TypoRow>
+      ))}
+    </TypoBox>
+  );
+};
+
+export const Tracking = () => {
+  const L = [["tracking-tighter", -0.8], ["tracking-tight", -0.4], ["tracking-normal", 0], ["tracking-wide", 0.4], ["tracking-wider", 0.8], ["tracking-widest", 1.6]];
+  return (
+    <TypoBox>
+      {L.map(([cls, v]) => (
+        <TypoRow key={cls} left={cls} sub={v + "px"}>
+          <span style={{ fontSize: 18, letterSpacing: v }}>SKILL VERIFICATION</span>
+        </TypoRow>
+      ))}
+    </TypoBox>
+  );
+};

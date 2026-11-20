@@ -191,7 +191,9 @@
           {
             "group": "Mobile app",
             "icon": "smartphone",
-            "pages": []
+            "pages": [
+              "product-design/mobile/overview"
+            ]
           }
         ]
       }

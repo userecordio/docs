@@ -182,7 +182,9 @@
           {
             "group": "Desktop app",
             "icon": "monitor",
-            "pages": []
+            "pages": [
+              "product-design/desktop/overview"
+            ]
           },
           {
             "group": "Mobile app",

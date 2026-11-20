@@ -1,0 +1,56 @@
+---
+title: "Desktop app overview"
+sidebarTitle: "Overview"
+icon: "monitor"
+description: "The Record platform for recruiters. Layout, navigation and the screens documented in this section."
+keywords: ["desktop", "layout", "sidebar", "navigation", "app shell"]
+---
+
+<Info>
+  Desktop only. Every screen is designed at **1440px** wide. There is no mobile layout for this product.
+</Info>
+
+![Record dashboard showing the sidebar, the Overview page and the hiring funnel](/images/product-design/desktop/dashboard-all-hiring.png)
+
+## App shell
+
+Every page uses the same shell: a sidebar on the left and the page content on the right.
+
+| Area | What's in it | shadcn/ui component |
+| --- | --- | --- |
+| Sidebar | Logo, workspace switcher, navigation groups, Test mode, Settings | `sidebar` |
+| Top bar | Breadcrumb, environment (Default), organisation switcher, profile | `breadcrumb`, `dropdown-menu`, `avatar` |
+| Page header | Page title, date range, primary action (for example **New job mandate**) | `button`, `select` |
+| Footer | Support, System status, Docs, Terms, Privacy, Cookie preferences | — |
+
+```bash
+npx shadcn@latest add sidebar breadcrumb dropdown-menu avatar button
+```
+
+### Sidebar navigation
+
+The sidebar groups are, in order:
+
+| Group | Items |
+| --- | --- |
+| Overview | Dashboard |
+| Issue & Track | Workflows, Campaigns, Enrichment, Logs, Analytics |
+| Access & Management | Users & Roles |
+| Configuration / Developer | API Keys, Webhooks |
+| Billing | Billing & Limits |
+| Bottom | Test mode, Settings |
+
+## Screens
+
+<Columns cols={2}>
+  <Card title="Dashboard" icon="layout-dashboard" href="/product-design/desktop/dashboard">
+    Overview, hiring funnel and job mandate cards
+  </Card>
+  <Card title="Enrichment" icon="database" href="/product-design/desktop/enrichment">
+    Set up an enrichment, run campaigns, read results
+  </Card>
+</Columns>
+
+<Note>
+  Workflows, Job mandates and Campaigns are being added next.
+</Note>
